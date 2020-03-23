@@ -1,8 +1,10 @@
-<div>
-    <p [ngStyle]="{'font-size': changeSize()}"> Page de configuration </p>
-    <p [ngStyle]="{'font-size': changeSize()}">Ceci est un texte à lire</p>
-    <div>
-        <p [ngStyle]="{'font-size': changeSize()}">Paramètre taille de police: <input [ngStyle]="{'font-size': changeSize()}" type="number" min="10" max="100" [(ngModel)]="fontSize"></p>
+<div class=container>
+    <div [ngStyle]="{'font-size': changeSize()}" id="titre"> Page de configuration </div>
+    <div [ngStyle]="{'font-size': changeSize()}" class=labelCard id="exemple">Ceci est un texte à lire</div>
+    <div id="parametres">
+        <div [ngStyle]="{'font-size': changeSize()}" class="labelCard parametre">Paramètre taille de police: <input [ngStyle]="{'font-size': changeSize()}" type="number" min="25" max="100" [(ngModel)]="fontSize"></div>
     </div>
-    <button [ngStyle]="{'font-size': changeSize()}" routerLink="/quiz">Continuer</button>
+    <div id="buttonContainer">
+        <button [ngStyle]="{'font-size': changeSize()}" routerLink="/quiz" id="button">Continuer</button>
+    </div>
 </div>

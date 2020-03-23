@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ConfigurationComponent implements OnInit {
 
-  fontSize: number = 10;
+  fontSize: number = 25;
 
   constructor() {
   }

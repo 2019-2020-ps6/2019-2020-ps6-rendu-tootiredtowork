@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quizz.model';
 import { QUIZ } from 'src/mocks/quiz.mock';
 import { Answer } from 'src/models/answer.model';
@@ -17,7 +17,9 @@ export class QuizComponent implements OnInit {
     seek = 0;
     current: Question = this.quiz.questions[this.seek];
 
-    constructor() {
+    score = 0;
+
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
@@ -27,9 +29,13 @@ export class QuizComponent implements OnInit {
         if (this.seek < this.max - 1) {
             this.current = this.quiz.questions[++this.seek];
         }
+        else {
+            this.router.navigateByUrl('/result/' + this.score + '/' + this.max);
+        }
     }
 
     answered(answer: Answer) {
+        if (answer.isCorrect) this.score++;
         this.next();
     }
 }

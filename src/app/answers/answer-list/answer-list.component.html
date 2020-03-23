@@ -1,3 +1,5 @@
-<div *ngFor="let ans of answerList">
-    <button (click)="answer(ans);">{{ ans.value }}</button>
+<div class="answerList">
+    <ng-container *ngFor="let ans of _answerList">
+        <button class="answer" (click)="answer(ans);">{{ ans.value }}</button>
+    </ng-container>
 </div>

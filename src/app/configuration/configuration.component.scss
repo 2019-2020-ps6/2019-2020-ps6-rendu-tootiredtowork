@@ -1,0 +1,46 @@
+#titre {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+#exemple {
+    padding: 5%;
+}
+
+#parametres {
+    margin-top: 10%;
+}
+
+.parametre {
+    padding: 1%;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#button {
+    margin-top: 60%;
+    padding: 2% 50px;
+    text-align: center;
+    text-decoration: none;
+    border-width: 2px;
+    border-style: ridge;
+    border-color: #515151;
+    background-color: white;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    font-family: Arial Black;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#button:hover {
+    background-color: #515151;
+    color: white;
+    box-shadow: none;
+}

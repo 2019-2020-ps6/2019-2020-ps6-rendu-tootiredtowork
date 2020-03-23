@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: linear-gradient(145deg, rgb(224, 224, 224), rgb(158, 158, 158));
+    font-family: Arial Black;
+}
+
+.labelCard {
+    border-width: 2px;
+    border-style: ridge;
+    border-color: black;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    border-radius: 4px;
+    font-family: Arial Black;
+    font-size: 60px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.container {
+    margin-left: 30%;
+    margin-right: 30%;
+}
