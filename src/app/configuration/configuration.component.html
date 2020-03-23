@@ -1,8 +1,8 @@
 <div>
-    <p [ngStyle]="{'font-size': changeSize()}" > Page de configuration </p>
+    <p [ngStyle]="{'font-size': changeSize()}"> Page de configuration </p>
     <p [ngStyle]="{'font-size': changeSize()}">Ceci est un texte à lire</p>
     <div>
-    	<p [ngStyle]="{'font-size': changeSize()}" >Paramètre taille de police: <input [ngStyle]="{'font-size': changeSize()}" type="number" min="10" max="100" [(ngModel)]="fontSize"  ></p>
+        <p [ngStyle]="{'font-size': changeSize()}">Paramètre taille de police: <input [ngStyle]="{'font-size': changeSize()}" type="number" min="10" max="100" [(ngModel)]="fontSize"></p>
     </div>
-    <button [ngStyle]="{'font-size': changeSize()}" (click)="goQuiz()">Continuer</button>
+    <button [ngStyle]="{'font-size': changeSize()}" routerLink="/quiz">Continuer</button>
 </div>
