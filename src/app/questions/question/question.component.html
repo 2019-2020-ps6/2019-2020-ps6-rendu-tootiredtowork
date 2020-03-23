@@ -2,5 +2,5 @@
     {{ question.label }}
 </div>
 <div>
-    <app-answer-list [answerList]="question.answers"></app-answer-list>
+    <app-answer-list [answerList]="question.answers" (answerSelected)="answerSelected($event)"></app-answer-list>
 </div>
