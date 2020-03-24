@@ -3,7 +3,7 @@
     <div [ngStyle]="{'font-size': configService.fontSize+'px'}" class=labelCard id="exemple">Ceci est un texte à lire</div>
     <div id="parametres">
         <div class="labelCard parametre">Paramètre taille de police:
-            <input class=slider onkeypress="return false" type="range" min="25" max="50" [(ngModel)]="configService.fontSize" (input)="updateFontSize($event.target.value)">
+            <input class=slider onkeypress="return false" type="range" min="25" max="50" [(ngModel)]="configService.fontSize">
         </div>
 
     </div>

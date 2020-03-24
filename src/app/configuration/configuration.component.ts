@@ -16,8 +16,4 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit() {
     this.defaultFontSize = this.configService.fontSize;
   }
-
-  updateFontSize(value) {
-    this.configService.fontSize = value;
-  }
 }
