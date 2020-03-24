@@ -1,13 +1,13 @@
-<div class=container>
+<div [ngStyle]="{'font-size': defaultFontSize+'px'}" class=container>
     <div id="titre"> Page de configuration </div>
-    <div [ngStyle]="{'font-size': changeSize()}" class=labelCard id="exemple">Ceci est un texte à lire</div>
+    <div [ngStyle]="{'font-size': configService.fontSize+'px'}" class=labelCard id="exemple">Ceci est un texte à lire</div>
     <div id="parametres">
         <div class="labelCard parametre">Paramètre taille de police:
-        	<input class=slider onkeypress="return false" type="range" min="25" max="50" [(ngModel)]="fontSize">
+            <input class=slider onkeypress="return false" type="range" min="25" max="50" [(ngModel)]="configService.fontSize" (input)="updateFontSize($event.target.value)">
         </div>
 
     </div>
     <div id="buttonContainer">
-        <button  routerLink="/quiz" id="button">Continuer</button>
+        <button routerLink="/quiz" id="button" [ngStyle]="{'font-size': defaultFontSize+'px'}">Continuer</button>
     </div>
 </div>

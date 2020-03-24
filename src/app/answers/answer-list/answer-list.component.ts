@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Answer } from 'src/models/answer.model';
+import { ConfigurationService } from 'src/services/configuration.service';
 
 @Component({
     selector: 'app-answer-list',
@@ -18,7 +19,7 @@ export class AnswerListComponent implements OnInit {
     @Output()
     answerSelected: EventEmitter<Answer> = new EventEmitter<Answer>();
 
-    constructor() {
+    constructor(public configService: ConfigurationService) {
     }
 
     ngOnInit() {

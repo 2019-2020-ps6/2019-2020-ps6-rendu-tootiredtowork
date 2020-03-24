@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ConfigurationService } from 'src/services/configuration.service';
 
 @Component({
     selector: 'app-result',
@@ -11,7 +12,7 @@ export class ResultComponent implements OnInit {
     score;
     max;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, public configService: ConfigurationService) {
     }
 
     ngOnInit() {

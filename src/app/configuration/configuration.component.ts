@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ConfigurationService } from 'src/services/configuration.service';
 
 @Component({
   selector: 'app-configuration',
@@ -7,17 +8,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ConfigurationComponent implements OnInit {
 
-  fontSize: number = 25;
+  defaultFontSize: number;
 
-  constructor() {
+  constructor(public configService: ConfigurationService) {
   }
 
   ngOnInit() {
+    this.defaultFontSize = this.configService.fontSize;
   }
 
-  changeSize() {
-    return this.fontSize + 'px';
+  updateFontSize(value) {
+    this.configService.fontSize = value;
   }
-
-
 }

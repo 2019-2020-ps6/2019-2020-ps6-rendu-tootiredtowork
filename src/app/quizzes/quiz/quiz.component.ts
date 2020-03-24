@@ -4,6 +4,7 @@ import { Quiz } from 'src/models/quizz.model';
 import { QUIZ } from 'src/mocks/quiz.mock';
 import { Answer } from 'src/models/answer.model';
 import { Question } from 'src/models/question.model';
+import { ConfigurationService } from 'src/services/configuration.service';
 
 @Component({
     selector: 'app-quiz',
@@ -19,7 +20,7 @@ export class QuizComponent implements OnInit {
 
     score = 0;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public configService: ConfigurationService) {
     }
 
     ngOnInit() {
