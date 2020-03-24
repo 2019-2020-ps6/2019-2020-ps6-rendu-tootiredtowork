@@ -3,6 +3,7 @@
     justify-content: center;
     margin-top: 1%;
     margin-bottom: 5%;
+    font-size: 25px;
 }
 
 #exemple {
@@ -15,12 +16,18 @@
 
 .parametre {
     padding: 1%;
+
+}
+
+.labelCard {
+	font-size: 25px;
 }
 
 #buttonContainer {
     display: flex;
     justify-content: center;
 }
+
 
 #button {
     margin-top: 60%;
@@ -43,4 +50,38 @@
     background-color: #515151;
     color: white;
     box-shadow: none;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 30%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: black;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: black;
+  cursor: pointer;
 }

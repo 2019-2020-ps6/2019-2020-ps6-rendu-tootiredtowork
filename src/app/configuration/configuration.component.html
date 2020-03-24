@@ -1,10 +1,13 @@
 <div class=container>
-    <div [ngStyle]="{'font-size': changeSize()}" id="titre"> Page de configuration </div>
+    <div id="titre"> Page de configuration </div>
     <div [ngStyle]="{'font-size': changeSize()}" class=labelCard id="exemple">Ceci est un texte à lire</div>
     <div id="parametres">
-        <div [ngStyle]="{'font-size': changeSize()}" class="labelCard parametre">Paramètre taille de police: <input [ngStyle]="{'font-size': changeSize()}" type="number" min="25" max="100" [(ngModel)]="fontSize"></div>
+        <div class="labelCard parametre">Paramètre taille de police:
+        	<input class=slider onkeypress="return false" type="range" min="25" max="50" [(ngModel)]="fontSize">
+        </div>
+
     </div>
     <div id="buttonContainer">
-        <button [ngStyle]="{'font-size': changeSize()}" routerLink="/quiz" id="button">Continuer</button>
+        <button  routerLink="/quiz" id="button">Continuer</button>
     </div>
 </div>
