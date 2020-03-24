@@ -14,6 +14,8 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 
 import { ResultComponent } from './results/result/result.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { ResultComponent } from './results/result/result.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
