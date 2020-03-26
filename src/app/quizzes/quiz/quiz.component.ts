@@ -14,21 +14,22 @@ import { QuizService } from 'src/services/quiz.service';
     styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
-    quiz: Quiz= QUIZ;
-
-    max = this.quiz.questions.length;
+    quiz: Quiz;
+    max;
     seek = 0;
-    current: Question = this.quiz.questions[this.seek];
+    current: Question;
 
     score = 0;
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
-        this.quizService.quizSelected$.subscribe((quizzes: Quiz) => {
-      this.quiz = quizzes;
-    });
     }
 
     ngOnInit() {
+        this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
+            this.quiz = quiz;
+        });
+        this.max = this.quiz.questions.length;
+        this.current = this.quiz.questions[this.seek];
     }
 
     next() {
