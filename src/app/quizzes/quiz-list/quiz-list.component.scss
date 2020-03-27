@@ -1,7 +1,40 @@
 #title {
-    display: flex;
-    justify-content: center;
     text-decoration: underline;
+    align-self: center;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+}
+
+#box1 {
+    justify-content: flex-start;
+}
+
+#box2 {
+    justify-content: center;
+}
+
+#box3 {
+    justify-content: flex-end;
+}
+
+.fa-cog {
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.fa-cog:hover {
+    transform: rotate(135deg);
 }
 
 .quizlist {
@@ -17,4 +50,8 @@
 
 .quizlist>* {
     margin: 1%;
+}
+
+.button {
+    padding: 2%;
 }

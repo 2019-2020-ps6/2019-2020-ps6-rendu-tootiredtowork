@@ -1,6 +1,16 @@
 <div class=container [ngStyle]="{'font-size': configService.fontSize+'px'}">
-    <div id="title">
-        Test
+    <div class=nav>
+        <div class=box id="box1">
+            <button class=button [ngStyle]="{'font-size': configService.fontSize+'px'}">Mode Création</button>
+        </div>
+        <div class=box id="box2">
+            <div id="title">
+                Test
+            </div>
+        </div>
+        <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
+            <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+        </div>
     </div>
     <div class=quizlist>
         <ng-container *ngFor="let q of quizzes">
