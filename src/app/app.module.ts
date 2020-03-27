@@ -6,31 +6,36 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { QuizComponent } from './quizzes/quiz/quiz.component';
+import { QuizGameComponent } from './quizzes/quiz-game/quiz-game.component';
 import { QuestionComponent } from './questions/question/question.component';
 import { AnswerListComponent } from './answers/answer-list/answer-list.component';
+import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
+import { QuizComponent } from './quizzes/quiz/quiz.component';
 
 import { ConfigurationComponent } from './configuration/configuration.component';
-
 import { ResultComponent } from './results/result/result.component';
-
 import { HttpClientModule } from '@angular/common/http';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuizComponent,
+    QuizGameComponent,
     QuestionComponent,
     AnswerListComponent,
     ConfigurationComponent,
-    ResultComponent
+    ResultComponent,
+    QuizListComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

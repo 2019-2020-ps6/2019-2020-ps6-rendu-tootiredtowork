@@ -1,3 +1,8 @@
-<div class="quiz" [ngStyle]="{'font-size': configService.fontSize+'px'}">
-    <app-question [question]="current" (answered)="answered($event)"></app-question>
-</div>
+<button class="button quiz" (click)="quizSelected()" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+    <div>
+        <div>{{quiz.id}}</div>
+        <div>Difficulté: 
+            <i *ngFor="let i of stars" class="fas fa-star"></i></div>
+        <div id="nbQuestion">Nombre de question: {{ quiz.questions.length }}</div>
+    </div>
+</button>

@@ -2,4 +2,10 @@
     <div class=labelCard id="label">
         Votre score est de : {{ score }} sur {{ max }}
     </div>
+    <div id="buttonContainer">
+        <button [ngStyle]="{'font-size': configService.fontSize+'px'}" routerLink="/quizlist" class=button>
+        Terminer
+    </button>
+    </div>
+
 </div>

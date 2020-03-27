@@ -1,0 +1,10 @@
+<div class=container [ngStyle]="{'font-size': configService.fontSize+'px'}">
+    <div id="title">
+        Test
+    </div>
+    <div class=quizlist>
+        <ng-container *ngFor="let q of quizzes">
+            <app-quiz [quiz]="q"></app-quiz>
+        </ng-container>
+    </div>
+</div>

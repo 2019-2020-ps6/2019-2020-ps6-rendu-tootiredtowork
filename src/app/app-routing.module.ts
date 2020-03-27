@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { QuizComponent } from './quizzes/quiz/quiz.component';
+import { QuizGameComponent } from './quizzes/quiz-game/quiz-game.component';
 import { ResultComponent } from './results/result/result.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 
 
 
 
 const routes: Routes = [
-  { path: 'quiz', component: QuizComponent },
+  { path: 'quiz/:quiz', component: QuizGameComponent },
   { path: 'result/:score/:max', component: ResultComponent },
   { path: 'configuration', component: ConfigurationComponent },
-  { path: '', redirectTo: '/configuration', pathMatch: 'full' },
+  { path: 'quizlist', component: QuizListComponent },
+  { path: '', redirectTo: '/configuration', pathMatch: 'full' }
 ];
 
 @NgModule({

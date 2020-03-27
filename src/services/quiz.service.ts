@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Quiz } from '../models/quizz.model';
+import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 
@@ -18,7 +18,7 @@ export class QuizService {
    * The list of quiz.
    * The list is retrieved from the mock.
    */
-  private quizzes: Quiz ;
+  private quizzes: Quiz;
 
   /**
    * Observable which contains the list of the quiz.
@@ -33,9 +33,10 @@ export class QuizService {
 
   constructor(private http: HttpClient) {
     this.setSelectedQuiz('test');
+    console.log(this.quizzes);
   }
 
-    setSelectedQuiz(quizId: string) {
+  setSelectedQuiz(quizId: string) {
     const urlWithId = this.quizUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected$.next(quiz);

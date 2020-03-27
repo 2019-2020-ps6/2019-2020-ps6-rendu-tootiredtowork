@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Quiz } from 'src/models/quizz.model';
-import { QUIZ } from 'src/mocks/quiz.mock';
-import { Answer } from 'src/models/answer.model';
-import { Question } from 'src/models/question.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
-
-import { QuizService } from 'src/services/quiz.service';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-quiz',
@@ -14,35 +10,24 @@ import { QuizService } from 'src/services/quiz.service';
     styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
+    faStar = faStar;
+
+    @Input()
     quiz: Quiz;
-    max;
-    seek = 0;
-    current: Question;
 
-    score = 0;
+    stars: number[] = [];
 
-    constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
+    constructor(private router: Router, public configService: ConfigurationService) {
     }
 
-    ngOnInit() {
-        this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-            this.quiz = quiz;
-        });
-        this.max = this.quiz.questions.length;
-        this.current = this.quiz.questions[this.seek];
-    }
-
-    next() {
-        if (this.seek < this.max - 1) {
-            this.current = this.quiz.questions[++this.seek];
+    ngOnInit(): void {
+        for (var i = 0; i < this.quiz.difficulty; i++) {
+            this.stars.push(i);
         }
-        else {
-            this.router.navigateByUrl('/result/' + this.score + '/' + this.max);
-        }
+        console.log(this.stars.length);
     }
 
-    answered(answer: Answer) {
-        if (answer.isCorrect) this.score++;
-        this.next();
+    quizSelected() {
+        this.router.navigateByUrl('/quiz/' + JSON.stringify(this.quiz));
     }
 }
