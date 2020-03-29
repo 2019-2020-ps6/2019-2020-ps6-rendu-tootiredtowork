@@ -14,6 +14,7 @@ import { QuizComponent } from './quizzes/quiz/quiz.component';
 
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ResultComponent } from './results/result/result.component';
+import { ColorPickerComponent } from './colorPicker/colorPicker.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -27,7 +28,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ConfigurationComponent,
     ResultComponent,
     QuizListComponent,
-    QuizComponent
+    QuizComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,

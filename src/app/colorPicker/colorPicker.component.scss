@@ -1,0 +1,45 @@
+.select-box {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+
+
+}
+
+.select-box .options-container {
+  background: white;
+  max-height: 0;
+  opacity: 1;
+
+}
+
+.selected {
+  background: white;
+  border:solid black;
+  margin-bottom: 8px;
+  padding: 12px 24px;
+
+}
+
+.option{
+  padding: 5px 0px 0px 0px;
+  background: white;
+  border: 1px solid black;
+}
+
+.select-box .option:hover {
+  background: gray;
+}
+
+.box {
+  display:inline-block;
+  width: 60px;
+  height: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: 1px solid black;
+}
+
+.select-box .options-container.active {
+  opacity: 0;
+}
