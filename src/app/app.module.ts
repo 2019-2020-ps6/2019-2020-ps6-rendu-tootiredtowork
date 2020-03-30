@@ -11,10 +11,12 @@ import { QuestionComponent } from './questions/question/question.component';
 import { AnswerListComponent } from './answers/answer-list/answer-list.component';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { QuizComponent } from './quizzes/quiz/quiz.component';
-
+import { EditThemeComponent } from './themes/edit-theme/edit-theme.component'
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ResultComponent } from './results/result/result.component';
 import { ColorPickerComponent } from './colorPicker/colorPicker.component';
+import { EditableQuizComponent } from './quizzes/editable-quiz/editable-quiz.component';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,7 +31,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ResultComponent,
     QuizListComponent,
     QuizComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
+    EditThemeComponent,
+    EditableQuizComponent
   ],
   imports: [
     BrowserModule,

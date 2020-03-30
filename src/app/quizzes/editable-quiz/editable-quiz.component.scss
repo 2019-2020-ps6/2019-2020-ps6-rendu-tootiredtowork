@@ -1,0 +1,44 @@
+#nbQuestion {
+    white-space: nowrap;
+}
+
+.top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+}
+
+#box1 {
+    justify-content: flex-start;
+}
+
+#box2 {
+    justify-content: center;
+}
+
+#box3 {
+    justify-content: flex-end;
+}
+
+.labelCard {
+    cursor: default;
+    padding: 15px 10px;
+}
+
+.labelCard .top i {
+    visibility: hidden;
+}
+
+.labelCard:hover {
+    box-shadow: none;
+}
+
+.labelCard:hover .top i {
+    visibility: visible;
+    cursor: pointer;
+}
