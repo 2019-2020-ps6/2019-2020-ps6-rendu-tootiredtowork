@@ -24,8 +24,19 @@ export class ColorPickerComponent implements OnInit {
 
   	let selected = <HTMLElement>document.body.querySelector(".selected");
   	let container = <HTMLElement>document.body.querySelector(".options-container");
+
+  	let optionList =  document.body.querySelectorAll(".option");
   	selected.addEventListener("click", () => {container.classList.toggle("active") });
 
+  	optionList.forEach ( o => {
+  		o.addEventListener("click", () => {
+  			if(selected.lastChild != null){
+  				selected.removeChild(selected.lastChild);
+  			}
+  			let element=o.querySelector("div").cloneNode(true);
+  			selected.appendChild(element);
+  		})
+  	})
 
   }
 }
