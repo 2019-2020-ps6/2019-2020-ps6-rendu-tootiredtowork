@@ -16,10 +16,17 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { ResultComponent } from './results/result/result.component';
 import { ColorPickerComponent } from './colorPicker/colorPicker.component';
 import { EditableQuizComponent } from './quizzes/editable-quiz/editable-quiz.component';
+import { DeleteQuizDialog } from './dialogs/delete-quiz/delete-quiz-dialog.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { MatDialogModule } from "@angular/material/dialog";
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +40,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     QuizComponent,
     ColorPickerComponent,
     EditThemeComponent,
-    EditableQuizComponent
+    EditableQuizComponent,
+    DeleteQuizDialog
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
