@@ -4,6 +4,8 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
+import { QuizService } from 'src/services/quiz.service';
+
 @Component({
     selector: 'app-quiz',
     templateUrl: './quiz.component.html',
@@ -17,7 +19,8 @@ export class QuizComponent implements OnInit {
 
     stars: number[] = [];
 
-    constructor(private router: Router, public configService: ConfigurationService) {
+    constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
+
     }
 
     ngOnInit(): void {
@@ -28,6 +31,7 @@ export class QuizComponent implements OnInit {
     }
 
     quizSelected() {
-        this.router.navigateByUrl('/quiz/' + JSON.stringify(this.quiz));
+        this.quizService.setSelectedQuiz(this.quiz.id);
+        this.router.navigateByUrl("/quiz/"+this.quiz.id);
     }
 }

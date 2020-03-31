@@ -14,13 +14,12 @@ import { QuizService } from 'src/services/quiz.service';
 export class QuizListComponent implements OnInit {
     quizzes: Quiz[] = QUIZZES;
 
-    constructor(private router: Router, public configService: ConfigurationService) {
+    constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
+        this.quizService.quizzes$.subscribe((list_quizzes: Quiz[]) => {
+      this.quizzes = list_quizzes;
+    });
     }
 
     ngOnInit() {
-    }
-
-    selectQuiz(quiz: Quiz) {
-        this.router.navigateByUrl('/quiz/' + JSON.stringify(quiz));
     }
 }

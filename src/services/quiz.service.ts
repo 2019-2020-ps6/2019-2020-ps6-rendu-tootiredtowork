@@ -21,12 +21,21 @@ export class QuizService {
 
 
   constructor(private http: HttpClient) {
+    this.selectAllQuizzes()
   }
 
   setSelectedQuiz(quizId: string) {
     const urlWithId = this.quizUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected$.next(quiz);
+    });
+  }
+
+    selectAllQuizzes() {
+      this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
+        this.quizzes= quizList;
+      this.quizzes$.next(this.quizzes);
+
     });
   }
 
