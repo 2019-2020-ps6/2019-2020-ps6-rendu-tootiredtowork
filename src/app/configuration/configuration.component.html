@@ -1,6 +1,6 @@
 <div [ngStyle]="{'font-size': defaultFontSize+'px'}" class=container>
     <div id="titre"> Page de configuration </div>
-    <div [ngStyle]="{'font-size': configService.fontSize+'px'}" [ngStyle]="{'background': configService.boxe}" class=labelCard id="exemple">Ceci est un texte à lire</div>
+    <div [ngStyle]="{'font-size': configService.fontSize+'px' ,'background': '#'+configService.boxe, 'color':'#'+configService.text}"  class=labelCard id="exemple">Ceci est un texte à lire</div>
     <div id="parametres">
         <div class="labelCard parametre">Paramètre taille de police:
             <input class=slider onkeypress="return false" type="range" min="25" max="50" [(ngModel)]="configService.fontSize">
