@@ -12,7 +12,7 @@
     </div>
     <div class=quizlist>
         <ng-container *ngFor="let q of quizzes">
-            <app-editable-quiz [quiz]="q"></app-editable-quiz>
+            <app-editable-quiz [quiz]="q" (deleteQuiz)="deleteQuiz($event)"></app-editable-quiz>
         </ng-container>
     </div>
 </div>

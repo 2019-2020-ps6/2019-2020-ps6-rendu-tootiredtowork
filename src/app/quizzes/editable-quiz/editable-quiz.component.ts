@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,10 @@ export class EditableQuizComponent implements OnInit {
     @Input()
     quiz: Quiz;
 
+    @Output()
+    deleteQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
+
+
     stars: number[] = [];
 
     constructor(private router: Router, public configService: ConfigurationService) {
@@ -29,5 +33,9 @@ export class EditableQuizComponent implements OnInit {
 
     quizSelected() {
         this.router.navigateByUrl('/quiz/' + JSON.stringify(this.quiz));
+    }
+
+    delete() {
+        this.deleteQuiz.emit(this.quiz);
     }
 }

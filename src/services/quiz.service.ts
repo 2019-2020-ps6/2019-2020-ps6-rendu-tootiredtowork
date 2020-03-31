@@ -4,27 +4,16 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { QUIZZES } from 'src/mocks/quiz.mock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-  /**
-   * Services Documentation:
-   * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
-   */
 
-  /**
-   * The list of quiz.
-   * The list is retrieved from the mock.
-   */
-  private quizzes: Quiz;
+  private quizzes: Quiz[] = QUIZZES;
 
-  /**
-   * Observable which contains the list of the quiz.
-   * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
-   */
-
+  public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
   public quizSelected$: Subject<Quiz> = new Subject();
 
@@ -32,8 +21,6 @@ export class QuizService {
 
 
   constructor(private http: HttpClient) {
-    this.setSelectedQuiz('test');
-    console.log(this.quizzes);
   }
 
   setSelectedQuiz(quizId: string) {
@@ -41,6 +28,12 @@ export class QuizService {
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected$.next(quiz);
     });
+  }
+
+  deleteQuiz(quiz: Quiz) {
+    var index = this.quizzes.indexOf(quiz);
+    this.quizzes.splice(index, 1);
+    this.quizzes$.next(this.quizzes);
   }
 
 }
