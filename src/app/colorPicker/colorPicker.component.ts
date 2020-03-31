@@ -35,6 +35,7 @@ export class ColorPickerComponent implements OnInit {
   			}
   			let element=o.querySelector("div").cloneNode(true);
   			selected.appendChild(element);
+  			container.classList.toggle("active");
   		})
   	})
 
