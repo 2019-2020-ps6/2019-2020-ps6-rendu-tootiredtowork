@@ -40,9 +40,14 @@ export class QuizService {
   }
 
   deleteQuiz(quiz: Quiz) {
+    const urlWithId = this.quizUrl + '/' + quiz.id;
     var index = this.quizzes.indexOf(quiz);
-    this.quizzes.splice(index, 1);
-    this.quizzes$.next(this.quizzes);
+    this.http.delete<Quiz>(urlWithId).subscribe((quiz) => {
+      this.quizzes.splice(index, 1);
+      this.quizzes$.next(this.quizzes);
+
+    });
+    
   }
 
 }
