@@ -10,6 +10,7 @@
   background: white;
   max-height: 0;
   opacity: 1;
+  transition: all 0.2s;
 
 }
 
@@ -36,8 +37,11 @@
   height: 35px;
   border: 1px solid black;
   display: flex;
+  transition: all 0.2s;
 }
 
 .select-box .options-container.active {
   opacity: 0;
 }
+
+
