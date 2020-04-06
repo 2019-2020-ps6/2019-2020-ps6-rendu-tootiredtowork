@@ -1,21 +1,21 @@
-<div class=container [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text}">
-    <div class=labelCard id="question" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+<div class=container [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text,'margin-size':configService.marginSize+'%'}">
+    <div class=labelCard id="question" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text,'margin-size':configService.marginSize+'%'}">
         <div>Question :</div>
         <div>{{ current.label }}</div>
     </div>
-    <div class=labelCard id="reponse" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+    <div class=labelCard id="reponse" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text,'margin-size':configService.marginSize+'%'}">
         <div>La bonne réponse était :</div>
         <div>{{ correctAnswer.value }}</div>
     </div>
     <div>
         <div class=nav>
-            <div class=box id="box1" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+            <div class=box id="box1" [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%'}">
                 <i class="far fa-2x fa-arrow-alt-circle-left arrow" (click)="prev()"></i>
             </div>
             <div class=box id="box2">
-                <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/quizlist">Terminer</button>
+                <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text,'margin-size':configService.marginSize+'%'}" routerLink="/quizlist">Terminer</button>
             </div>
-            <div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+            <div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%'}">
                 <i class="far fa-2x fa-arrow-alt-circle-right" (click)="next()"></i>
             </div>
         </div>

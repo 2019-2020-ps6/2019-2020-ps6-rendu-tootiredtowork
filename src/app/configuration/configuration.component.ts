@@ -12,6 +12,7 @@ export class ConfigurationComponent implements OnInit {
   defaultText:string;
   defaultBoxe:string;
   defaultBackground:string;
+  defaultMarginSize: number;
 
   constructor(public configService: ConfigurationService) {
   }
@@ -21,5 +22,6 @@ export class ConfigurationComponent implements OnInit {
     this.defaultBoxe = this.configService.boxe;
     this.defaultText = this.configService.text;
     this.defaultBackground = this.configService.background;
+    this.defaultMarginSize = this.configService.marginSize;
   }
 }

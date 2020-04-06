@@ -8,11 +8,13 @@ export class ConfigurationService {
     boxe: string;
     background: string;
     text: string;
+    marginSize: number;
 
     constructor() {
         this.fontSize = 25;
         this.background = "bababa";
         this.boxe ="ffffff";
         this.text ="000000";
+        this.marginSize= 40;
     }
 }
