@@ -1,5 +1,5 @@
 <div class="answerList">
     <ng-container *ngFor="let ans of _answerList">
-        <button class="answer" (click)="answer(ans);" [ngStyle]="{'font-size': configService.fontSize+'px'}">{{ ans.value }}</button>
+        <button class="answer" (click)="answer(ans);" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">{{ ans.value }}</button>
     </ng-container>
 </div>
