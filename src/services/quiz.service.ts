@@ -13,9 +13,11 @@ export class QuizService {
 
   private quizzes: Quiz[] = QUIZZES;
 
-  public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
+  quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
-  public quizSelected$: Subject<Quiz> = new Subject();
+  quizSelected$: Subject<Quiz> = new Subject();
+
+  score: number;
 
   private quizUrl = serverUrl + '/quizzes';
 
@@ -31,9 +33,9 @@ export class QuizService {
     });
   }
 
-    selectAllQuizzes() {
-      this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
-        this.quizzes= quizList;
+  selectAllQuizzes() {
+    this.http.get<Quiz[]>(this.quizUrl).subscribe((quizList) => {
+      this.quizzes = quizList;
       this.quizzes$.next(this.quizzes);
 
     });
@@ -47,7 +49,10 @@ export class QuizService {
       this.quizzes$.next(this.quizzes);
 
     });
-    
   }
 
+  clear() {
+    this.quizSelected$ = new Subject();
+    this.score = 0;
+  }
 }

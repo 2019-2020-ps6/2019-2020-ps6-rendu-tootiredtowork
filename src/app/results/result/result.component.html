@@ -1,9 +1,9 @@
 <div class=container [ngStyle]="{'font-size': configService.fontSize+'px'}">
     <div class=labelCard id="label" [ngStyle]="{'background': '#'+configService.boxe,'color': '#'+configService.text}">
-        Votre score est de : {{ score }} sur {{ max }}
+        Votre score est de : {{ game.score }} sur {{ game.quiz.questions.length }}
     </div>
     <div id="buttonContainer">
-    	<button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/review" class=button>
+        <button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/review" class=button>
         Relecture
     </button>
         <button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/quizlist" class=button>

@@ -6,6 +6,7 @@ import { Question } from 'src/models/question.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 
 import { QuizService } from 'src/services/quiz.service';
+import { GameService } from 'src/services/game.service';
 
 @Component({
     selector: 'app-quiz-game',
@@ -21,12 +22,12 @@ export class QuizGameComponent implements OnInit {
 
     max;
 
-    constructor(private router: Router, private route: ActivatedRoute, public configService: ConfigurationService, public quizService: QuizService) {
+    constructor(private router: Router, private route: ActivatedRoute, public configService: ConfigurationService, public quizService: QuizService, public gameService: GameService) {
         this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
-      this.quiz = quiz;
-      this.max = this.quiz.questions.length;
-      this.current = this.quiz.questions[this.seek];
-    });
+            this.quiz = quiz;
+            this.max = this.quiz.questions.length;
+            this.current = this.quiz.questions[this.seek];
+        });
     }
 
     ngOnInit() {
@@ -37,7 +38,8 @@ export class QuizGameComponent implements OnInit {
             this.current = this.quiz.questions[++this.seek];
         }
         else {
-            this.router.navigateByUrl('/result/' + this.score + '/' + this.max);
+            this.gameService.setGame(this.quiz, this.score);
+            this.router.navigateByUrl('/result');
         }
     }
 

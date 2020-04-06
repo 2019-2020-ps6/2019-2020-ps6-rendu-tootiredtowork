@@ -1,0 +1,16 @@
+<div class=container [ngStyle]="{'font-size': configService.fontSize+'px'}">
+    <div class=nav>
+        <div class=box id="box1">
+            <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
+        </div>
+        <div class=box id="box2">
+            <div id="title">{{ quiz.id }}</div>
+        </div>
+        <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
+            <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+        </div>
+    </div>
+    <div id="difficulte">
+
+    </div>
+</div>

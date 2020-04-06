@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Question } from 'src/models/question.model';
+import { Question, getCorrectAnswer } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
+import { Answer } from 'src/models/answer.model';
+import { GameService } from 'src/services/game.service';
 
 
 @Component({
@@ -10,16 +12,32 @@ import { ConfigurationService } from 'src/services/configuration.service';
     styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-
     quiz: Quiz;
-    current: Question;
 
     seek = 0;
-    score = 0;
-    max;
-    
-    constructor(public configService: ConfigurationService) {
-        console.log(this.quiz);    
+    current: Question;
+    correctAnswer: Answer;
+
+    constructor(public configService: ConfigurationService, public gameService: GameService) {
+        this.quiz = gameService.getGame().quiz;
+        this.current = this.quiz.questions[this.seek];
+        this.correctAnswer = getCorrectAnswer(this.current);
+    }
+
+    next() {
+        if (this.seek < this.quiz.questions.length - 1) {
+            this.seek++;
+            this.current = this.quiz.questions[this.seek];
+            this.correctAnswer = getCorrectAnswer(this.current);
+        }
+    }
+
+    prev() {
+        if (this.seek > 0) {
+            this.seek--;
+            this.current = this.quiz.questions[this.seek];
+            this.correctAnswer = getCorrectAnswer(this.current);
+        }
     }
 
     ngOnInit() {

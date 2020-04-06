@@ -12,12 +12,12 @@ import { QuizService } from 'src/services/quiz.service';
     styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit {
-    quizzes: Quiz[] = QUIZZES;
+    quizzes: Quiz[];
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
         this.quizService.quizzes$.subscribe((list_quizzes: Quiz[]) => {
-      this.quizzes = list_quizzes;
-    });
+            this.quizzes = list_quizzes;
+        });
     }
 
     ngOnInit() {

@@ -25,11 +25,6 @@ export class QuestionComponent implements OnInit {
     }
 
     answerSelected(answer: Answer) {
-        if (answer.isCorrect) {
-            console.log("Bonne réponse !");
-        } else {
-            console.log("Mauvaise réponse :(");
-        }
         this.answered.emit(answer);
     }
 }

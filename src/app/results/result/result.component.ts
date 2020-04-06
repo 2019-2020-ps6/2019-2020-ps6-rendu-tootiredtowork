@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigurationService } from 'src/services/configuration.service';
+import { QuizService } from 'src/services/quiz.service';
+import { Quiz } from 'src/models/quiz.model';
+import { Game } from 'src/models/game.model';
+import { GameService } from 'src/services/game.service';
 
 @Component({
     selector: 'app-result',
@@ -8,15 +12,12 @@ import { ConfigurationService } from 'src/services/configuration.service';
     styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
+    game: Game;
 
-    score;
-    max;
-
-    constructor(private route: ActivatedRoute, public configService: ConfigurationService) {
+    constructor(private route: ActivatedRoute, public configService: ConfigurationService, public gameService: GameService) {
+        this.game = gameService.getGame();
     }
 
     ngOnInit() {
-        this.score = this.route.snapshot.paramMap.get('score');
-        this.max = this.route.snapshot.paramMap.get('max');
     }
 }

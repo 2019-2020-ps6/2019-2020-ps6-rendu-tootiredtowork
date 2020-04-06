@@ -11,8 +11,8 @@ import { ReviewComponent } from './review/review.component';
 
 
 const routes: Routes = [
-  { path: 'quiz/:quiz', component: QuizGameComponent },
-  { path: 'result/:score/:max', component: ResultComponent },
+  { path: 'quizgame', component: QuizGameComponent },
+  { path: 'result', component: ResultComponent },
   { path: 'configuration', component: ConfigurationComponent },
   { path: 'quizlist', component: QuizListComponent },
   { path: 'edittheme', component: EditThemeComponent },

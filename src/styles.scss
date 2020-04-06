@@ -52,3 +52,14 @@ body {
     color: white;
     box-shadow: none;
 }
+
+.nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+}

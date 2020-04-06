@@ -1,3 +1,23 @@
-<div class="quiz" [ngStyle]="{'font-size': configService.fontSize+'px'}">
-    <app-question-review [question]="current"></app-question-review>
+<div class=container [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text}">
+    <div class=labelCard id="question" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+        <div>Question :</div>
+        <div>{{ current.label }}</div>
+    </div>
+    <div class=labelCard id="reponse" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+        <div>La bonne réponse était :</div>
+        <div>{{ correctAnswer.value }}</div>
+    </div>
+    <div>
+        <div class=nav>
+            <div class=box id="box1" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+                <i class="far fa-2x fa-arrow-alt-circle-left arrow" (click)="prev()"></i>
+            </div>
+            <div class=box id="box2">
+                <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/quizlist">Terminer</button>
+            </div>
+            <div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+                <i class="far fa-2x fa-arrow-alt-circle-right" (click)="next()"></i>
+            </div>
+        </div>
+    </div>
 </div>
