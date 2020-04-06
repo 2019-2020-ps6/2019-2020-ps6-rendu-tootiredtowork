@@ -9,11 +9,17 @@ import { ConfigurationService } from 'src/services/configuration.service';
 export class ConfigurationComponent implements OnInit {
 
   defaultFontSize: number;
+  defaultText:string;
+  defaultBoxe:string;
+  defaultBackground:string;
 
   constructor(public configService: ConfigurationService) {
   }
 
   ngOnInit() {
     this.defaultFontSize = this.configService.fontSize;
+    this.defaultBoxe = this.configService.boxe;
+    this.defaultText = this.configService.text;
+    this.defaultBackground = this.configService.background;
   }
 }
