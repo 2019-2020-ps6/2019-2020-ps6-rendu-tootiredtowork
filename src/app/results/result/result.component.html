@@ -1,4 +1,4 @@
-<div class=container [ngStyle]="{'font-size': configService.fontSize+'px'}">
+<div class=container [ngStyle]="{'font-size': configService.fontSize+'px', 'margin':' 0% '+configService.marginSize+'%'}">
     <div class=labelCard id="label" [ngStyle]="{'background': '#'+configService.boxe,'color': '#'+configService.text}">
         Votre score est de : {{ game.score }} sur {{ game.quiz.questions.length }}
     </div>

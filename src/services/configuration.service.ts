@@ -15,6 +15,6 @@ export class ConfigurationService {
         this.background = "bababa";
         this.boxe ="ffffff";
         this.text ="000000";
-        this.marginSize= 40;
+        this.marginSize= 5;
     }
 }

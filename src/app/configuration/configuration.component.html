@@ -1,12 +1,14 @@
-<div [ngStyle]="{'font-size': defaultFontSize+'px','margin-size':configService.marginSize+'%', 'color':'#'+defaultText}" class=container>
+<div [ngStyle]="{'font-size': defaultFontSize+'px','margin-size':configService.marginSize+'%', 'color':'#'+defaultText, 'margin':' 0% '+configService.marginSize+'%'}" class=container>
     <div id="titre" > Page de configuration </div>
     <div [ngStyle]="{'font-size': configService.fontSize+'px' ,'margin-size':configService.marginSize+'%','background': '#'+configService.boxe, 'color':'#'+configService.text}"  class=labelCard id="exemple">Ceci est un texte à lire</div>
+</div>
+<div [ngStyle]="{'font-size': defaultFontSize+'px','margin-size':configService.marginSize+'%', 'color':'#'+defaultText, 'margin':' 0% '+defaultMarginSize+'%'}" class=container>
     <div id="parametres" >
         <div class="labelCard parametre" [ngStyle]="{'background':'#'+defaultBoxe}">Paramètre taille de police:
             <input class=slider onkeypress="return false" type="range" min="25" max="50" [ngStyle]="{'background':'#'+defaultBackground}" [(ngModel)]="configService.fontSize">
         </div>
         <div class="labelCard parametre" [ngStyle]="{'background':'#'+defaultBoxe}">Paramètre taille des marges:
-            <input class=slider onkeypress="return false" type="range" min="40" max="100" [ngStyle]="{'background':'#'+defaultBackground}" [(ngModel)]="configService.marginSize">
+            <input class=slider onkeypress="return false" type="range" min="5" max="30" [ngStyle]="{'background':'#'+defaultBackground}" [(ngModel)]="configService.marginSize">
         </div>
         <div class="labelCard parametre" [ngStyle]="{'background':'#'+defaultBoxe}">Paramètre de la couleur:<app-colorpicker></app-colorpicker>
         </div>

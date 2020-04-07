@@ -1,4 +1,4 @@
-<div class=container>
+<div class=container [ngStyle]="{'margin':' 0% '+configService.marginSize+'%'}">
     <div class=nav>
         <div class=box id="box1">
             <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/quizlist">Quitter</button>
