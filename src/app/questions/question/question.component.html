@@ -1,6 +1,6 @@
 <div class=labelCard id="label" [ngStyle]="{'background': '#'+configService.boxe,'color': '#'+configService.text}">
-    {{ question.label }}
+	<div id="question" >
+    	{{ question.label }}
+    </div>
 </div>
-<div>
-    <app-answer-list [answerList]="question.answers" (answerSelected)="answerSelected($event)"></app-answer-list>
-</div>
+<app-answer-list  [answerList]="question.answers" (answerSelected)="answerSelected($event)"></app-answer-list>

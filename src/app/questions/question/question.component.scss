@@ -1,6 +1,19 @@
 #label {
     display: flex;
+    align-content: center;
+	min-height: 20%;
+	text-align: center;
+}
+
+#question {
+	display: flex;
+    flex: 1 1;
     justify-content: center;
-    margin-bottom: 5%;
-    padding: 10%;
+    margin:auto;
+
+}
+
+#reponses{
+	display: flex;
+	min-height: 75%;
 }

@@ -2,4 +2,12 @@
     margin-left: 30%;
     margin-right: 30%;
     padding-top: 10px;
+    height:100%;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 100%;
 }
