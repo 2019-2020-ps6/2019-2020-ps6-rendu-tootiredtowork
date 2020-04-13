@@ -13,9 +13,11 @@ export class QuizService {
 
   private quizzes: Quiz[] = QUIZZES;
 
+  private quiz: Quiz = this.quizzes[0];
+
   quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
-  quizSelected$: Subject<Quiz> = new Subject();
+  quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quiz);
 
   score: number;
 
@@ -23,12 +25,13 @@ export class QuizService {
 
 
   constructor(private http: HttpClient) {
-    this.selectAllQuizzes()
+    this.selectAllQuizzes();
   }
 
   setSelectedQuiz(quizId: string) {
     const urlWithId = this.quizUrl + '/' + quizId;
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
+      this.quiz = quiz;
       this.quizSelected$.next(quiz);
     });
   }
@@ -52,7 +55,7 @@ export class QuizService {
   }
 
   clear() {
-    this.quizSelected$ = new Subject();
+    this.quizSelected$ = new BehaviorSubject(this.quiz);
     this.score = 0;
   }
 }

@@ -1,4 +1,4 @@
-<div class=container [ngStyle]="{'font-size': configService.fontSize+'px', 'margin':' 0% '+configService.marginSize+'%'}">
+<div class=page [ngStyle]="{'font-size': configService.fontSize+'px', 'margin':' 0% '+configService.marginSize+'%'}">
     <div class=nav>
         <div class=box id="box1">
             <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
@@ -10,7 +10,14 @@
             <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
         </div>
     </div>
-    <div id="difficulte">
 
+    <div id="difficulte">
+        Changer le niveau de difficulté:
+    </div>
+    questions:
+    <div class=questionlist>
+        <ng-container *ngFor="let question of quiz.questions">
+            <app-editable-question [question]="question"></app-editable-question>
+        </ng-container>
     </div>
 </div>

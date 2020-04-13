@@ -1,0 +1,18 @@
+<div class=labelCard [ngStyle]="{'background': '#'+configService.boxe,'color': '#'+configService.text}">
+	<div class=top >
+        <div class=box id="box1">
+            <i class="fas fa-cogs" (click)="questionSelected()"></i>
+        </div>
+        <div class=box id="box3">
+            <i class="fas fa-trash-alt" (click)="delete()"></i>
+        </div>
+    </div>
+	<div id="question" >
+    	{{ question.label }}
+    </div>
+    <div id="reponse">
+    	<ng-container *ngFor="let reponse of question.answers">
+    		{{reponse.value}}
+        </ng-container>
+    </div>
+</div>

@@ -1,3 +1,34 @@
 .fa-caret-left {
     cursor: pointer;
 }
+
+.fa-cog {
+    cursor: pointer;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.24);
+    transition: transform 0.5s;
+}
+
+.fa-cog:hover {
+    text-shadow: 0;
+    transform: rotate(135deg);
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: 100%;
+    background:red;
+}
+
+#box1 {
+    justify-content: flex-start;
+}
+
+#box2 {
+    justify-content: center;
+}
+
+#box3 {
+    justify-content: flex-end;
+}

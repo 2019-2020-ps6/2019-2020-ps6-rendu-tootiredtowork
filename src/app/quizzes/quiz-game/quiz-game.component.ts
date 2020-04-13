@@ -23,10 +23,12 @@ export class QuizGameComponent implements OnInit {
     max;
 
     constructor(private router: Router, private route: ActivatedRoute, public configService: ConfigurationService, public quizService: QuizService, public gameService: GameService) {
+        this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
         this.quizService.quizSelected$.subscribe((quiz: Quiz) => {
             this.quiz = quiz;
             this.max = this.quiz.questions.length;
             this.current = this.quiz.questions[this.seek];
+            console.log(quiz);
         });
     }
 

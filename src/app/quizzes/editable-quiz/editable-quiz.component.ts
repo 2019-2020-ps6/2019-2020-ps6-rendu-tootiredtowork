@@ -3,6 +3,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { QuizService } from 'src/services/quiz.service';
 
 @Component({
     selector: 'app-editable-quiz',
@@ -21,7 +22,7 @@ export class EditableQuizComponent implements OnInit {
 
     stars: number[] = [];
 
-    constructor(private router: Router, public configService: ConfigurationService) {
+    constructor(private router: Router, public configService: ConfigurationService,public quizService: QuizService) {
     }
 
     ngOnInit(): void {
@@ -32,7 +33,7 @@ export class EditableQuizComponent implements OnInit {
     }
 
     quizSelected() {
-        this.router.navigateByUrl('/quiz/' + JSON.stringify(this.quiz));
+        this.router.navigateByUrl('/editquiz/'+this.quiz.id);
     }
 
     delete() {

@@ -6,17 +6,19 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { EditThemeComponent } from './themes/edit-theme/edit-theme.component';
 import { ReviewComponent } from './review/review.component';
+import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 
 
 
 
 const routes: Routes = [
-  { path: 'quizgame', component: QuizGameComponent },
+  { path: 'quizgame/:id', component: QuizGameComponent },
   { path: 'result', component: ResultComponent },
   { path: 'configuration', component: ConfigurationComponent },
   { path: 'quizlist', component: QuizListComponent },
   { path: 'edittheme', component: EditThemeComponent },
   { path: 'review', component: ReviewComponent },
+  { path: 'editquiz/:id', component: EditQuizComponent },
   { path: '', redirectTo: '/configuration', pathMatch: 'full' }
 ];
 

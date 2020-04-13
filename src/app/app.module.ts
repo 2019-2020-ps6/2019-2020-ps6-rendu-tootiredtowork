@@ -18,6 +18,8 @@ import { ColorPickerComponent } from './colorPicker/colorPicker.component';
 import { EditableQuizComponent } from './quizzes/editable-quiz/editable-quiz.component';
 import { DeleteQuizDialog } from './dialogs/delete-quiz/delete-quiz-dialog.component';
 import { ReviewComponent } from './review/review.component';
+import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
+import { EditableQuestionComponent } from './questions/editable-question/editable-question.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -44,6 +46,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditableQuizComponent,
     DeleteQuizDialog,
     ReviewComponent,
+    EditQuizComponent,
+    EditableQuestionComponent
   ],
   imports: [
     BrowserModule,
