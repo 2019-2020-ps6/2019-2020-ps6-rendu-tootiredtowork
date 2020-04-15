@@ -1,49 +1,52 @@
-<div class=page [ngStyle]="{'font-size': configService.fontSize+'px', 'margin':' 0% '+configService.marginSize+'%'}">
+<div class=page [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text, 'margin':' 0% '+configService.marginSize+'%'}">
+  <div class=row id="row1">
     <div class=nav>
-        <div class=box id="box1">
-            <i class="fas fa-caret-left fa-2x" routerLink="/editquiz/{{this.quiz.id}}"></i>
-        </div>
-        <div class=box id="box2">
-            <div id="title">{{ quiz.id }}</div>
-        </div>
-        <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
-            <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
-        </div>
+      <div class=box id="box1">
+        <i class="fas fa-caret-left fa-2x" routerLink="/editquiz/{{this.quiz.id}}"></i>
+      </div>
+      <div class=box id="box2">
+        <div id="title">{{ quiz.id }}</div>
+      </div>
+      <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
+        <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+      </div>
     </div>
-
+  </div>
+  <div class=row id="row2">
     <form [formGroup]="questionForm">
       <label >Question :<br>
-      <input type="text" name="question"  [formControlName]="'label'" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+        <input type="text" name="question" id="question"  [formControlName]="'label'" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
       </label>
       <div class="answer" formArrayName="answers">
         <div class="answer-form" [formGroupName]="0">
           <label>
             Bonne réponse
-            <input type="text" [formControlName]="'value'" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+            <input type="text" [formControlName]="'value'" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
             <br>
           </label>
         </div>
         <div class="answer-form" [formGroupName]="1">
           <label>
             Mauvaises réponses
-            <input type="text" [formControlName]="'value'" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+            <input type="text" [formControlName]="'value'" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
             <br>
           </label>
         </div>
         <div class="answer-form" [formGroupName]="2">
           <label>
-            <input type="text" [formControlName]="'value'" [ngStyle]="{'font-size': configService.fontSize+'px'}">
+            <input type="text" [formControlName]="'value'" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
             <br>
           </label>
         </div>
         <div class="answer-form" [formGroupName]="3">
           <label>
-            <input type="text" [formControlName]="'value'" [ngStyle]="{'font-size': configService.fontSize+'px'}">
-            <br>
+          <input type="text" [formControlName]="'value'" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
+          <br>
           </label>
         </div>
+      </div>
+      <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" class=button id="bouton">Confirmer</button>
+      </form>
     </div>
-    <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px'}" class=button >Confirmer</button>
-    </form>
     
 </div>

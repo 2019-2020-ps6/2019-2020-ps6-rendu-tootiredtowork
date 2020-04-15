@@ -1,27 +1,27 @@
 input{
     width: 100%;
+    border:2px solid black;
+    outline:none;
+    margin:calc(1%) 0%;
 }
 
 .fa-caret-left {
     cursor: pointer;
 }
 
-.fa-cog {
-    cursor: pointer;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.24);
-    transition: transform 0.5s;
-}
-
-.fa-cog:hover {
-    text-shadow: 0;
-    transform: rotate(135deg);
-}
-
-.page {
-    display: flex;
+form{
+    display:flex;
     flex-direction: column;
-    align-content: center;
-    height: 100%;
+    height:100%;
+}
+
+#row1 {
+    flex: 1 1 calc(10%);
+}
+
+#row2 {
+    flex: 1 1 calc(90%);
+    justify-content: flex-start;
 }
 
 #box1 {
@@ -34,4 +34,8 @@ input{
 
 #box3 {
     justify-content: flex-end;
+}
+
+#title {
+    text-decoration: underline;
 }

@@ -1,23 +1,30 @@
-<div class=page [ngStyle]="{'font-size': configService.fontSize+'px', 'margin':' 0% '+configService.marginSize+'%'}">
-    <div class=nav>
-        <div class=box id="box1">
-            <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
+<div class=page [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text, 'margin':' 0% '+configService.marginSize+'%'}">
+    <div class=row id="row1">
+        <div class=nav>
+            <div class=box id="box1">
+                <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
+            </div>
+            <div class=box id="box2">
+                <div id="title">{{ quiz.id }}</div>
+            </div>
+            <div class=box id="box3">
+                <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+            </div>
+        </div>
+    </div>
+    <div class=row id="row2">
+        <div class=box id="box2">
+            <div id="difficulte">
+                Changer la difficulté: <input id="number" type="number" min="1" max="3"  value={{quiz.difficulty}} [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+            </div>
         </div>
         <div class=box id="box2">
-            <div id="title">{{ quiz.id }}</div>
+            Questions:
         </div>
-        <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
-            <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+        <div class=questionlist>
+            <ng-container *ngFor="let question of quiz.questions">
+                <app-editable-question [quiz]="quiz" [question]="question"></app-editable-question>
+            </ng-container>
         </div>
-    </div>
-
-    <div id="difficulte">
-        Changer le niveau de difficulté: <input id="number" type="number" min="0" max="4"  value={{quiz.difficulty}} [ngStyle]="{'font-size': configService.fontSize+'px'}">
-    </div>
-    questions:
-    <div class=questionlist>
-        <ng-container *ngFor="let question of quiz.questions">
-            <app-editable-question [quiz]="quiz" [question]="question"></app-editable-question>
-        </ng-container>
     </div>
 </div>

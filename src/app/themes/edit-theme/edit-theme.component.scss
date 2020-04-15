@@ -3,17 +3,13 @@
     padding: 2%;
 }
 
-.nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-content: center;
-    margin-top: 5%;
-    margin-bottom: 10%;
+#row1 {
+    flex: 1 1 calc(10%);
 }
 
-.box {
-    display: flex;
-    align-items: center;
+#row2 {
+    flex: 1 1 calc(90%);
+    justify-content: flex-start;
 }
 
 #box1 {
@@ -28,17 +24,6 @@
     justify-content: flex-end;
 }
 
-.fa-cog {
-    cursor: pointer;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.24);
-    transition: transform 0.5s;
-}
-
-.fa-cog:hover {
-    text-shadow: 0;
-    transform: rotate(135deg);
-}
-
 .quizlist {
     display: flex;
     flex-direction: row;
@@ -49,8 +34,4 @@
 .quizlist>* {
     box-sizing: border-box;
     margin: 1%;
-}
-
-.button {
-    padding: 2%;
 }

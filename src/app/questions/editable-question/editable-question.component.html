@@ -10,9 +10,11 @@
 	<div id="question" >
     	{{ question.label }}
     </div>
-    <div id="reponse">
+    <div id="reponses">
     	<ng-container *ngFor="let reponse of question.answers">
-    		{{reponse.value}}
+            <div id="reponse">
+                <i class="fas fa-circle" [ngStyle]="{'font-size': configService.fontSize/3+'px'}"></i>{{reponse.value}}<br>
+            </div>
         </ng-container>
     </div>
 </div>
