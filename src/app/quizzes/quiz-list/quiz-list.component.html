@@ -1,18 +1,22 @@
-<div class=container [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%','color': '#'+configService.text, 'margin':' 0% '+configService.marginSize+'%'}">
-    <div class=nav>
-        <div class=box id="box1">
-            <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/edittheme">Mode Création</button>
-        </div>
-        <div class=box id="box2">
-            <div id="title">Test</div>
-        </div>
-        <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px','margin-size':configService.marginSize+'%','color': '#'+configService.text}">
-            <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+<div class=page [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%','color': '#'+configService.text, 'margin':' 0% '+configService.marginSize+'%'}">
+    <div class=row id="row1">
+        <div class=nav>
+            <div class=box id="box1">
+                <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/edittheme">Mode Création</button>
+            </div>
+            <div class=box id="box2">
+                <div id="title">Test</div>
+            </div>
+            <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px','margin-size':configService.marginSize+'%','color': '#'+configService.text}">
+                <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+            </div>
         </div>
     </div>
-    <div class=quizlist>
-        <ng-container *ngFor="let q of quizzes">
-            <app-quiz [quiz]="q"></app-quiz>
-        </ng-container>
+    <div class=row id="row2">
+        <div class=quizlist>
+            <ng-container *ngFor="let q of quizzes">
+                <app-quiz [quiz]="q"></app-quiz>
+            </ng-container>
+        </div>
     </div>
 </div>
