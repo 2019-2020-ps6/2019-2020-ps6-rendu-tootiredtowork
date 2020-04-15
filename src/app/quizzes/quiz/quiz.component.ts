@@ -31,6 +31,15 @@ export class QuizComponent implements OnInit {
     }
 
     quizSelected() {
-        this.router.navigateByUrl("quizgame/"+this.quiz.id);
+        this.router.navigateByUrl("quizgame/" + this.quiz.id);
+    }
+
+    getQuestionNumberString(): String {
+        if (this.quiz.questions.length < 10) {
+            return "   ".concat(this.quiz.questions.length.toString());
+        }
+        else {
+            return " ".concat(this.quiz.questions.length.toString());
+        }
     }
 }
