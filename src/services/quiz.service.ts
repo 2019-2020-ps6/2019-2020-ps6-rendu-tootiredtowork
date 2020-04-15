@@ -46,8 +46,8 @@ export class QuizService {
 
   updateQuizz(quiz: Quiz, question: Question, position: number) {
     const quizzUrl = this.quizUrl + '/' + quiz.id + '/' + position;
-    console.log(quizzUrl);
-    this.http.post<Question>(quizzUrl, question).subscribe(() => this.setSelectedQuiz(quiz.id));
+    quiz.questions[position]= question;
+    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
   deleteQuiz(quiz: Quiz) {

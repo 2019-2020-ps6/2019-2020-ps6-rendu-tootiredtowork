@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
 import { Answer } from 'src/models/answer.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
@@ -21,7 +21,7 @@ export class EditQuestionComponent implements OnInit {
 
     public questionForm: FormGroup;
 
-    constructor(public configService: ConfigurationService, public quizService: QuizService,private route: ActivatedRoute, public formBuilder: FormBuilder) {
+    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,private route: ActivatedRoute, public formBuilder: FormBuilder) {
         this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
         this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
             this.quiz=quizSelected;
@@ -63,9 +63,8 @@ export class EditQuestionComponent implements OnInit {
 
     addQuestion() {
       const question = this.questionForm.getRawValue() as Question;
-      console.log(question);
       this.quizService.updateQuizz(this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
-      this.initializeQuestionForm();
+      this.router.navigateByUrl('/editquiz/'+this.quiz.id);
   }
 
 }
