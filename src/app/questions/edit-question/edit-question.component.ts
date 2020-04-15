@@ -1,0 +1,71 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Question } from 'src/models/question.model';
+import { Quiz } from 'src/models/quiz.model';
+import { Answer } from 'src/models/answer.model';
+import { ActivatedRoute } from '@angular/router';
+
+import { ConfigurationService } from 'src/services/configuration.service';
+import { QuizService } from 'src/services/quiz.service';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+
+@Component({
+    selector: 'app-edit-question',
+    templateUrl: './edit-question.component.html',
+    styleUrls: ['./edit-question.component.scss']
+})
+export class EditQuestionComponent implements OnInit {
+
+    quiz: Quiz;
+
+    question: Question;
+
+    public questionForm: FormGroup;
+
+    constructor(public configService: ConfigurationService, public quizService: QuizService,private route: ActivatedRoute, public formBuilder: FormBuilder) {
+        this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
+        this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
+            this.quiz=quizSelected;
+
+            this.question = this.quiz.questions[this.route.snapshot.paramMap.get('number')];
+        });
+        this.initializeQuestionForm();
+        
+    }
+
+    ngOnInit() {
+        let form=document.body.querySelector("form");
+        form.addEventListener("submit", (e:Event) => this.addQuestion());
+    }
+    private initializeQuestionForm() {
+        this.questionForm = this.formBuilder.group({
+          label: [this.question.label],
+          answers: this.formBuilder.array([])
+        });
+        for (var i = 0; i < 4; ++i) {
+            this.addAnswer(this.question.answers[i]);
+        }
+      }
+
+    private createAnswer(answer: Answer) {
+        return this.formBuilder.group({
+          value: answer.value,
+          isCorrect: answer.isCorrect,
+        });
+      }
+
+    get answers() {
+        return this.questionForm.get('answers') as FormArray;
+      }
+    
+    addAnswer(answer: Answer) {
+        this.answers.push(this.createAnswer(answer));
+    }
+
+    addQuestion() {
+      const question = this.questionForm.getRawValue() as Question;
+      console.log(question);
+      this.quizService.updateQuizz(this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
+      this.initializeQuestionForm();
+  }
+
+}

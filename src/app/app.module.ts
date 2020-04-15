@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { DeleteQuizDialog } from './dialogs/delete-quiz/delete-quiz-dialog.compo
 import { ReviewComponent } from './review/review.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { EditableQuestionComponent } from './questions/editable-question/editable-question.component';
+import { EditQuestionComponent } from './questions/edit-question/edit-question.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -47,7 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DeleteQuizDialog,
     ReviewComponent,
     EditQuizComponent,
-    EditableQuestionComponent
+    EditableQuestionComponent,
+    EditQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FontAwesomeModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

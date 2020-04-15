@@ -44,6 +44,12 @@ export class QuizService {
     });
   }
 
+  updateQuizz(quiz: Quiz, question: Question, position: number) {
+    const quizzUrl = this.quizUrl + '/' + quiz.id + '/' + position;
+    console.log(quizzUrl);
+    this.http.post<Question>(quizzUrl, question).subscribe(() => this.setSelectedQuiz(quiz.id));
+  }
+
   deleteQuiz(quiz: Quiz) {
     const urlWithId = this.quizUrl + '/' + quiz.id;
     var index = this.quizzes.indexOf(quiz);

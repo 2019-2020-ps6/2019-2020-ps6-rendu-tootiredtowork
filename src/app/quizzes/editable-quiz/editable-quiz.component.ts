@@ -29,7 +29,6 @@ export class EditableQuizComponent implements OnInit {
         for (var i = 0; i < this.quiz.difficulty; i++) {
             this.stars.push(i);
         }
-        console.log(this.stars.length);
     }
 
     quizSelected() {

@@ -12,12 +12,12 @@
     </div>
 
     <div id="difficulte">
-        Changer le niveau de difficulté:
+        Changer le niveau de difficulté: <input id="number" type="number" min="0" max="4"  value={{quiz.difficulty}} [ngStyle]="{'font-size': configService.fontSize+'px'}">
     </div>
     questions:
     <div class=questionlist>
         <ng-container *ngFor="let question of quiz.questions">
-            <app-editable-question [question]="question"></app-editable-question>
+            <app-editable-question [quiz]="quiz" [question]="question"></app-editable-question>
         </ng-container>
     </div>
 </div>
