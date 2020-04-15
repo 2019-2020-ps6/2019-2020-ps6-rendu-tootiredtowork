@@ -20,5 +20,9 @@ export class EditQuizComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        let input=document.querySelector("input");
+        input.addEventListener("change",(e:Event )=>
+            this.quizService.updateDifficulty(this.quiz, Number(input.value)));
     }
+
 }

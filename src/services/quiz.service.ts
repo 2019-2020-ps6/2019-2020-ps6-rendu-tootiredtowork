@@ -45,9 +45,16 @@ export class QuizService {
   }
 
   updateQuizz(quiz: Quiz, question: Question, position: number) {
-    const quizzUrl = this.quizUrl + '/' + quiz.id + '/' + position;
+    const quizzUrl = this.quizUrl + '/' + quiz.id;
     quiz.questions[position]= question;
-    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => this.setSelectedQuiz(quiz.id));
+    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => {this.setSelectedQuiz(quiz.id); this.selectAllQuizzes()});
+  }
+
+    updateDifficulty(quiz: Quiz, difficulty:number) {
+    const quizzUrl = this.quizUrl + '/' + quiz.id;
+    quiz.difficulty= difficulty;
+    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => {this.setSelectedQuiz(quiz.id); this.selectAllQuizzes()});
+    console.log(this.quizzes);
   }
 
   deleteQuiz(quiz: Quiz) {
