@@ -1,0 +1,14 @@
+<div class="carousel" #carousel>
+    <div class="slideShow" #slideshow>
+        <app-quiz id="quizmock" [quiz]="quizMock" #quizmock></app-quiz>
+        <div class="slide" *ngFor="let slide of slides" #slide>
+            <ng-container *ngFor="let quiz of slide">
+                <app-quiz [quiz]="quiz"></app-quiz>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<div>
+    <button (click)="prev()">prev</button>
+    <button (click)="next()">next</button>
+</div>

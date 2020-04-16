@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { ReviewComponent } from './review/review.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { EditableQuestionComponent } from './questions/editable-question/editable-question.component';
 import { EditQuestionComponent } from './questions/edit-question/edit-question.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -49,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReviewComponent,
     EditQuizComponent,
     EditableQuestionComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

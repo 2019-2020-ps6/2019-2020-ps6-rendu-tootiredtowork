@@ -1,7 +1,7 @@
 <button class=button (click)="quizSelected()" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
     <div>
         <div>{{quiz.id}}</div>
-        <div>Difficulté: 
+        <div>Difficulté:
             <i *ngFor="let i of stars" class="fas fa-star"></i></div>
         <div id="nbQuestion">Nombre de question:{{getQuestionNumberString()}}</div>
     </div>

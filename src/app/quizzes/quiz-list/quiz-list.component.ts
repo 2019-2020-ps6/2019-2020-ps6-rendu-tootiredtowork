@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
-import { QUIZZES } from 'src/mocks/quiz.mock';
 import { ConfigurationService } from 'src/services/configuration.service';
 
 import { QuizService } from 'src/services/quiz.service';
@@ -12,9 +11,9 @@ import { QuizService } from 'src/services/quiz.service';
     styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit {
-    quizzes: Quiz[];
+    quizzes: Quiz[] = [];
 
-    constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
+    constructor(public configService: ConfigurationService, public quizService: QuizService) {
         this.quizService.quizzes$.subscribe((list_quizzes: Quiz[]) => {
             this.quizzes = list_quizzes;
         });

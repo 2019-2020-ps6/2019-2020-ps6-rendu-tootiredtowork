@@ -12,11 +12,8 @@
             </div>
         </div>
     </div>
-    <div class=row id="row2">
-        <div class=quizlist>
-            <ng-container *ngFor="let q of quizzes">
-                <app-quiz [quiz]="q"></app-quiz>
-            </ng-container>
-        </div>
+
+    <div class=row id="row2" #row>
+        <app-carousel [items]="quizzes" class="carousel"></app-carousel>
     </div>
 </div>

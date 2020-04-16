@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -20,14 +20,12 @@ export class QuizComponent implements OnInit {
     stars: number[] = [];
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
-
     }
 
     ngOnInit(): void {
         for (var i = 0; i < this.quiz.difficulty; i++) {
             this.stars.push(i);
         }
-        console.log(this.stars.length);
     }
 
     quizSelected() {

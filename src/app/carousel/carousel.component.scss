@@ -1,0 +1,23 @@
+.carousel {
+    height: 95%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slideShow {
+    display: flex;
+    //height: 100%;
+}
+
+#quizmock {
+    visibility: hidden;
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: inherit;
+}

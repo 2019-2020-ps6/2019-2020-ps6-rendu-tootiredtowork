@@ -11,9 +11,9 @@ import { QUIZZES } from 'src/mocks/quiz.mock';
 })
 export class QuizService {
 
-  private quizzes: Quiz[] = QUIZZES;
+  private quizzes: Quiz[];
 
-  private quiz: Quiz = this.quizzes[0];
+  private quiz: Quiz;
 
   quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
@@ -46,14 +46,14 @@ export class QuizService {
 
   updateQuizz(quiz: Quiz, question: Question, position: number) {
     const quizzUrl = this.quizUrl + '/' + quiz.id;
-    quiz.questions[position]= question;
-    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => {this.setSelectedQuiz(quiz.id); this.selectAllQuizzes()});
+    quiz.questions[position] = question;
+    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => { this.setSelectedQuiz(quiz.id); this.selectAllQuizzes() });
   }
 
-    updateDifficulty(quiz: Quiz, difficulty:number) {
+  updateDifficulty(quiz: Quiz, difficulty: number) {
     const quizzUrl = this.quizUrl + '/' + quiz.id;
-    quiz.difficulty= difficulty;
-    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => {this.setSelectedQuiz(quiz.id); this.selectAllQuizzes()});
+    quiz.difficulty = difficulty;
+    this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => { this.setSelectedQuiz(quiz.id); this.selectAllQuizzes() });
     console.log(this.quizzes);
   }
 
