@@ -1,0 +1,15 @@
+<div class=labelCard [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+    <div>
+        <div class=top >
+            <div class=box id="box1">
+                <i class="fas fa-cogs" (click)="themeSelected()"></i>
+            </div>
+            <div class=box id="box2">
+                <div>{{theme.id}}</div>
+            </div>
+            <div class=box id="box3">
+                <i class="fas fa-trash-alt" (click)="delete()"></i>
+            </div>
+        </div>
+    </div>
+</div>

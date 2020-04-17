@@ -1,0 +1,36 @@
+#row1 {
+    flex: 1 1 calc(10%);
+}
+
+#row2 {
+    flex: 1 1 calc(90%);
+    justify-content: flex-start;
+}
+
+#box1 {
+    justify-content: flex-start;
+}
+
+#box2 {
+    justify-content: center;
+}
+
+#box3 {
+    justify-content: flex-end;
+}
+
+#title {
+    text-decoration: underline;
+}
+
+.themelist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.themelist>* {
+    box-sizing: border-box;
+    margin: 1%;
+}

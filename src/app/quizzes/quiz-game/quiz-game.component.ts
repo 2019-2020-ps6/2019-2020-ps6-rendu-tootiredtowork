@@ -28,7 +28,6 @@ export class QuizGameComponent implements OnInit {
             this.quiz = quiz;
             this.max = this.quiz.questions.length;
             this.current = this.quiz.questions[this.seek];
-            console.log(quiz);
         });
     }
 

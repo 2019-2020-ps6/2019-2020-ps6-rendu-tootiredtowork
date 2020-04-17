@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/services/configuration.service';
-import { Quiz } from 'src/models/quiz.model';
+import { Theme } from 'src/models/theme.model';
 import { QuizService } from 'src/services/quiz.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
@@ -12,22 +12,24 @@ import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog
 })
 export class EditThemeComponent implements OnInit {
 
-    quizzes: Quiz[];
+    themes: Theme[];
 
     constructor(public configService: ConfigurationService, private quizService: QuizService, private dialog: MatDialog) {
-        this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-            this.quizzes = quizzes;
+        this.quizService.themes$.subscribe((list_themes: Theme[]) => {
+            this.themes = list_themes;
         });
     }
 
     ngOnInit() {
     }
 
-    deleteQuiz(quiz: Quiz) {
+
+/// a mettre pour que ca soit ecrit theme au lieu de quiz
+    deleteQuiz(theme: Theme) {
         const dialogRef = this.openDialog();
         dialogRef.afterClosed().subscribe(
             result => {
-                if (result) this.quizService.deleteQuiz(quiz);
+                if (result) this.quizService.deleteTheme(theme);
             }
         )
     }

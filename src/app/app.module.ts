@@ -22,6 +22,11 @@ import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { EditableQuestionComponent } from './questions/editable-question/editable-question.component';
 import { EditQuestionComponent } from './questions/edit-question/edit-question.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { ThemeComponent } from './themes/theme/theme.component';
+import { ThemeListComponent } from './themes/theme-list/theme-list.component';
+import { EditableThemeComponent } from './themes/editable-theme/editable-theme.component';
+import { EditQuizListComponent } from './quizzes/edit-quizlist/edit-quizlist.component';
+import { EditableQuizListComponent } from './quizzes/editable-quizlist/editable-quizlist.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -51,7 +56,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditQuizComponent,
     EditableQuestionComponent,
     EditQuestionComponent,
-    CarouselComponent
+    CarouselComponent,ThemeComponent,
+    ThemeListComponent,
+    EditableThemeComponent,
+    EditQuizListComponent,
+    EditableQuizListComponent
   ],
   imports: [
     BrowserModule,

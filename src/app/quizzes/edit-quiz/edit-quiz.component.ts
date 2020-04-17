@@ -12,7 +12,7 @@ import { QuizService } from 'src/services/quiz.service';
 export class EditQuizComponent implements OnInit {
     quiz: Quiz;
 
-    constructor(public configService: ConfigurationService, public quizService: QuizService,private route: ActivatedRoute) {
+    constructor(public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute) {
     	this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
     	this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
             this.quiz = quizSelected;
@@ -22,7 +22,7 @@ export class EditQuizComponent implements OnInit {
     ngOnInit(): void {
         let input=document.querySelector("input");
         input.addEventListener("change",(e:Event )=>
-            this.quizService.updateDifficulty(this.quiz, Number(input.value)));
+            this.quizService.updateDifficulty(this.route.snapshot.paramMap.get('theme'),this.quiz, Number(input.value)));
     }
 
 }

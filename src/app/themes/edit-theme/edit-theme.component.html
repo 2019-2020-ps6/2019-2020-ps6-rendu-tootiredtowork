@@ -2,10 +2,10 @@
 	<div class=row id="row1">
         <div class=nav>
         	<div class=box id="box1">
-            	<button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/quizlist">Quitter</button>
+            	<button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/themelist">Quitter</button>
             </div>
         	<div class=box id="box2">
-            	<div id="title" class=labelCard [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">Test</div>
+            	<div id="title" class=labelCard [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">Selection thème</div>
         	</div>
         	<div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text}">
             	<i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
@@ -14,8 +14,8 @@
     </div>
     <div class=row id="row2">
     <div class=quizlist>
-        <ng-container *ngFor="let q of quizzes">
-            <app-editable-quiz [quiz]="q" (deleteQuiz)="deleteQuiz($event)"></app-editable-quiz>
+        <ng-container *ngFor="let t of themes">
+            <app-editable-theme [theme]="t" (deleteQuiz)="deleteQuiz($event)"></app-editable-theme>
         </ng-container>
     </div>
 	</div>

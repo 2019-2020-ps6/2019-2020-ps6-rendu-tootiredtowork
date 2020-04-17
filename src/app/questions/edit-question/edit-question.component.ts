@@ -21,7 +21,7 @@ export class EditQuestionComponent implements OnInit {
 
     public questionForm: FormGroup;
 
-    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,private route: ActivatedRoute, public formBuilder: FormBuilder) {
+    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute, public formBuilder: FormBuilder) {
         this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
         this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
             this.quiz=quizSelected;
@@ -63,8 +63,8 @@ export class EditQuestionComponent implements OnInit {
 
     addQuestion() {
       const question = this.questionForm.getRawValue() as Question;
-      this.quizService.updateQuizz(this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
-      this.router.navigateByUrl('/editquiz/'+this.quiz.id);
+      this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'),this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
+      this.router.navigateByUrl("/edittheme/"+this.route.snapshot.paramMap.get('theme')+"/"+this.route.snapshot.paramMap.get('id'));
   }
 
 }

@@ -2,18 +2,21 @@
     <div class=row id="row1">
         <div class=nav>
             <div class=box id="box1">
-                <i class="fas fa-caret-left fa-2x" routerLink="/themelist"></i>
+                <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
             </div>
             <div class=box id="box2">
-                <div id="title">{{theme.id}}</div>
+                <div id="title" >{{ theme.id }}</div>
             </div>
-            <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px','margin-size':configService.marginSize+'%','color': '#'+configService.text}">
+            <div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text}">
                 <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
             </div>
         </div>
     </div>
-
-    <div class=row id="row2" #row>
-        <app-carousel [items]="theme.quizs" class="carousel"></app-carousel>
+    <div class=row id="row2">
+    <div class=quizlist>
+        <ng-container *ngFor="let q of quizzes">
+            <app-editable-quizlist [quiz]="q" (deleteQuiz)="deleteQuiz($event)"></app-editable-quizlist>
+        </ng-container>
+    </div>
     </div>
 </div>

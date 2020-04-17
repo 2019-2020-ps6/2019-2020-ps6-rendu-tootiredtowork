@@ -8,6 +8,8 @@ import { EditThemeComponent } from './themes/edit-theme/edit-theme.component';
 import { ReviewComponent } from './review/review.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { EditQuestionComponent } from './questions/edit-question/edit-question.component';
+import { ThemeListComponent } from './themes/theme-list/theme-list.component';
+import { EditQuizListComponent } from './quizzes/edit-quizlist/edit-quizlist.component';
 
 
 
@@ -16,11 +18,13 @@ const routes: Routes = [
   { path: 'quizgame/:id', component: QuizGameComponent },
   { path: 'result', component: ResultComponent },
   { path: 'configuration', component: ConfigurationComponent },
-  { path: 'quizlist', component: QuizListComponent },
+  { path: 'themelist', component: ThemeListComponent },
+  { path: ':id/quizlist', component: QuizListComponent },
   { path: 'edittheme', component: EditThemeComponent },
+  { path: 'edittheme/:theme', component: EditQuizListComponent },
   { path: 'review', component: ReviewComponent },
-  { path: 'editquiz/:id', component: EditQuizComponent },
-  { path: 'editquiz/:id/:number', component: EditQuestionComponent },
+  { path: 'edittheme/:theme/:id', component: EditQuizComponent },
+  { path: 'edittheme/:theme/:id/:number', component: EditQuestionComponent },
   { path: '', redirectTo: '/configuration', pathMatch: 'full' }
 ];
 

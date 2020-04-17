@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
+import { Theme } from 'src/models/theme.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 
 import { QuizService } from 'src/services/quiz.service';
@@ -11,11 +12,12 @@ import { QuizService } from 'src/services/quiz.service';
     styleUrls: ['./quiz-list.component.scss']
 })
 export class QuizListComponent implements OnInit {
-    quizzes: Quiz[] = [];
+    theme: Theme;
 
-    constructor(public configService: ConfigurationService, public quizService: QuizService) {
-        this.quizService.quizzes$.subscribe((list_quizzes: Quiz[]) => {
-            this.quizzes = list_quizzes;
+    constructor(public configService: ConfigurationService,public route: ActivatedRoute, public quizService: QuizService) {
+        this.quizService.setSelectedTheme(this.route.snapshot.paramMap.get('id'));
+        this.quizService.themeSelected$.subscribe((theme: Theme) => {
+            this.theme = theme;
         });
     }
 

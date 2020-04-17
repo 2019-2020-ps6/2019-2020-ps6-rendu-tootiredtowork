@@ -2,7 +2,7 @@
   <div class=row id="row1">
     <div class=nav>
       <div class=box id="box1">
-        <i class="fas fa-caret-left fa-2x" routerLink="/editquiz/{{this.quiz.id}}"></i>
+        <i class="fas fa-caret-left fa-2x" routerLink="/edittheme/{{this.route.snapshot.paramMap.get('theme')}}/{{this.route.snapshot.paramMap.get('id')}}"></i>
       </div>
       <div class=box id="box2">
         <div id="title">{{ quiz.id }}</div>
