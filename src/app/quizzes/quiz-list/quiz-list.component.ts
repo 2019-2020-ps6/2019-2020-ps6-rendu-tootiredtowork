@@ -14,11 +14,9 @@ import { QuizService } from 'src/services/quiz.service';
 export class QuizListComponent implements OnInit {
     theme: Theme;
 
-    constructor(public configService: ConfigurationService,public route: ActivatedRoute, public quizService: QuizService) {
-        this.quizService.setSelectedTheme(this.route.snapshot.paramMap.get('id'));
-        this.quizService.themeSelected$.subscribe((theme: Theme) => {
-            this.theme = theme;
-        });
+    constructor(private router: Router, public configService: ConfigurationService, public route: ActivatedRoute, public quizService: QuizService) {
+        if (quizService.themeSelected == null) this.router.navigateByUrl('/themelist');
+        this.theme = quizService.themeSelected;
     }
 
     ngOnInit() {

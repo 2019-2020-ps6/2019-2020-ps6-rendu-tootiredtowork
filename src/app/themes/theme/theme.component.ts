@@ -25,8 +25,9 @@ export class ThemeComponent implements OnInit {
     }
 
     themeSelected() {
-        this.router.navigateByUrl(this.theme.id+"/quizlist");
+        this.quizService.themeSelected = this.theme;
+        this.router.navigateByUrl("/quizlist");
     }
 
-   
+
 }

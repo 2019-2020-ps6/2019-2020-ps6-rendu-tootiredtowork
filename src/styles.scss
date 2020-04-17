@@ -83,6 +83,14 @@ body {
     transition: transform 0.5s;
 }
 
+.fa-caret-left {
+    cursor: pointer;
+}
+
+.fa-caret-right {
+    cursor: pointer;
+}
+
 .fa-cog:hover {
     text-shadow: 0;
     transform: rotate(135deg);

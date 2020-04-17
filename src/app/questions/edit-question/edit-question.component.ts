@@ -9,62 +9,60 @@ import { QuizService } from 'src/services/quiz.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
-    selector: 'app-edit-question',
-    templateUrl: './edit-question.component.html',
-    styleUrls: ['./edit-question.component.scss']
+  selector: 'app-edit-question',
+  templateUrl: './edit-question.component.html',
+  styleUrls: ['./edit-question.component.scss']
 })
 export class EditQuestionComponent implements OnInit {
 
-    quiz: Quiz;
+  quiz: Quiz;
 
-    question: Question;
+  question: Question;
 
-    public questionForm: FormGroup;
+  public questionForm: FormGroup;
 
-    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute, public formBuilder: FormBuilder) {
-        this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
-        this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
-            this.quiz=quizSelected;
+  constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute, public formBuilder: FormBuilder) {
 
-            this.question = this.quiz.questions[this.route.snapshot.paramMap.get('number')];
-        });
-        this.initializeQuestionForm();
-        
+    if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
+    this.quiz = quizService.quizSelected;
+    this.question = this.quiz.questions[this.route.snapshot.paramMap.get('number')];
+    this.initializeQuestionForm();
+
+  }
+
+  ngOnInit() {
+    let form = document.body.querySelector("form");
+    form.addEventListener("submit", (e: Event) => this.addQuestion());
+  }
+  private initializeQuestionForm() {
+    this.questionForm = this.formBuilder.group({
+      label: [this.question.label],
+      answers: this.formBuilder.array([])
+    });
+    for (var i = 0; i < 4; ++i) {
+      this.addAnswer(this.question.answers[i]);
     }
+  }
 
-    ngOnInit() {
-        let form=document.body.querySelector("form");
-        form.addEventListener("submit", (e:Event) => this.addQuestion());
-    }
-    private initializeQuestionForm() {
-        this.questionForm = this.formBuilder.group({
-          label: [this.question.label],
-          answers: this.formBuilder.array([])
-        });
-        for (var i = 0; i < 4; ++i) {
-            this.addAnswer(this.question.answers[i]);
-        }
-      }
+  private createAnswer(answer: Answer) {
+    return this.formBuilder.group({
+      value: answer.value,
+      isCorrect: answer.isCorrect,
+    });
+  }
 
-    private createAnswer(answer: Answer) {
-        return this.formBuilder.group({
-          value: answer.value,
-          isCorrect: answer.isCorrect,
-        });
-      }
+  get answers() {
+    return this.questionForm.get('answers') as FormArray;
+  }
 
-    get answers() {
-        return this.questionForm.get('answers') as FormArray;
-      }
-    
-    addAnswer(answer: Answer) {
-        this.answers.push(this.createAnswer(answer));
-    }
+  addAnswer(answer: Answer) {
+    this.answers.push(this.createAnswer(answer));
+  }
 
-    addQuestion() {
-      const question = this.questionForm.getRawValue() as Question;
-      this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'),this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
-      this.router.navigateByUrl("/edittheme/"+this.route.snapshot.paramMap.get('theme')+"/"+this.route.snapshot.paramMap.get('id'));
+  addQuestion() {
+    const question = this.questionForm.getRawValue() as Question;
+    this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'), this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
+    this.router.navigateByUrl("/edittheme/" + this.route.snapshot.paramMap.get('theme') + "/" + this.route.snapshot.paramMap.get('id'));
   }
 
 }

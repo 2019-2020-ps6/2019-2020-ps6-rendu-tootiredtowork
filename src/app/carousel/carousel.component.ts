@@ -46,14 +46,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
     constructor(private builder: AnimationBuilder, private renderer: Renderer2, private cd: ChangeDetectorRef) {
     }
+
     ngOnInit(): void {
-    }
-
-    ngOnChanges() {
-    }
-
-    ngAfterContentInit() {
-
     }
 
     ngAfterViewInit(): void {
@@ -76,6 +70,10 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         return Math.floor(parentH / childH) * Math.floor(parentW / childW);
     }
 
+    /**
+     * Remplit les slides en fonction du nombre maximum d'éléments par slide. 
+     * O(n²) => complexité abominable, donc à revoir si il reste du temps
+     */
     fillSlides() {
         this.slides = new Array<Array<any>>();
         for (var i = 0; i < Math.ceil(this._items.length / this.nbMaxElements); i++) {
