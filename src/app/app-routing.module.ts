@@ -15,11 +15,11 @@ import { EditQuizListComponent } from './quizzes/edit-quizlist/edit-quizlist.com
 
 
 const routes: Routes = [
-  { path: 'quizgame/:id', component: QuizGameComponent },
+  { path: 'quizgame', component: QuizGameComponent },
   { path: 'result', component: ResultComponent },
   { path: 'configuration', component: ConfigurationComponent },
   { path: 'themelist', component: ThemeListComponent },
-  { path: ':id/quizlist', component: QuizListComponent },
+  { path: 'quizlist', component: QuizListComponent },
   { path: 'edittheme', component: EditThemeComponent },
   { path: 'edittheme/:theme', component: EditQuizListComponent },
   { path: 'review', component: ReviewComponent },

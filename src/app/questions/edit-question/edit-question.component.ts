@@ -11,57 +11,60 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dial
 import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
 
 @Component({
-    selector: 'app-edit-question',
-    templateUrl: './edit-question.component.html',
-    styleUrls: ['./edit-question.component.scss']
+  selector: 'app-edit-question',
+  templateUrl: './edit-question.component.html',
+  styleUrls: ['./edit-question.component.scss']
 })
 export class EditQuestionComponent implements OnInit {
 
-    quiz: Quiz;
+  quiz: Quiz;
 
-    question: Question;
+  question: Question;
 
-    public questionForm: FormGroup;
+  public questionForm: FormGroup;
 
-    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute, public formBuilder: FormBuilder, private dialog: MatDialog) {
-        this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
-        this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
-            this.quiz=quizSelected;
 
-            this.question = this.quiz.questions[this.route.snapshot.paramMap.get('number')];
-        });
-        this.initializeQuestionForm();
-        
-    }
-
-    ngOnInit() {
-        let form=document.body.querySelector("form");
-        form.addEventListener("submit", (e:Event) => this.addQuestion());
-    }
-    private initializeQuestionForm() {
-        this.questionForm = this.formBuilder.group({
-          label: [this.question.label],
-          answers: this.formBuilder.array([])
-        });
-        for (var i = 0; i < 4; ++i) {
-            this.addAnswer(this.question.answers[i]);
-        }
-      }
-
-    private createAnswer(answer: Answer) {
-        return this.formBuilder.group({
-          value: answer.value,
-          isCorrect: answer.isCorrect,
-        });
-      }
-
-    get answers() {
-        return this.questionForm.get('answers') as FormArray;
-      }
     
-    addAnswer(answer: Answer) {
-        this.answers.push(this.createAnswer(answer));
+
+  constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute, public formBuilder: FormBuilder, private dialog: MatDialog) {
+
+
+    if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
+    this.quiz = quizService.quizSelected;
+    this.question = this.quiz.questions[this.route.snapshot.paramMap.get('number')];
+    this.initializeQuestionForm();
+
+  }
+
+  ngOnInit() {
+    let form = document.body.querySelector("form");
+    form.addEventListener("submit", (e: Event) => this.addQuestion());
+  }
+  private initializeQuestionForm() {
+    this.questionForm = this.formBuilder.group({
+      label: [this.question.label],
+      answers: this.formBuilder.array([])
+    });
+    for (var i = 0; i < 4; ++i) {
+      this.addAnswer(this.question.answers[i]);
     }
+  }
+
+  private createAnswer(answer: Answer) {
+    return this.formBuilder.group({
+      value: answer.value,
+      isCorrect: answer.isCorrect,
+    });
+  }
+
+  get answers() {
+    return this.questionForm.get('answers') as FormArray;
+  }
+
+  addAnswer(answer: Answer) {
+    this.answers.push(this.createAnswer(answer));
+  }
+
 
     addQuestion() {
       const question = this.questionForm.getRawValue() as Question;
@@ -77,7 +80,7 @@ export class EditQuestionComponent implements OnInit {
               if (result) this.quizService.deleteQuestion(question);
           }
       )
-  }
+    }
 
   
   openDialog(): MatDialogRef<DeleteQuizDialog, any> {
@@ -88,6 +91,8 @@ export class EditQuestionComponent implements OnInit {
       dialogConfig.autoFocus = true;
 
       return this.dialog.open(DeleteQuizDialog, dialogConfig);
-  }
 
+  
+
+  }
 }

@@ -29,7 +29,9 @@ export class QuizComponent implements OnInit {
     }
 
     quizSelected() {
-        this.router.navigateByUrl("quizgame/" + this.quiz.id);
+        console.log("QUIZ:", this.quiz);
+        this.quizService.quizSelected = this.quiz;
+        this.router.navigateByUrl("/quizgame");
     }
 
     getQuestionNumberString(): String {
