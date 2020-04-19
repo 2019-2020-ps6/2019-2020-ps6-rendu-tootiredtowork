@@ -22,7 +22,7 @@ export class EditableQuizComponent implements OnInit {
 
     stars: number[] = [];
 
-    constructor(private router: Router, public configService: ConfigurationService,public quizService: QuizService) {
+    constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
     }
 
     ngOnInit(): void {
@@ -32,7 +32,8 @@ export class EditableQuizComponent implements OnInit {
     }
 
     quizSelected() {
-        this.router.navigateByUrl('/editquiz/'+this.quiz.id);
+        this.quizService.quizSelected = this.quiz;
+        this.router.navigateByUrl('/editquiz');
     }
 
     delete() {

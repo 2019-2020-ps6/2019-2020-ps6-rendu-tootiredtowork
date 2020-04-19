@@ -33,7 +33,7 @@ export class QuizService {
 
   questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
 
-  questionSelected$: BehaviorSubject<Question> = new BehaviorSubject(this.question);
+  questionSelected: Question;
 
   score: number;
 
@@ -68,7 +68,7 @@ export class QuizService {
   }
 
 
-  updateTheme(theme:string,quiz: Quiz, position: number){
+  updateTheme(theme: string, quiz: Quiz, position: number) {
 
   }
 
@@ -101,14 +101,14 @@ export class QuizService {
   }
 
   deleteQuestion(question: Question) {
-    const urlWithId = this.quizUrl + '/' +this.theme.id+ "/" + this.quiz.id + "/" + question.label;
+    const urlWithId = this.quizUrl + '/' + this.theme.id + "/" + this.quiz.id + "/" + question.label;
     var index = this.questions.indexOf(question);
     this.http.delete<Question>(urlWithId).subscribe((question) => {
       this.questions.splice(index, 1);
       this.questions$.next(this.questions);
 
     });
-  }  
+  }
   clear() {
     this.quizSelected = null;
     this.score = 0;

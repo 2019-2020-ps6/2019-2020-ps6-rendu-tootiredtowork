@@ -24,7 +24,7 @@ export class EditThemeComponent implements OnInit {
     }
 
 
-/// a mettre pour que ca soit ecrit theme au lieu de quiz
+    /// a mettre pour que ca soit ecrit theme au lieu de quiz
     deleteQuiz(theme: Theme) {
         const dialogRef = this.openDialog();
         dialogRef.afterClosed().subscribe(

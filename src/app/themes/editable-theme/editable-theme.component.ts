@@ -18,14 +18,15 @@ export class EditableThemeComponent implements OnInit {
     deleteQuiz: EventEmitter<Theme> = new EventEmitter<Theme>();
 
 
-    constructor(private router: Router, public configService: ConfigurationService,public quizService: QuizService) {
+    constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
     }
 
     ngOnInit(): void {
     }
 
     themeSelected() {
-        this.router.navigateByUrl('/edittheme/'+this.theme.id);
+        this.quizService.themeSelected = this.theme;
+        this.router.navigateByUrl('/editquizlist');
     }
 
     delete() {

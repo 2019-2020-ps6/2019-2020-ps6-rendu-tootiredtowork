@@ -5,7 +5,7 @@
                 <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
             </div>
             <div class=box id="box2">
-                <div id="title" >{{ theme.id }}</div>
+                <div id="title">{{ theme.id }}</div>
             </div>
             <div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text}">
                 <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
@@ -13,13 +13,13 @@
         </div>
     </div>
     <div class=row id="row2">
-    <div class=quizlist>
-        <ng-container *ngFor="let q of quizzes">
-            <app-editable-quizlist [quiz]="q" (deleteQuiz)="deleteQuiz($event)"></app-editable-quizlist>
-        </ng-container>
-    </div>
-    <div class=row id="row4" >
-        <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" class=button id="bouton" (click)="addQuiz()">Ajouter un quiz</button>
-    </div>
+        <div class=quizlist>
+            <ng-container *ngFor="let q of quizzes">
+                <app-editable-quiz [quiz]="q" (deleteQuiz)="deleteQuiz($event)"></app-editable-quiz>
+            </ng-container>
+        </div>
+        <div class=row id="row4">
+            <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" class=button id="bouton" (click)="addQuiz()">Ajouter un quiz</button>
+        </div>
     </div>
 </div>

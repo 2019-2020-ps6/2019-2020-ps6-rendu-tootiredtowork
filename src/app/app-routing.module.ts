@@ -21,10 +21,10 @@ const routes: Routes = [
   { path: 'themelist', component: ThemeListComponent },
   { path: 'quizlist', component: QuizListComponent },
   { path: 'edittheme', component: EditThemeComponent },
-  { path: 'edittheme/:theme', component: EditQuizListComponent },
+  { path: 'editquizlist', component: EditQuizListComponent },
   { path: 'review', component: ReviewComponent },
-  { path: 'edittheme/:theme/:id', component: EditQuizComponent },
-  { path: 'edittheme/:theme/:id/:number', component: EditQuestionComponent },
+  { path: 'editquiz', component: EditQuizComponent },
+  { path: 'editquestion', component: EditQuestionComponent },
   { path: '', redirectTo: '/configuration', pathMatch: 'full' }
 ];
 

@@ -23,16 +23,12 @@ export class EditQuizListComponent implements OnInit {
 
 
 
-    
+
 
     constructor(public configService: ConfigurationService, public route: ActivatedRoute, private quizService: QuizService, private dialog: MatDialog, private router: Router) {
         if (quizService.themeSelected == null) this.router.navigateByUrl('/themelist');
         this.theme = quizService.themeSelected;
-
-        this.quizService.selectAllQuizzesFromTheme(this.route.snapshot.paramMap.get('theme'));
-        this.quizService.quizzes$.subscribe((quiz: Quiz[]) => {
-            this.quizzes = quiz;
-        });
+        this.quizzes = this.theme.quizs;
     }
 
     ngOnInit(): void {
@@ -59,10 +55,10 @@ export class EditQuizListComponent implements OnInit {
     }
 
     addQuiz() {
-        
+
         const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    
-        this.quizService.updateTheme(this.route.snapshot.paramMap.get('theme'),quizToCreate, Number(this.route.snapshot.paramMap.get('number')));
-      }
+
+        this.quizService.updateTheme(this.route.snapshot.paramMap.get('theme'), quizToCreate, Number(this.route.snapshot.paramMap.get('number')));
+    }
 
 }
