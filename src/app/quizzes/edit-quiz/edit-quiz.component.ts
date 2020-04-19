@@ -9,7 +9,7 @@ import { Question } from 'src/models/question.model';
 
 
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
+import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 
@@ -61,15 +61,16 @@ export class EditQuizComponent implements OnInit {
       }
   
     
-    openDialog(): MatDialogRef<DeleteQuizDialog, any> {
+    openDialog(): MatDialogRef<DeleteDialog, any> {
         
         const dialogConfig = new MatDialogConfig();
   
         dialogConfig.disableClose = true;
   
         dialogConfig.autoFocus = true;
+        dialogConfig.data = {text: "cette question",title:" une Question"};
   
-        return this.dialog.open(DeleteQuizDialog, dialogConfig);
+        return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
 }

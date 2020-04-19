@@ -16,7 +16,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { ResultComponent } from './results/result/result.component';
 import { ColorPickerComponent } from './colorPicker/colorPicker.component';
 import { EditableQuizComponent } from './quizzes/editable-quiz/editable-quiz.component';
-import { DeleteQuizDialog } from './dialogs/delete-quiz/delete-quiz-dialog.component';
+import { DeleteDialog } from './dialogs/delete/delete-dialog.component';
 import { ReviewComponent } from './review/review.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { EditableQuestionComponent } from './questions/editable-question/editable-question.component';
@@ -50,7 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ColorPickerComponent,
     EditThemeComponent,
     EditableQuizComponent,
-    DeleteQuizDialog,
+    DeleteDialog,
     ReviewComponent,
     EditQuizComponent,
     EditableQuestionComponent,

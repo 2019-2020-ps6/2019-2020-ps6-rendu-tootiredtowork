@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
+import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 
@@ -44,14 +44,15 @@ export class EditQuizListComponent implements OnInit {
         )
     }
 
-    openDialog(): MatDialogRef<DeleteQuizDialog, any> {
+    openDialog(): MatDialogRef<DeleteDialog, any> {
         const dialogConfig = new MatDialogConfig();
 
         dialogConfig.disableClose = true;
 
         dialogConfig.autoFocus = true;
+        dialogConfig.data = {text: "ce quiz",title:" un Quiz"};
 
-        return this.dialog.open(DeleteQuizDialog, dialogConfig);
+        return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
     addQuiz() {
