@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
+import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
 
 @Component({
     selector: 'app-edit-question',
@@ -21,7 +23,7 @@ export class EditQuestionComponent implements OnInit {
 
     public questionForm: FormGroup;
 
-    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute, public formBuilder: FormBuilder) {
+    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute, public formBuilder: FormBuilder, private dialog: MatDialog) {
         this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
         this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
             this.quiz=quizSelected;
@@ -65,6 +67,27 @@ export class EditQuestionComponent implements OnInit {
       const question = this.questionForm.getRawValue() as Question;
       this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'),this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
       this.router.navigateByUrl("/edittheme/"+this.route.snapshot.paramMap.get('theme')+"/"+this.route.snapshot.paramMap.get('id'));
+    }
+
+    
+    deleteQuiz(question: Question) {
+      const dialogRef = this.openDialog();
+      dialogRef.afterClosed().subscribe(
+          result => {
+              if (result) this.quizService.deleteQuestion(question);
+          }
+      )
+  }
+
+  
+  openDialog(): MatDialogRef<DeleteQuizDialog, any> {
+      const dialogConfig = new MatDialogConfig();
+
+      dialogConfig.disableClose = true;
+
+      dialogConfig.autoFocus = true;
+
+      return this.dialog.open(DeleteQuizDialog, dialogConfig);
   }
 
 }

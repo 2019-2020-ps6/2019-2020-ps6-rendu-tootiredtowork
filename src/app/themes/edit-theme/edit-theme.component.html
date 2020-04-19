@@ -18,5 +18,8 @@
             <app-editable-theme [theme]="t" (deleteQuiz)="deleteQuiz($event)"></app-editable-theme>
         </ng-container>
     </div>
+    <div class=row id="row4" >
+        <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" class=button id="bouton">Ajouter un thème</button>
+    </div>
 	</div>
 </div>

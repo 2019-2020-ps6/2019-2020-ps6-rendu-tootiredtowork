@@ -18,6 +18,9 @@ export class EditableQuestionComponent implements OnInit {
     @Input()
     quiz: Quiz;
 
+    @Output()
+    deleteQuiz: EventEmitter<Question> = new EventEmitter<Question>();
+
 
     constructor(private router: Router,public configService: ConfigurationService) {
     }
@@ -26,6 +29,8 @@ export class EditableQuestionComponent implements OnInit {
     }
 
     delete(){
+    
+        this.deleteQuiz.emit(this.question);
     }
 
     questionSelected(){

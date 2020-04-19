@@ -41,3 +41,10 @@ input{
     border:2px solid black;
     outline:none;
 }
+#row4 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 1%;
+}

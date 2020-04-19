@@ -6,6 +6,8 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+
 
 @Component({
     selector: 'app-edit-quizlist',
@@ -15,6 +17,9 @@ import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog
 export class EditQuizListComponent implements OnInit {
     theme: Theme;
     quizzes: Quiz[];
+
+    public quizForm: FormGroup;
+
 
     constructor(public configService: ConfigurationService,public route: ActivatedRoute, private quizService: QuizService, private dialog: MatDialog) {
         this.quizService.setSelectedTheme(this.route.snapshot.paramMap.get('theme'));
@@ -49,5 +54,12 @@ export class EditQuizListComponent implements OnInit {
 
         return this.dialog.open(DeleteQuizDialog, dialogConfig);
     }
+
+    addQuiz() {
+        
+        const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+    
+        this.quizService.updateTheme(this.route.snapshot.paramMap.get('theme'),quizToCreate, Number(this.route.snapshot.paramMap.get('number')));
+      }
 
 }

@@ -15,9 +15,13 @@ export class QuizService {
 
   private quizzes: Quiz[];
 
+  private questions: Question[];
+
   private theme: Theme;
 
   private quiz: Quiz;
+
+  private question: Question;
 
   quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
@@ -26,6 +30,10 @@ export class QuizService {
   themes$: BehaviorSubject<Theme[]> = new BehaviorSubject(this.themes);
 
   themeSelected$: BehaviorSubject<Theme> = new BehaviorSubject(this.theme);
+
+  questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
+
+  questionSelected$: BehaviorSubject<Question> = new BehaviorSubject(this.question);
 
   score: number;
 
@@ -76,6 +84,10 @@ export class QuizService {
     this.http.post<Quiz>(quizzUrl, quiz).subscribe(() => {this.setSelectedQuiz(quiz.id); this.selectAllQuizzesFromTheme(theme)});
   }
 
+  updateTheme(theme:string,quiz: Quiz, position: number){
+
+  }
+
     updateDifficulty(theme:string,quiz: Quiz, difficulty:number) {
     const quizzUrl = this.quizUrl +'/'+theme+ '/' + quiz.id;
     quiz.difficulty= difficulty;
@@ -102,6 +114,16 @@ deleteTheme(theme: Theme) {
 
     });
   }
+
+  deleteQuestion(question: Question) {
+    const urlWithId = this.quizUrl + '/' +this.theme.id+ "/" + this.quiz.id + "/" + question.label;
+    var index = this.questions.indexOf(question);
+    this.http.delete<Question>(urlWithId).subscribe((question) => {
+      this.questions.splice(index, 1);
+      this.questions$.next(this.questions);
+
+    });
+  }  
   clear() {
     this.quizSelected$ = new BehaviorSubject(this.quiz);
     this.score = 0;

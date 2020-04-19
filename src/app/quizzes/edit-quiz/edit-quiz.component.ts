@@ -1,8 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
+import { Question } from 'src/models/question.model';
+
+
+import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
+import { DeleteQuizDialog } from 'src/app/dialogs/delete-quiz/delete-quiz-dialog.component';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+
 
 @Component({
     selector: 'app-edit-quiz',
@@ -12,7 +19,9 @@ import { QuizService } from 'src/services/quiz.service';
 export class EditQuizComponent implements OnInit {
     quiz: Quiz;
 
-    constructor(public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute) {
+    public questionForm: FormGroup;
+
+    constructor(private router: Router,public configService: ConfigurationService, public quizService: QuizService,public route: ActivatedRoute, private dialog: MatDialog) {
     	this.quizService.setSelectedQuiz(this.route.snapshot.paramMap.get('id'));
     	this.quizService.quizSelected$.subscribe((quizSelected: Quiz) => {
             this.quiz = quizSelected;
@@ -23,6 +32,37 @@ export class EditQuizComponent implements OnInit {
         let input=document.querySelector("input");
         input.addEventListener("change",(e:Event )=>
             this.quizService.updateDifficulty(this.route.snapshot.paramMap.get('theme'),this.quiz, Number(input.value)));
+    }
+
+    
+    deleteQuiz(question: Question) {
+        
+        const dialogRef = this.openDialog();
+        
+        dialogRef.afterClosed().subscribe(
+            
+            result => {
+                if (result) this.quizService.deleteQuestion(question);
+            }
+        )
+    }
+
+    addQuestion() {
+        const question = this.questionForm.getRawValue() as Question;
+        this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'),this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
+        this.router.navigateByUrl("/edittheme/"+this.route.snapshot.paramMap.get('theme')+"/"+this.route.snapshot.paramMap.get('id'));
+      }
+  
+    
+    openDialog(): MatDialogRef<DeleteQuizDialog, any> {
+        
+        const dialogConfig = new MatDialogConfig();
+  
+        dialogConfig.disableClose = true;
+  
+        dialogConfig.autoFocus = true;
+  
+        return this.dialog.open(DeleteQuizDialog, dialogConfig);
     }
 
 }

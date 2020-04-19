@@ -18,5 +18,8 @@
             <app-editable-quizlist [quiz]="q" (deleteQuiz)="deleteQuiz($event)"></app-editable-quizlist>
         </ng-container>
     </div>
+    <div class=row id="row4" >
+        <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" class=button id="bouton" (click)="addQuiz()">Ajouter un quiz</button>
+    </div>
     </div>
 </div>
