@@ -40,13 +40,26 @@ export class EditQuestionComponent implements OnInit {
     form.addEventListener("submit", (e: Event) => this.addQuestion());
   }
   private initializeQuestionForm() {
-    this.questionForm = this.formBuilder.group({
+
+    if(this.question.label == null){
+      this.questionForm = this.formBuilder.group({
+      label: "",
+      answers: this.formBuilder.array([])
+      });
+      this.addAnswer({"value":"", "isCorrect":true});
+      for (var i = 0; i < 3; ++i) {
+        this.addAnswer({"value":"", "isCorrect":false});
+      }
+    }else{
+      this.questionForm = this.formBuilder.group({
       label: [this.question.label],
       answers: this.formBuilder.array([])
-    });
-    for (var i = 0; i < 4; ++i) {
-      this.addAnswer(this.question.answers[i]);
+      });
+      for (var i = 0; i < 4; ++i) {
+        this.addAnswer(this.question.answers[i]);
+      }
     }
+    
   }
 
   private createAnswer(answer: Answer) {
@@ -67,8 +80,8 @@ export class EditQuestionComponent implements OnInit {
 
   addQuestion() {
     const question = this.questionForm.getRawValue() as Question;
-    this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'), this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
-    this.router.navigateByUrl("/edittheme/" + this.route.snapshot.paramMap.get('theme') + "/" + this.route.snapshot.paramMap.get('id'));
+    this.quizService.updateQuizz(question);
+    this.router.navigateByUrl("/editquiz");
   }
 
 

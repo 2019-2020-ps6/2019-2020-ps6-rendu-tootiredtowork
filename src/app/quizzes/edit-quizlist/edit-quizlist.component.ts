@@ -55,11 +55,5 @@ export class EditQuizListComponent implements OnInit {
         return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
-    addQuiz() {
-
-        const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-
-        this.quizService.updateTheme(this.route.snapshot.paramMap.get('theme'), quizToCreate, Number(this.route.snapshot.paramMap.get('number')));
-    }
 
 }

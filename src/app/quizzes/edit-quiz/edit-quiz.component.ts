@@ -33,11 +33,10 @@ export class EditQuizComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        /**
-         *         let input = document.querySelector("input");
+        let input = document.querySelector("input");
         input.addEventListener("change", (e: Event) =>
-            this.quizService.updateDifficulty(this.route.snapshot.paramMap.get('theme'), this.quiz, Number(input.value)));
-         */
+            this.quizService.updateDifficulty( Number(input.value)));
+
 
     }
 
@@ -54,10 +53,9 @@ export class EditQuizComponent implements OnInit {
         )
     }
 
-    addQuestion() {
-        const question = this.questionForm.getRawValue() as Question;
-        this.quizService.updateQuizz(this.route.snapshot.paramMap.get('theme'),this.quiz, question, Number(this.route.snapshot.paramMap.get('number')));
-        this.router.navigateByUrl("/edittheme/"+this.route.snapshot.paramMap.get('theme')+"/"+this.route.snapshot.paramMap.get('id'));
+    addNewQuestion() {
+        this.quizService.questionSelected = {} as Question;
+        this.router.navigateByUrl('/editquestion');
       }
   
     
