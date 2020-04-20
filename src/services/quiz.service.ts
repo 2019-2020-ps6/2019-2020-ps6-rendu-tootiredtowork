@@ -75,7 +75,7 @@ export class QuizService {
 
   deleteQuiz(quiz: Quiz) {
     const urlWithId = this.quizUrl + '/' + this.themeSelected.id + "/" + quiz.id;
-    console.log(this.quizzes);
+    this.quizzes= this.themeSelected.quizs;
     var index = this.quizzes.indexOf(quiz);
     this.http.delete<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizzes.splice(index, 1);
