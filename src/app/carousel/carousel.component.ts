@@ -45,7 +45,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
     slides = new Array<Array<any>>();
 
-    private currentSlide = 0;
+    currentSlide = 0;
     private slideWidth: number;
     private player: AnimationPlayer;
 
