@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { Question } from 'src/models/question.model';
-
+import { Theme } from 'src/models/theme.model';
 
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
@@ -20,6 +20,7 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 })
 export class EditQuizComponent implements OnInit {
     quiz: Quiz;
+    previousTheme:Theme;
 
 
     public questionForm: FormGroup;
@@ -29,6 +30,7 @@ export class EditQuizComponent implements OnInit {
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router,public route: ActivatedRoute, private dialog: MatDialog) {
         if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
         this.quiz = quizService.quizSelected;
+        this.previousTheme= this.quizService.themeSelected;
         
 
     }
@@ -39,12 +41,21 @@ export class EditQuizComponent implements OnInit {
 
     changeValue(){
         let input = document.querySelector("input");
+        if(Number(input.value)>3){
+            input.value="3";
+        }
+        if(Number(input.value)<1){
+            input.value="1";
+        }
+
         this.quizService.updateDifficulty( Number(input.value));
     }
 
     changeTheme(){
         let select = document.querySelector("select");
-        this.quizService.updateQuizzTheme(select.value);
+        this.quizService.updateQuizzTheme(this.previousTheme,this.quizService.getAllThemes().find(theme => theme.id== select.value) );
+        this.previousTheme=this.quizService.getAllThemes().find(theme => theme.id== select.value)
+        
     }
 
     fillThemeName(){

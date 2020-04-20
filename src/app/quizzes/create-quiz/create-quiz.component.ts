@@ -47,7 +47,7 @@ export class CreateQuizComponent implements OnInit {
             return;
         }
         this.quizService.quizSelected = {"id":input.value,"difficulty":1, questions: []} as Quiz;
-        this.quizService.addQuiz();
+        this.quizService.addQuiz(this.quizService.themeSelected);
         this.router.navigateByUrl("/editquiz");
     }
 

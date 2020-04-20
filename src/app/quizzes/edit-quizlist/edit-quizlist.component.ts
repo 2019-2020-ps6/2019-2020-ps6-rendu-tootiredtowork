@@ -39,7 +39,7 @@ export class EditQuizListComponent implements OnInit {
         const dialogRef = this.openDialog();
         dialogRef.afterClosed().subscribe(
             result => {
-                if (result) this.quizService.deleteQuiz(quiz);
+                if (result) this.quizService.deleteQuiz(quiz,this.theme);
             }
         )
     }

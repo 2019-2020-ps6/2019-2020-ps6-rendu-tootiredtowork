@@ -77,11 +77,9 @@ export class QuizService {
 
   }
 
-  updateQuizzTheme( newTheme: string) {
-    const quizzUrl = this.quizUrl + '/' + newTheme + '/' + this.quizSelected.id;
-    this.deleteQuiz(this.quizSelected);
-    console.log(quizzUrl);
-    this.addQuiz();
+  updateQuizzTheme(previoustheme:Theme, newtheme: Theme) {
+    this.addQuiz(newtheme);
+    this.deleteQuiz(this.quizSelected,previoustheme);
 
   }
 
@@ -92,25 +90,25 @@ export class QuizService {
 
   }
 
-  deleteQuiz(quiz: Quiz) {
-    const urlWithId = this.quizUrl + '/' + this.themeSelected.id + "/" + quiz.id;
-    this.quizzes= this.themeSelected.quizs;
+  deleteQuiz(quiz: Quiz, theme :Theme) {
+    const urlWithId = this.quizUrl + '/' + theme.id + "/" + quiz.id;
+    this.quizzes= theme.quizs;
     var index = this.quizzes.indexOf(quiz);
+    this.quizzes.splice(index, 1);
     this.http.delete<Quiz>(urlWithId).subscribe((quiz) => {
-      this.quizzes.splice(index, 1);
       this.quizzes$.next(this.quizzes);
-
     });
   }
 
 
-  addQuiz(){
-    const urlWithId = this.quizUrl + '/' + this.themeSelected.id + "/add";
-    this.quizzes= this.themeSelected.quizs;
+  addQuiz(theme:Theme){
+    const urlWithId = this.quizUrl + '/' + theme.id + "/add";
+    this.quizzes= theme.quizs;
+    this.quizzes.push(this.quizSelected);
     this.http.post<Quiz>(urlWithId, this.quizSelected).subscribe(() => {
-      this.quizzes.push(this.quizSelected);
       this.quizzes$.next(this.quizzes);
     });
+
   }
 
 
