@@ -15,7 +15,14 @@
     <div class=row id="row2">
         <div class=box id="box2">
             <div id="difficulte">
-                Changer la difficulté: <input id="number" type="number" min="1" max="3" value={{quiz.difficulty}} [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+                Changer la difficulté: <input id="number" type="number" min="1" max="3" value={{quiz.difficulty}} (change)="changeValue()" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+            </div>
+        </div>
+        <div class=box id="box2">
+            <div id="categorie">
+                Changer le thème: 
+                <select name="pets" id="pet-select" (change)="changeTheme()" [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+                </select>
             </div>
         </div>
         <div class=box id="box2">

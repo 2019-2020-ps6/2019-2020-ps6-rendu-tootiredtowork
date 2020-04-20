@@ -55,5 +55,10 @@ export class EditQuizListComponent implements OnInit {
         return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
+    addQuiz(){
+       
+        this.quizService.quizSelected = {} as Quiz;
+        this.router.navigateByUrl('/createquiz');
+    }
 
 }

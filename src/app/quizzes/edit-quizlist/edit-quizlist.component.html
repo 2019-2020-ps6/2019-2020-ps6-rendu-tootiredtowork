@@ -19,7 +19,7 @@
             </ng-container>
         </div>
         <div class=row id="row4">
-            <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" class=button id="bouton" >Ajouter un quiz</button>
+            <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}"(click)="addQuiz()" class=button id="bouton" >Ajouter un quiz</button>
         </div>
     </div>
 </div>

@@ -4,6 +4,9 @@ import { Quiz } from 'src/models/quiz.model';
 import { Answer } from 'src/models/answer.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
+import { FillDialog } from 'src/app/dialogs/fill/fill-dialog.component';
+
 import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
@@ -24,7 +27,7 @@ export class EditQuestionComponent implements OnInit {
 
 
 
-  constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute, public formBuilder: FormBuilder) {
+  constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute,private dialog: MatDialog, public formBuilder: FormBuilder) {
 
 
     if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
@@ -80,9 +83,28 @@ export class EditQuestionComponent implements OnInit {
 
   addQuestion() {
     const question = this.questionForm.getRawValue() as Question;
+    if(question.label== ""){
+    	this.openDialog();
+    	return;
+    }
+    for(let entry of this.answers.getRawValue()){
+    	if(entry.value== ""){
+    		this.openDialog();
+    		return;
+    	}
+    }
     this.quizService.updateQuizz(question);
     this.router.navigateByUrl("/editquiz");
   }
 
+  openDialog(): MatDialogRef<FillDialog, any> {
+        const dialogConfig = new MatDialogConfig();
 
+        dialogConfig.disableClose = true;
+
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = {text: "ce quiz",title:" un Quiz"};
+
+        return this.dialog.open(FillDialog, dialogConfig);
+    }
 }

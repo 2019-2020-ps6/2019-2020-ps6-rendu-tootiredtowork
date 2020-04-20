@@ -1,0 +1,21 @@
+<div class=page [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text, 'margin':' 0% '+configService.marginSize+'%'}">
+    <div class=row id="row1">
+        <div class=nav>
+            <div class=box id="box1">
+                <i class="fas fa-caret-left fa-2x" routerLink="/editquizlist"></i>
+            </div>
+            <div class=box id="box2">
+            </div>
+            <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
+                <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+            </div>
+        </div>
+    </div>
+    <div class=row id="row2">
+        Nom du Quiz:
+        <input type="text" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
+        <br>
+        <button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" (click)="addNewQuiz()" class=button id="bouton">Créer</button>
+    </div>
+
+</div>

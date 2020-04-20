@@ -29,18 +29,33 @@ export class EditQuizComponent implements OnInit {
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router,public route: ActivatedRoute, private dialog: MatDialog) {
         if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
         this.quiz = quizService.quizSelected;
+        
 
     }
 
     ngOnInit(): void {
-        let input = document.querySelector("input");
-        input.addEventListener("change", (e: Event) =>
-            this.quizService.updateDifficulty( Number(input.value)));
-
-
+        this.fillThemeName();
     }
 
-    
+    changeValue(){
+        let input = document.querySelector("input");
+        this.quizService.updateDifficulty( Number(input.value));
+    }
+
+    changeTheme(){
+        let select = document.querySelector("select");
+        this.quizService.updateQuizzTheme(select.value);
+    }
+
+    fillThemeName(){
+        let select = document.querySelector("select");
+        let themesWithoutCurrent=this.quizService.getAllThemes().filter( theme =>theme.id!= this.quizService.themeSelected.id);
+        select.innerHTML +="<option>"+this.quizService.themeSelected.id+"</option>";
+        for(let theme of themesWithoutCurrent){
+            select.innerHTML +="<option>"+theme.id+"</option>";
+        }
+
+    }
     deleteQuiz(question: Question) {
         
         const dialogRef = this.openDialog();
