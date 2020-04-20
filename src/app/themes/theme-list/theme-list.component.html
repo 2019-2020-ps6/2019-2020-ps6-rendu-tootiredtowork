@@ -14,11 +14,6 @@
     </div>
 
     <div class=row id="row2">
-
-        <div class=themelist>
-            <ng-container *ngFor="let t of themes">
-                <app-theme [theme]="t"></app-theme>
-            </ng-container>
-        </div>
+        <app-carousel [items]="themes" [component]="getComponent()" [mock]="getMock()" class="carousel"></app-carousel>
     </div>
 </div>

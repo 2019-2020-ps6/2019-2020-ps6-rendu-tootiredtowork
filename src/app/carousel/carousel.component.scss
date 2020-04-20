@@ -20,3 +20,27 @@
     justify-content: center;
     max-height: inherit;
 }
+
+#row1 {
+    flex: 1 1 95%;
+    max-height: 95%;
+}
+
+#row2 {
+    flex: 1 1 5%;
+    max-height: 5%;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#box1 {
+    justify-content: flex-start;
+}
+
+#box2 {
+    justify-content: center;
+}
+
+#box3 {
+    justify-content: flex-end;
+}

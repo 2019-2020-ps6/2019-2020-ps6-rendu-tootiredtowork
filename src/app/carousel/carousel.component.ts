@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, Renderer2, ViewChildren, QueryList, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, Renderer2, ViewChildren, QueryList, ChangeDetectorRef, ChangeDetectionStrategy, ComponentFactoryResolver, Type } from '@angular/core';
 import { AnimationBuilder, AnimationFactory, animate, style, AnimationPlayer } from '@angular/animations';
 import { QuizComponent } from '../quizzes/quiz/quiz.component';
 import { Quiz } from 'src/models/quiz.model';
 import { QUIZ } from 'src/mocks/quiz.mock';
+import { CarouselItemDirective } from './carousel-item.directive';
+import { CarouselItemComponent } from './carousel-item.component';
 
 @Component({
     selector: 'app-carousel',
@@ -13,10 +15,15 @@ import { QUIZ } from 'src/mocks/quiz.mock';
 export class CarouselComponent implements OnInit, AfterViewInit {
     @ViewChild('carousel', { read: ElementRef, static: false }) carousel: ElementRef;
     @ViewChild('slideshow', { read: ElementRef, static: false }) slideShow: ElementRef;
-    @ViewChild('quizmock', { read: ElementRef, static: false }) quizMockRef: ElementRef;
-    @ViewChildren(QuizComponent) quizz!: QueryList<QuizComponent>;
+    @ViewChild(CarouselItemDirective, { static: true }) mockHost: CarouselItemDirective;
+    @ViewChildren(CarouselItemDirective) itemsDirective!: QueryList<CarouselItemDirective>;
+
+    quizMockRef: ElementRef;
 
     _items: any[] = [];
+
+    @Input()
+    component: Type<CarouselItemComponent>;
 
     /**
      * On intercepte le changement de données. Si le max a déjà été calculé, on remplis les slides en fonction.
@@ -33,7 +40,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         }
     }
 
-    quizMock: Quiz = QUIZ;
+    @Input()
+    mock: any;
 
     slides = new Array<Array<any>>();
 
@@ -44,10 +52,18 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     private nbMaxElements: number = 1;
     private maxCalculated: boolean = false;
 
-    constructor(private builder: AnimationBuilder, private renderer: Renderer2, private cd: ChangeDetectorRef) {
+    constructor(private builder: AnimationBuilder, private renderer: Renderer2, private cd: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver) {
     }
 
     ngOnInit(): void {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
+
+        const viewContainerRef = this.mockHost.viewContainerRef;
+        viewContainerRef.clear();
+
+        const componentRef = viewContainerRef.createComponent(componentFactory);
+        (<CarouselItemComponent>componentRef.instance).data = this.mock;
+        this.quizMockRef = componentRef.location;
     }
 
     ngAfterViewInit(): void {
@@ -62,8 +78,15 @@ export class CarouselComponent implements OnInit, AfterViewInit {
             if (this._items.length > 0) {
                 this.fillSlides();
                 this.cd.detectChanges();
+                this.loadComponent();
+                this.cd.detectChanges();
             }
         }
+
+        this.itemsDirective.changes.subscribe((v) => {
+            this.loadComponent();
+            this.cd.detectChanges();
+        })
     }
 
     numberElementsBySlide(parentH: number, parentW: number, childH: number, childW: number): number {
@@ -110,5 +133,20 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
         this.player = myAnimation.create(this.slideShow.nativeElement);
         this.player.play();
+    }
+
+    loadComponent() {
+        if (this.itemsDirective.length > 0 && this._items.length > 0) {
+            for (var i = 0; i < this._items.length; i++) {
+                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
+
+                // i+1 ici car le mock fait parti des itemsDirective
+                const viewContainerRef = this.itemsDirective.toArray()[i + 1].viewContainerRef;
+                viewContainerRef.clear();
+
+                const componentRef = viewContainerRef.createComponent(componentFactory);
+                (<CarouselItemComponent>componentRef.instance).data = this._items[i];
+            }
+        }
     }
 }

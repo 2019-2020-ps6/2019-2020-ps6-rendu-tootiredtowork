@@ -5,16 +5,18 @@ import { Router } from '@angular/router';
 import { Theme } from 'src/models/theme.model';
 
 import { QuizService } from 'src/services/quiz.service';
+import { CarouselComponent } from 'src/app/carousel/carousel.component';
+import { CarouselItemComponent } from 'src/app/carousel/carousel-item.component';
 
 @Component({
     selector: 'app-theme',
     templateUrl: './theme.component.html',
     styleUrls: ['./theme.component.scss']
 })
-export class ThemeComponent implements OnInit {
+export class ThemeComponent implements OnInit, CarouselItemComponent {
 
     @Input()
-    theme: Theme;
+    data: Theme;
 
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
@@ -25,7 +27,7 @@ export class ThemeComponent implements OnInit {
     }
 
     themeSelected() {
-        this.quizService.themeSelected = this.theme;
+        this.quizService.themeSelected = this.data;
         this.router.navigateByUrl("/quizlist");
     }
 

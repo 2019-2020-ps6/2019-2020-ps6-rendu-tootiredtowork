@@ -26,6 +26,7 @@ import { ThemeComponent } from './themes/theme/theme.component';
 import { ThemeListComponent } from './themes/theme-list/theme-list.component';
 import { EditableThemeComponent } from './themes/editable-theme/editable-theme.component';
 import { EditQuizListComponent } from './quizzes/edit-quizlist/edit-quizlist.component';
+import { CarouselItemDirective } from './carousel/carousel-item.directive';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -58,7 +59,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CarouselComponent, ThemeComponent,
     ThemeListComponent,
     EditableThemeComponent,
-    EditQuizListComponent
+    EditQuizListComponent,
+    CarouselItemDirective
   ],
   imports: [
     BrowserModule,

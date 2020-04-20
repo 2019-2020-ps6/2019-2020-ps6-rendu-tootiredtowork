@@ -14,6 +14,6 @@
     </div>
 
     <div class=row id="row2" #row>
-        <app-carousel [items]="theme.quizs" class="carousel"></app-carousel>
+        <app-carousel [items]="theme.quizs" [component]="getComponent()" [mock]="getMock()" class="carousel"></app-carousel>
     </div>
 </div>
