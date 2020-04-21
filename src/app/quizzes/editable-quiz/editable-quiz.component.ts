@@ -39,4 +39,16 @@ export class EditableQuizComponent implements OnInit {
     delete() {
         this.deleteQuiz.emit(this.quiz);
     }
+
+    getQuestionNumberString(): String {
+        if (this.quiz.questions.length == 1) {
+            return ":   ".concat(this.quiz.questions.length.toString());
+        }
+        else if (this.quiz.questions.length < 10) {
+            return "s:  ".concat(this.quiz.questions.length.toString());
+        }
+        else {
+            return "s: ".concat(this.quiz.questions.length.toString());
+        }
+    }
 }

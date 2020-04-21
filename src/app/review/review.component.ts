@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Question, getCorrectAnswer } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';

@@ -11,6 +11,7 @@ import { EditQuestionComponent } from './questions/edit-question/edit-question.c
 import { ThemeListComponent } from './themes/theme-list/theme-list.component';
 import { EditQuizListComponent } from './quizzes/edit-quizlist/edit-quizlist.component';
 import { CreateQuizComponent } from './quizzes/create-quiz/create-quiz.component';
+import { CreateThemeComponent } from './themes/create-theme/create-theme.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'editquizlist', component: EditQuizListComponent },
   { path: 'review', component: ReviewComponent },
   { path: 'createquiz', component: CreateQuizComponent },
+  { path: 'createtheme', component: CreateThemeComponent },
   { path: 'editquiz', component: EditQuizComponent },
   { path: 'editquestion', component: EditQuestionComponent },
   { path: '', redirectTo: '/configuration', pathMatch: 'full' }

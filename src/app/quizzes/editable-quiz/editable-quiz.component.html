@@ -13,6 +13,6 @@
         </div>
         <div>Difficulté:
             <i *ngFor="let i of stars" class="fas fa-star"></i></div>
-        <div id="nbQuestion">Nombre de question: {{ quiz.questions.length }}</div>
+        <div id="nbQuestion">Nombre de question{{getQuestionNumberString()}}</div>
     </div>
 </div>

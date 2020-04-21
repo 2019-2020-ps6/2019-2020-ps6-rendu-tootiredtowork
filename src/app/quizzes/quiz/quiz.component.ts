@@ -38,11 +38,14 @@ export class QuizComponent implements CarouselItemComponent, OnInit {
     }
 
     getQuestionNumberString(): String {
-        if (this._data.questions.length < 10) {
-            return "   ".concat(this._data.questions.length.toString());
+        if (this._data.questions.length == 1) {
+            return ":   ".concat(this._data.questions.length.toString());
+        }
+        else if (this._data.questions.length < 10) {
+            return "s:  ".concat(this._data.questions.length.toString());
         }
         else {
-            return " ".concat(this._data.questions.length.toString());
+            return "s: ".concat(this._data.questions.length.toString());
         }
     }
 }

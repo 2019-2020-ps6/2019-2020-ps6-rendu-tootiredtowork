@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Quiz } from 'src/models/quiz.model';
+import { Component, OnInit} from '@angular/core';
+import { Theme } from 'src/models/theme.model';
 
 import { Router } from '@angular/router';
 
@@ -12,17 +12,16 @@ import { FillDialog } from 'src/app/dialogs/fill/fill-dialog.component';
 
 
 @Component({
-    selector: 'app-create-quiz',
-    templateUrl: './create-quiz.component.html',
-    styleUrls: ['./create-quiz.component.scss']
+    selector: 'app-create-theme',
+    templateUrl: './create-theme.component.html',
+    styleUrls: ['./create-theme.component.scss']
 })
-export class CreateQuizComponent implements OnInit {
+export class CreateThemeComponent implements OnInit {
 
 
     
 
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, private dialog: MatDialog) {
-        if (quizService.themeSelected == null) this.router.navigateByUrl('/themelist');
     }
 
     ngOnInit(): void {
@@ -39,15 +38,15 @@ export class CreateQuizComponent implements OnInit {
         return this.dialog.open(FillDialog, dialogConfig);
     }
 
-    addNewQuiz(){
+    addNewTheme(){
         let input = document.body.querySelector("input");
         if(input.value ==""){
             this.openDialog();
             return;
         }
-        this.quizService.quizSelected = {"id":input.value,"difficulty":1, questions: []} as Quiz;
-        this.quizService.addQuiz(this.quizService.themeSelected);
-        this.router.navigateByUrl("/editquiz");
+        this.quizService.themeSelected = {"id":input.value, quizs: []} as Theme;
+        this.quizService.addTheme();
+        this.router.navigateByUrl("/edittheme");
     }
 
 }

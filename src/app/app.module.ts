@@ -21,6 +21,7 @@ import { FillDialog } from './dialogs/fill/fill-dialog.component';
 import { ReviewComponent } from './review/review.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { CreateQuizComponent } from './quizzes/create-quiz/create-quiz.component';
+import { CreateThemeComponent } from './themes/create-theme/create-theme.component';
 import { EditableQuestionComponent } from './questions/editable-question/editable-question.component';
 import { EditQuestionComponent } from './questions/edit-question/edit-question.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -64,7 +65,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditQuizListComponent,
     CarouselItemDirective,
     FillDialog,
-    CreateQuizComponent
+    CreateQuizComponent,
+    CreateThemeComponent
   ],
   imports: [
     BrowserModule,
