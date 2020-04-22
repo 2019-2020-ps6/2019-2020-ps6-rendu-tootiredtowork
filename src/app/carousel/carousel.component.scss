@@ -1,7 +1,8 @@
 .carousel {
-    height: 95%;
+    height: 100%;
     width: 100%;
     overflow: hidden;
+    padding-top: 1%;
 }
 
 .slideShow {
@@ -22,15 +23,17 @@
 }
 
 #row1 {
-    flex: 1 1 95%;
-    max-height: 95%;
+    flex: 1 1 90%;
+    max-height: 90%;
 }
 
 #row2 {
-    flex: 1 1 5%;
-    max-height: 5%;
+    flex: 1 1 10%;
+    max-height: 10%;
     justify-content: center;
     flex-direction: row;
+    text-align: center;
+    user-select: none;
 }
 
 #box1 {
@@ -43,4 +46,9 @@
 
 #box3 {
     justify-content: flex-end;
+    overflow: hidden;
+}
+
+.fas {
+    overflow: hidden;
 }

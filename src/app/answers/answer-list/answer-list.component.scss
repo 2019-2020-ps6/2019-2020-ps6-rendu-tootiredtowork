@@ -15,14 +15,12 @@
 }
 
 .answer {
-    display:flex;
+    display: flex;
     align-content: center;
     flex: 1 1 calc(40%);
-    justify-content:center;
+    justify-content: center;
     min-height: 20%;
     margin-top: 5%;
-
-
     text-decoration: none;
     border-width: 2px;
     border-style: ridge;
@@ -32,9 +30,10 @@
     transition-duration: 0.4s;
     border-radius: 4px;
     transition-property: box-shadow;
-    font-family: Consolas Black;
+    font-family: Consolas, monospace;
+    font-weight: bold;
     cursor: pointer;
-    outline:none;
+    outline: none;
 }
 
 .answer:hover {
@@ -43,9 +42,9 @@
     box-shadow: none;
 }
 
-#text{
-    display:flex;
+#text {
+    display: flex;
     flex: 1 1 calc(5%);
     justify-content: center;
-    margin:auto;
+    margin: auto;
 }

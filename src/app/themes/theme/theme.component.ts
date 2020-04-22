@@ -31,5 +31,11 @@ export class ThemeComponent implements OnInit, CarouselItemComponent {
         this.router.navigateByUrl("/quizlist");
     }
 
-
+    getWhiteSpaceString() {
+        var retour: String = "";
+        for (var i = 0; i < 21; i++) {
+            retour = retour.concat(" ");
+        }
+        return retour;
+    }
 }
