@@ -1,18 +1,19 @@
 <div class=labelCard [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
-    <div>
-        <div class=top >
-            <div class=box id="box1">
-                <i class="fas fa-cogs" (click)="quizSelected()"></i>
-            </div>
-            <div class=box id="box2">
-                <div>{{quiz.id}}</div>
-            </div>
-            <div class=box id="box3">
-                <i class="fas fa-trash-alt" (click)="delete()"></i>
-            </div>
+    <div class="icons">
+        <div class=box id="box1">
+            <i class="fas fa-cogs" (click)="quizSelected()"></i>
         </div>
-        <div>Difficulté:
-            <i *ngFor="let i of stars" class="fas fa-star"></i></div>
-        <div id="nbQuestion">Nombre de question{{getQuestionNumberString()}}</div>
+        <div class=box id="box2">
+            <i class="fas fa-trash-alt" (click)="delete()"></i>
+        </div>
+    </div>
+    <div>
+        {{data.id}}
+    </div>
+    <div>
+        Difficulté: <i *ngFor="let i of stars" class="fas fa-star"></i>
+    </div>
+    <div id="nbQuestion">
+        Nombre de question{{getQuestionNumberString()}}
     </div>
 </div>

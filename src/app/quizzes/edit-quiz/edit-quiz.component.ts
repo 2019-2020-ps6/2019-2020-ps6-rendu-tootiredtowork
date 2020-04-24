@@ -20,59 +20,66 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 })
 export class EditQuizComponent implements OnInit {
     quiz: Quiz;
-    previousTheme:Theme;
+    previousTheme: Theme;
 
 
     public questionForm: FormGroup;
 
-    
 
-    constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router,public route: ActivatedRoute, private dialog: MatDialog) {
-        if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
-        this.quiz = quizService.quizSelected;
-        this.previousTheme= this.quizService.themeSelected;
-        
 
+    constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, public route: ActivatedRoute, private dialog: MatDialog) {
+        this.quizService.quizSelected$.subscribe((quiz) => {
+            if (quiz == null) this.router.navigateByUrl('/themelist');
+            else {
+                this.quiz = quiz;
+            }
+        });
+        this.quizService.themeSelected$.subscribe((theme) => {
+            if (theme == null) this.router.navigateByUrl('/themelist');
+            else {
+                this.previousTheme = theme;
+            }
+        })
     }
 
     ngOnInit(): void {
         this.fillThemeName();
     }
 
-    changeValue(){
+    changeValue() {
         let input = document.querySelector("input");
-        if(Number(input.value)>3){
-            input.value="3";
+        if (Number(input.value) > 3) {
+            input.value = "3";
         }
-        if(Number(input.value)<1){
-            input.value="1";
+        if (Number(input.value) < 1) {
+            input.value = "1";
         }
 
-        this.quizService.updateDifficulty( Number(input.value));
+        this.quizService.updateDifficulty(Number(input.value));
     }
 
-    changeTheme(){
+    changeTheme() {
         let select = document.querySelector("select");
-        this.quizService.updateQuizzTheme(this.previousTheme,this.quizService.getAllThemes().find(theme => theme.id== select.value) );
-        this.previousTheme=this.quizService.getAllThemes().find(theme => theme.id== select.value)
-        
+        this.quizService.updateQuizzTheme(this.previousTheme, this.quizService.getAllThemes().find(theme => theme.id == select.value));
+        this.previousTheme = this.quizService.getAllThemes().find(theme => theme.id == select.value)
+
     }
 
-    fillThemeName(){
-        let select = document.querySelector("select");
-        let themesWithoutCurrent=this.quizService.getAllThemes().filter( theme =>theme.id!= this.quizService.themeSelected.id);
-        select.innerHTML +="<option>"+this.quizService.themeSelected.id+"</option>";
-        for(let theme of themesWithoutCurrent){
-            select.innerHTML +="<option>"+theme.id+"</option>";
-        }
+    fillThemeName() {
+        /*let select = document.querySelector("select");
+        let themesWithoutCurrent = this.quizService.getAllThemes().filter(theme => theme.id != this.quizService.themeSelected.id);
+        select.innerHTML += "<option>" + this.quizService.themeSelected.id + "</option>";
+        for (let theme of themesWithoutCurrent) {
+            select.innerHTML += "<option>" + theme.id + "</option>";
+        }*/
 
     }
     deleteQuiz(question: Question) {
-        
+
         const dialogRef = this.openDialog();
-        
+
         dialogRef.afterClosed().subscribe(
-            
+
             result => {
                 if (result) this.quizService.deleteQuestion(question);
             }
@@ -80,20 +87,20 @@ export class EditQuizComponent implements OnInit {
     }
 
     addNewQuestion() {
-        this.quizService.questionSelected = {} as Question;
-        this.router.navigateByUrl('/editquestion');
-      }
-  
-    
+        /* this.quizService.questionSelected = {} as Question;
+         this.router.navigateByUrl('/editquestion');*/
+    }
+
+
     openDialog(): MatDialogRef<DeleteDialog, any> {
-        
+
         const dialogConfig = new MatDialogConfig();
-  
+
         dialogConfig.disableClose = true;
-  
+
         dialogConfig.autoFocus = true;
-        dialogConfig.data = {text: "cette question",title:" une Question"};
-  
+        dialogConfig.data = { text: "cette question", title: " une Question" };
+
         return this.dialog.open(DeleteDialog, dialogConfig);
     }
 

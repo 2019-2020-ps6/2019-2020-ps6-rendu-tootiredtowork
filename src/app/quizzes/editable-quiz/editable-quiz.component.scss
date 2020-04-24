@@ -1,11 +1,29 @@
-#nbQuestion {
-    white-space: nowrap;
+i {
+    cursor: pointer;
 }
 
-.top {
+.labelCard {
+    cursor: default;
+    padding: 15px 10px;
+}
+
+.icons {
+    visibility: hidden;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     align-content: center;
+}
+
+.labelCard:hover {
+    box-shadow: none;
+}
+
+.labelCard:hover .icons {
+    visibility: visible;
+}
+
+#nbQuestion {
+    white-space: pre;
 }
 
 .box {
@@ -18,27 +36,5 @@
 }
 
 #box2 {
-    justify-content: center;
-}
-
-#box3 {
     justify-content: flex-end;
-}
-
-.labelCard {
-    cursor: default;
-    padding: 15px 10px;
-}
-
-.labelCard .top i {
-    visibility: hidden;
-}
-
-.labelCard:hover {
-    box-shadow: none;
-}
-
-.labelCard:hover .top i {
-    visibility: visible;
-    cursor: pointer;
 }

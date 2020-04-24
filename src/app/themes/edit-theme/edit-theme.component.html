@@ -1,25 +1,19 @@
 <div class=page [ngStyle]="{'font-size': configService.fontSize+'px','margin-size':configService.marginSize+'%','color': '#'+configService.text, 'margin':' 0% '+configService.marginSize+'%'}">
-	<div class=row id="row1">
+    <div class=row id="row1">
         <div class=nav>
-        	<div class=box id="box1">
-            	<button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/themelist">Quitter</button>
+            <div class=box id="box1">
+                <button class=button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" routerLink="/themelist">Quitter</button>
             </div>
-        	<div class=box id="box2">
-            	<div id="title" class=labelCard [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">Selection thème</div>
-        	</div>
-        	<div class=box id="box3" [ngStyle]="{'font-size': configService.fontSize+'px','color': '#'+configService.text}">
-            	<i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
-        	</div>
+            <div class=box id="box2">
+                <div id="title">Choisissez un thème à éditer</div>
+            </div>
+            <div class=box id="box3">
+                <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
+            </div>
         </div>
     </div>
+
     <div class=row id="row2">
-    <div class=quizlist>
-        <ng-container *ngFor="let t of themes">
-            <app-editable-theme [theme]="t" (deleteQuiz)="deleteQuiz($event)"></app-editable-theme>
-        </ng-container>
+        <app-carousel [items]="themes" [component]="getComponent()" [mock]="getMock()" [add]="add" class="carousel"></app-carousel>
     </div>
-    <div class=row id="row4" >
-        <button type='submit' [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" (click)="addNewTheme()" class=button id="bouton">Ajouter un thème</button>
-    </div>
-	</div>
 </div>

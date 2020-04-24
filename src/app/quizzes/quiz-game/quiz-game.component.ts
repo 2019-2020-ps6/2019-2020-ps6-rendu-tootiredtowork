@@ -23,12 +23,14 @@ export class QuizGameComponent implements OnInit {
     max;
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public gameService: GameService) {
-        if (quizService.quizSelected == null) {
-            this.router.navigateByUrl('/themelist');
-        }
-        this.quiz = quizService.quizSelected;
-        this.max = this.quiz.questions.length;
-        this.current = this.quiz.questions[this.seek];
+        quizService.quizSelected$.subscribe((quiz) => {
+            if (quiz == null) this.router.navigateByUrl('/themelist');
+            else {
+                this.quiz = quiz;
+                this.max = this.quiz.questions.length;
+                this.current = this.quiz.questions[this.seek];
+            }
+        });
     }
 
     ngOnInit() {

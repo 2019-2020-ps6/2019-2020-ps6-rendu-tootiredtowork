@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, Renderer2, ViewChildren, QueryList, ChangeDetectorRef, ChangeDetectionStrategy, ComponentFactoryResolver, Type } from '@angular/core';
 import { AnimationBuilder, AnimationFactory, animate, style, AnimationPlayer } from '@angular/animations';
-import { QuizComponent } from '../quizzes/quiz/quiz.component';
-import { Quiz } from 'src/models/quiz.model';
-import { QUIZ } from 'src/mocks/quiz.mock';
 import { CarouselItemDirective } from './carousel-item.directive';
 import { CarouselItemComponent } from './carousel-item.component';
+import { CarouselAddComponent } from './carousel-add/carousel-add.component';
 
 @Component({
     selector: 'app-carousel',
@@ -18,7 +16,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     @ViewChild(CarouselItemDirective, { static: true }) mockHost: CarouselItemDirective;
     @ViewChildren(CarouselItemDirective) itemsDirective!: QueryList<CarouselItemDirective>;
 
-    quizMockRef: ElementRef;
+    mockRef: ElementRef;
 
     _items: any[] = [];
 
@@ -30,18 +28,26 @@ export class CarouselComponent implements OnInit, AfterViewInit {
      */
     @Input() set items(items: any[]) {
         if (items != null) {
-            this._items = items;
+            this._items = new Array<any>();
+            items.forEach((item) => {
+                this._items.push(item);
+            });
+            if (this._add != null) this._items.push(this._add);
             if (this.maxCalculated) this.fillSlides();
-            else {
-                var first = new Array<any>();
-                first.push(items[0]);
-                this.slides.push(first);
-            }
         }
     }
 
     @Input()
     mock: any;
+
+    _add: Function = null;
+    @Input() set add(func: Function) {
+        if (this._add == null && func != null) {
+            this._add = func;
+            if (this._items.length == 0) this._items.push(func);
+            else if (this._items[this._items.length - 1] != func) this._items.push(func);
+        }
+    }
 
     slides = new Array<Array<any>>();
 
@@ -52,10 +58,16 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     private nbMaxElements: number = 1;
     private maxCalculated: boolean = false;
 
+    private itemHeight: number;
+    private itemWidth: number;
+
     constructor(private builder: AnimationBuilder, private renderer: Renderer2, private cd: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver) {
     }
 
     ngOnInit(): void {
+        var i: number;
+        i = 3.5;
+
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
 
         const viewContainerRef = this.mockHost.viewContainerRef;
@@ -63,16 +75,16 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
         const componentRef = viewContainerRef.createComponent(componentFactory);
         (<CarouselItemComponent>componentRef.instance).data = this.mock;
-        this.quizMockRef = componentRef.location;
+        this.mockRef = componentRef.location;
     }
 
     ngAfterViewInit(): void {
         this.slideWidth = this.carousel.nativeElement.offsetWidth;
         if (!this.maxCalculated) {
-            var height = this.quizMockRef.nativeElement.offsetHeight;
-            var width = this.quizMockRef.nativeElement.offsetWidth;
-            this.nbMaxElements = this.numberElementsBySlide(this.carousel.nativeElement.offsetHeight, this.carousel.nativeElement.offsetWidth, height, width);
-            this.renderer.setStyle(this.quizMockRef.nativeElement, 'display', 'none');
+            this.itemHeight = this.mockRef.nativeElement.offsetHeight;
+            this.itemWidth = this.mockRef.nativeElement.offsetWidth;
+            this.nbMaxElements = this.numberElementsBySlide(this.carousel.nativeElement.offsetHeight, this.carousel.nativeElement.offsetWidth, this.itemHeight, this.itemWidth);
+            this.renderer.setStyle(this.mockRef.nativeElement, 'display', 'none');
             this.maxCalculated = true;
 
             if (this._items.length > 0) {
@@ -138,13 +150,17 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     loadComponent() {
         if (this.itemsDirective.length > 0 && this._items.length > 0) {
             for (var i = 0; i < this._items.length; i++) {
-                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
+                var component = this.component;
+                if (this._items[i] == this._add) component = CarouselAddComponent;
+                const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 
                 // i+1 ici car le mock fait parti des itemsDirective
                 const viewContainerRef = this.itemsDirective.toArray()[i + 1].viewContainerRef;
                 viewContainerRef.clear();
 
                 const componentRef = viewContainerRef.createComponent(componentFactory);
+                this.renderer.setStyle(componentRef.location.nativeElement, 'height', this.itemHeight + 'px');
+                this.renderer.setStyle(componentRef.location.nativeElement, 'width', this.itemWidth + 'px');
                 (<CarouselItemComponent>componentRef.instance).data = this._items[i];
             }
         }

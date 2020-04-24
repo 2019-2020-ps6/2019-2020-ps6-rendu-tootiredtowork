@@ -27,7 +27,7 @@ export class ThemeComponent implements OnInit, CarouselItemComponent {
     }
 
     themeSelected() {
-        this.quizService.themeSelected = this.data;
+        this.quizService.selectTheme(this.data);
         this.router.navigateByUrl("/quizlist");
     }
 

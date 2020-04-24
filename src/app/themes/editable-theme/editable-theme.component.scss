@@ -1,28 +1,9 @@
-#nbQuestion {
-    white-space: nowrap;
+div {
+    white-space: pre;
 }
 
-.top {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-content: center;
-}
-
-.box {
-    display: flex;
-    align-items: center;
-}
-
-#box1 {
-    justify-content: flex-start;
-}
-
-#box2 {
-    justify-content: center;
-}
-
-#box3 {
-    justify-content: flex-end;
+i {
+    cursor: pointer;
 }
 
 .labelCard {
@@ -30,15 +11,25 @@
     padding: 15px 10px;
 }
 
-.labelCard .top i {
+.icons {
     visibility: hidden;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
 }
 
 .labelCard:hover {
     box-shadow: none;
 }
 
-.labelCard:hover .top i {
+.labelCard:hover .icons {
     visibility: visible;
-    cursor: pointer;
+}
+
+#box1 {
+    justify-content: flex-start;
+}
+
+#box2 {
+    justify-content: flex-end;
 }

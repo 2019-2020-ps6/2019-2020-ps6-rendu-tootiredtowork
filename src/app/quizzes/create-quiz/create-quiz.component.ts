@@ -18,35 +18,35 @@ import { FillDialog } from 'src/app/dialogs/fill/fill-dialog.component';
 })
 export class CreateQuizComponent implements OnInit {
 
-
-    
-
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, private dialog: MatDialog) {
-        if (quizService.themeSelected == null) this.router.navigateByUrl('/themelist');
+
+        this.quizService.themeSelected$.subscribe((theme) => {
+            if (theme == null) this.router.navigateByUrl('/themelist');
+        });
     }
 
     ngOnInit(): void {
     }
-    
+
     openDialog(): MatDialogRef<FillDialog, any> {
-        
+
         const dialogConfig = new MatDialogConfig();
-  
+
         dialogConfig.disableClose = true;
-  
+
         dialogConfig.autoFocus = true;
-  
+
         return this.dialog.open(FillDialog, dialogConfig);
     }
 
-    addNewQuiz(){
+    addNewQuiz() {
         let input = document.body.querySelector("input");
-        if(input.value ==""){
+        if (input.value == "") {
             this.openDialog();
             return;
         }
-        this.quizService.quizSelected = {"id":input.value,"difficulty":1, questions: []} as Quiz;
-        this.quizService.addQuiz(this.quizService.themeSelected);
+        this.quizService.selectQuiz({ "id": input.value, "difficulty": 1, questions: [] } as Quiz);
+        this.quizService.addQuiz();
         this.router.navigateByUrl("/editquiz");
     }
 

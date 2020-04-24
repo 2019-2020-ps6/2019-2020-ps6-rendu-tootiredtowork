@@ -35,7 +35,7 @@ export class EditableQuestionComponent implements OnInit {
     }
 
     questionSelected() {
-        this.quizService.questionSelected = this.question;
+        this.quizService.selectQuestion(this.question);
         this.router.navigateByUrl('/editquestion');
     }
 }

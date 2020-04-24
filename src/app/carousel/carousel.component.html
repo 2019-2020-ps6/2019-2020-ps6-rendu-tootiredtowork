@@ -4,7 +4,7 @@
             <div class="slideShow" #slideshow>
                 <ng-template carousel-item-host></ng-template>
                 <div class="slide" *ngFor="let slide of slides" #slide>
-                    <ng-container *ngFor="let quiz of slide">
+                    <ng-container *ngFor="let item of slide">
                         <ng-template carousel-item-host></ng-template>
                     </ng-container>
                 </div>

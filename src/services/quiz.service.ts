@@ -5,6 +5,7 @@ import { Theme } from '../models/theme.model';
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { QuestionComponent } from 'src/app/questions/question/question.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +20,18 @@ export class QuizService {
 
   quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
-  quizSelected: Quiz;
+  private quizSelected: Quiz;
+  public quizSelected$: BehaviorSubject<Quiz> = new BehaviorSubject(this.quizSelected);
 
   themes$: BehaviorSubject<Theme[]> = new BehaviorSubject(this.themes);
 
-  themeSelected: Theme;
+  private themeSelected: Theme;
+  public themeSelected$: BehaviorSubject<Theme> = new BehaviorSubject(this.themeSelected);
 
   questions$: BehaviorSubject<Question[]> = new BehaviorSubject(this.questions);
 
-  questionSelected: Question;
+  private questionSelected: Question;
+  public questionSelected$: BehaviorSubject<Question> = new BehaviorSubject(this.questionSelected);
 
   score: number;
 
@@ -61,43 +65,52 @@ export class QuizService {
 
   updateQuizz(question: Question) {
     const quizzUrl = this.quizUrl + '/' + this.themeSelected.id + '/' + this.quizSelected.id;
-    let position= this.quizSelected.questions.indexOf(this.questionSelected);
-    if(position== -1){
+    let position = this.quizSelected.questions.indexOf(this.questionSelected);
+    if (position == -1) {
       this.quizSelected.questions.push(question);
-    }else{
+    } else {
       this.quizSelected.questions[position] = question;
     }
     this.http.post<Quiz>(quizzUrl, this.quizSelected).subscribe(() => { this.selectAllQuizzesFromTheme(this.themeSelected.id) });
   }
 
-  updateDifficulty( difficulty: number) {
+  updateDifficulty(difficulty: number) {
     const quizzUrl = this.quizUrl + '/' + this.themeSelected.id + '/' + this.quizSelected.id;
     this.quizSelected.difficulty = difficulty;
     this.http.post<Quiz>(quizzUrl, this.quizSelected).subscribe(() => { this.selectAllQuizzesFromTheme(this.themeSelected.id) });
 
   }
 
-  updateQuizzTheme(previoustheme:Theme, newtheme: Theme) {
-    this.addQuiz(newtheme);
-    this.deleteQuiz(this.quizSelected,previoustheme);
+  updateQuizzTheme(previoustheme: Theme, newtheme: Theme) {
+    this.addQuiz2(newtheme);
+    this.deleteQuiz2(this.quizSelected, previoustheme);
 
   }
 
-  deleteQuiz(quiz: Quiz, theme :Theme) {
+  deleteQuiz(quiz: Quiz) {
+    if (this.themeSelected != null) this.deleteQuiz2(quiz, this.themeSelected);
+  }
+
+  private deleteQuiz2(quiz: Quiz, theme: Theme) {
     const urlWithId = this.quizUrl + '/' + theme.id + "/" + quiz.id;
-    this.quizzes= theme.quizs;
+    this.quizzes = theme.quizs;
     var index = this.quizzes.indexOf(quiz);
     this.quizzes.splice(index, 1);
     this.http.delete<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizzes$.next(this.quizzes);
+      theme.quizs = this.quizzes;
+      this.themeSelected$.next(theme);
     });
   }
 
+  addQuiz() {
+    if (this.themeSelected != null) this.addQuiz2(this.themeSelected);
+  }
 
-  addQuiz(theme:Theme){
+  private addQuiz2(theme: Theme) {
     const urlWithId = this.quizUrl + '/' + theme.id + "/add";
-    this.quizzes= theme.quizs;
-    
+    this.quizzes = theme.quizs;
+
     this.http.post<Quiz>(urlWithId, this.quizSelected).subscribe(() => {
       this.quizzes.push(this.quizSelected);
       this.quizzes$.next(this.quizzes);
@@ -105,7 +118,7 @@ export class QuizService {
 
   }
 
-  addTheme(){
+  addTheme() {
     const urlWithId = this.quizUrl + "/add";
     this.http.post<Theme>(urlWithId, this.themeSelected).subscribe(() => {
       this.themes.push(this.themeSelected);
@@ -126,15 +139,30 @@ export class QuizService {
 
   deleteQuestion(question: Question) {
     const urlWithId = this.quizUrl + '/' + this.themeSelected.id + "/" + this.quizSelected.id + "/" + question.label;
-    this.questions= this.quizSelected.questions;
+    this.questions = this.quizSelected.questions;
     var index = this.questions.indexOf(question);
-    
+
     this.http.delete<Question>(urlWithId).subscribe((question) => {
       this.questions.splice(index, 1);
       this.questions$.next(this.questions);
     });
   }
 
+  selectTheme(theme: Theme) {
+    this.themeSelected = theme;
+    this.themeSelected$.next(theme);
+    console.log("SELECT THEME", this.themeSelected);
+  }
+
+  selectQuiz(quiz: Quiz) {
+    this.quizSelected = quiz;
+    this.quizSelected$.next(quiz);
+  }
+
+  selectQuestion(question: Question) {
+    this.questionSelected = question;
+    this.questionSelected$.next(question);
+  }
 
   clear() {
     this.quizSelected = null;

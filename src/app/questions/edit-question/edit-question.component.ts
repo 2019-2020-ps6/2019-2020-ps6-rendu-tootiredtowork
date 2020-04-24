@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/models/question.model';
 import { Quiz } from 'src/models/quiz.model';
 import { Answer } from 'src/models/answer.model';
@@ -27,13 +27,19 @@ export class EditQuestionComponent implements OnInit {
 
 
 
-  constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute,private dialog: MatDialog, public formBuilder: FormBuilder) {
-
-
-    if (quizService.quizSelected == null) this.router.navigateByUrl('/themelist');
-    this.quiz = quizService.quizSelected;
-    if (quizService.questionSelected == null) this.router.navigateByUrl('/themelist');
-    this.question = this.quizService.questionSelected;
+  constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute, private dialog: MatDialog, public formBuilder: FormBuilder) {
+    this.quizService.quizSelected$.subscribe((quiz) => {
+      if (quiz == null) this.router.navigateByUrl('/themelist');
+      else {
+        this.quiz = quiz;
+      }
+    });
+    this.quizService.questionSelected$.subscribe((question) => {
+      if (question == null) this.router.navigateByUrl('/themelist');
+      else {
+        this.question = question;
+      }
+    })
     this.initializeQuestionForm();
 
   }
@@ -44,25 +50,25 @@ export class EditQuestionComponent implements OnInit {
   }
   private initializeQuestionForm() {
 
-    if(this.question.label == null){
+    if (this.question.label == null) {
       this.questionForm = this.formBuilder.group({
-      label: "",
-      answers: this.formBuilder.array([])
+        label: "",
+        answers: this.formBuilder.array([])
       });
-      this.addAnswer({"value":"", "isCorrect":true});
+      this.addAnswer({ "value": "", "isCorrect": true });
       for (var i = 0; i < 3; ++i) {
-        this.addAnswer({"value":"", "isCorrect":false});
+        this.addAnswer({ "value": "", "isCorrect": false });
       }
-    }else{
+    } else {
       this.questionForm = this.formBuilder.group({
-      label: [this.question.label],
-      answers: this.formBuilder.array([])
+        label: [this.question.label],
+        answers: this.formBuilder.array([])
       });
       for (var i = 0; i < 4; ++i) {
         this.addAnswer(this.question.answers[i]);
       }
     }
-    
+
   }
 
   private createAnswer(answer: Answer) {
@@ -83,28 +89,28 @@ export class EditQuestionComponent implements OnInit {
 
   addQuestion() {
     const question = this.questionForm.getRawValue() as Question;
-    if(question.label== ""){
-    	this.openDialog();
-    	return;
+    if (question.label == "") {
+      this.openDialog();
+      return;
     }
-    for(let entry of this.answers.getRawValue()){
-    	if(entry.value== ""){
-    		this.openDialog();
-    		return;
-    	}
+    for (let entry of this.answers.getRawValue()) {
+      if (entry.value == "") {
+        this.openDialog();
+        return;
+      }
     }
     this.quizService.updateQuizz(question);
     this.router.navigateByUrl("/editquiz");
   }
 
   openDialog(): MatDialogRef<FillDialog, any> {
-        const dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig();
 
-        dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
 
-        dialogConfig.autoFocus = true;
-        dialogConfig.data = {text: "ce quiz",title:" un Quiz"};
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = { text: "ce quiz", title: " un Quiz" };
 
-        return this.dialog.open(FillDialog, dialogConfig);
-    }
+    return this.dialog.open(FillDialog, dialogConfig);
+  }
 }

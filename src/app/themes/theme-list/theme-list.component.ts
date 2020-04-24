@@ -24,7 +24,7 @@ export class ThemeListComponent implements OnInit {
     }
 
     getComponent(): Type<ThemeComponent> {
-        return ThemeComponent
+        return ThemeComponent;
     }
 
     getMock(): Theme {

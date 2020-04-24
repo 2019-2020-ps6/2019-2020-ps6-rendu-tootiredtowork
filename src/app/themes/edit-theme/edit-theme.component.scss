@@ -1,15 +1,16 @@
 #title {
-    align-self: center;
-    padding: 2%;
+    text-decoration: underline;
 }
 
 #row1 {
-    flex: 1 1 calc(10%);
+    flex: 1 1 15%;
+    max-height: 20%;
 }
 
 #row2 {
-    flex: 1 1 calc(90%);
+    flex: 1 1 85%;
     justify-content: flex-start;
+    max-height: 85%;
 }
 
 #box1 {
@@ -24,21 +25,6 @@
     justify-content: flex-end;
 }
 
-.quizlist {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.quizlist>* {
-    box-sizing: border-box;
-    margin: 1%;
-}
-#row4 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 40%;
+.carousel {
+    height: 100%;
 }

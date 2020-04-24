@@ -33,7 +33,7 @@ export class QuizComponent implements CarouselItemComponent, OnInit {
     }
 
     quizSelected() {
-        this.quizService.quizSelected = this._data;
+        this.quizService.selectQuiz(this._data);
         this.router.navigateByUrl("/quizgame");
     }
 
