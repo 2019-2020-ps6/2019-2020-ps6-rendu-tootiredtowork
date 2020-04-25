@@ -66,12 +66,12 @@ export class EditQuizComponent implements OnInit {
     }
 
     fillThemeName() {
-        /*let select = document.querySelector("select");
-        let themesWithoutCurrent = this.quizService.getAllThemes().filter(theme => theme.id != this.quizService.themeSelected.id);
-        select.innerHTML += "<option>" + this.quizService.themeSelected.id + "</option>";
+        let select = document.querySelector("select");
+        let themesWithoutCurrent = this.quizService.getAllThemes().filter(theme => theme.id != this.previousTheme.id);
+        select.innerHTML += "<option>" + this.previousTheme.id + "</option>";
         for (let theme of themesWithoutCurrent) {
             select.innerHTML += "<option>" + theme.id + "</option>";
-        }*/
+        }
 
     }
     deleteQuiz(question: Question) {
