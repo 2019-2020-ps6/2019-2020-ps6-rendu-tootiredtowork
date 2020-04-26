@@ -1,20 +1,9 @@
-.top {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-content: center;
+div {
+    white-space: pre;
 }
 
-.box {
-    display: flex;
-    align-items: center;
-}
-
-#box1 {
-    justify-content: flex-start;
-}
-
-#box3 {
-    justify-content: flex-end;
+i {
+    cursor: pointer;
 }
 
 .labelCard {
@@ -22,27 +11,25 @@
     padding: 15px 10px;
 }
 
-.labelCard .top i {
+.icons {
     visibility: hidden;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
 }
 
 .labelCard:hover {
     box-shadow: none;
 }
 
-.labelCard:hover .top i {
+.labelCard:hover .icons {
     visibility: visible;
-    cursor: pointer;
 }
 
-#reponses{
-    margin-top:15%;
-}
-#reponse{
-    margin-top:2%;
+#box1 {
+    justify-content: flex-start;
 }
 
-.fa-circle{
-    position:relative;
-    bottom:6px;
+#box2 {
+    justify-content: flex-end;
 }

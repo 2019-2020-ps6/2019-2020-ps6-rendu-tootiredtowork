@@ -84,7 +84,7 @@ export class QuizService {
   updateQuizzTheme(previoustheme: Theme, newtheme: Theme) {
     this.deleteQuiz2(this.quizSelected, previoustheme);
     this.addQuiz2(newtheme);
-    
+
 
   }
 
@@ -96,7 +96,7 @@ export class QuizService {
     const urlWithId = this.quizUrl + '/' + theme.id + "/" + quiz.id;
     this.quizzes = theme.quizs;
     var index = this.quizzes.indexOf(quiz);
-    
+
     this.http.delete<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizzes.splice(index, 1);
       this.quizzes$.next(this.quizzes);
@@ -111,7 +111,7 @@ export class QuizService {
 
   private addQuiz2(theme: Theme) {
     const urlWithId = this.quizUrl + '/' + theme.id + "/add";
-    
+
 
     this.http.post<Quiz>(urlWithId, this.quizSelected).subscribe(() => {
       this.quizzes = theme.quizs;
@@ -136,7 +136,6 @@ export class QuizService {
     this.http.delete<Theme>(urlWithId).subscribe((theme) => {
       this.themes.splice(index, 1);
       this.themes$.next(this.themes);
-
     });
   }
 
@@ -148,6 +147,8 @@ export class QuizService {
     this.http.delete<Question>(urlWithId).subscribe((question) => {
       this.questions.splice(index, 1);
       this.questions$.next(this.questions);
+      this.quizSelected.questions = this.questions;
+      this.quizSelected$.next(this.quizSelected);
     });
   }
 

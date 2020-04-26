@@ -65,9 +65,6 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        var i: number;
-        i = 3.5;
-
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
 
         const viewContainerRef = this.mockHost.viewContainerRef;
@@ -86,7 +83,6 @@ export class CarouselComponent implements OnInit, AfterViewInit {
             this.nbMaxElements = this.numberElementsBySlide(this.carousel.nativeElement.offsetHeight, this.carousel.nativeElement.offsetWidth, this.itemHeight, this.itemWidth);
             this.renderer.setStyle(this.mockRef.nativeElement, 'display', 'none');
             this.maxCalculated = true;
-
             if (this._items.length > 0) {
                 this.fillSlides();
                 this.cd.detectChanges();
@@ -110,13 +106,15 @@ export class CarouselComponent implements OnInit, AfterViewInit {
      * O(n²) => complexité abominable, donc à revoir si il reste du temps
      */
     fillSlides() {
-        this.slides = new Array<Array<any>>();
-        for (var i = 0; i < Math.ceil(this._items.length / this.nbMaxElements); i++) {
-            let tab = new Array<any>();
-            for (var j = i * this.nbMaxElements; j < (i + 1) * this.nbMaxElements && j < this._items.length; j++) {
-                tab.push(this._items[j]);
+        if (this.nbMaxElements > 0) {
+            this.slides = new Array<Array<any>>();
+            for (var i = 0; i < Math.ceil(this._items.length / this.nbMaxElements); i++) {
+                let tab = new Array<any>();
+                for (var j = i * this.nbMaxElements; j < (i + 1) * this.nbMaxElements && j < this._items.length; j++) {
+                    tab.push(this._items[j]);
+                }
+                this.slides.push(tab);
             }
-            this.slides.push(tab);
         }
     }
 

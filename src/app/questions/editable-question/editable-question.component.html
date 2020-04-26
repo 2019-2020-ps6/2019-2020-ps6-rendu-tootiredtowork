@@ -1,20 +1,23 @@
-<div class=labelCard [ngStyle]="{'background': '#'+configService.boxe,'color': '#'+configService.text}">
-	<div class=top >
+<div class=labelCard [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}">
+    <div class="icons">
         <div class=box id="box1">
             <i class="fas fa-cogs" (click)="questionSelected()"></i>
         </div>
-        <div class=box id="box3">
+        <div class=box id="box2">
             <i class="fas fa-trash-alt" (click)="delete()"></i>
         </div>
     </div>
-	<div id="question" >
-    	{{ question.label }}
+    <div>
+        {{ getLabelString() }}
     </div>
     <div id="reponses">
-    	<ng-container *ngFor="let reponse of question.answers">
-            <div id="reponse">
-                <i class="fas fa-circle" [ngStyle]="{'font-size': configService.fontSize/3+'px'}"></i>{{reponse.value}}<br>
+        <ng-container *ngFor="let reponse of data.answers">
+            <div>
+                ●{{getReponseString(reponse).toString()}}
             </div>
         </ng-container>
+    </div>
+    <div>
+        {{getWhiteSpaceString()}}
     </div>
 </div>

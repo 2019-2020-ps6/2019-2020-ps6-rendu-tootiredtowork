@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Type } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Theme } from 'src/models/theme.model';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { EditableQuestionComponent } from 'src/app/questions/editable-question/editable-question.component';
 
 
 @Component({
@@ -20,18 +21,22 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 })
 export class EditQuizComponent implements OnInit {
     quiz: Quiz;
+    questions: Question[];
     previousTheme: Theme;
 
+    add: Function;
 
     public questionForm: FormGroup;
-
-
 
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, public route: ActivatedRoute, private dialog: MatDialog) {
         this.quizService.quizSelected$.subscribe((quiz) => {
             if (quiz == null) this.router.navigateByUrl('/themelist');
             else {
                 this.quiz = quiz;
+                this.questions = new Array<Question>();
+                this.quiz.questions.forEach((question) => {
+                    this.questions.push(question);
+                });
             }
         });
         this.quizService.themeSelected$.subscribe((theme) => {
@@ -39,7 +44,8 @@ export class EditQuizComponent implements OnInit {
             else {
                 this.previousTheme = theme;
             }
-        })
+        });
+        this.add = this.addNewQuestion.bind(this);
     }
 
     ngOnInit(): void {
@@ -74,34 +80,37 @@ export class EditQuizComponent implements OnInit {
         }
 
     }
-    deleteQuiz(question: Question) {
-
-        const dialogRef = this.openDialog();
-
-        dialogRef.afterClosed().subscribe(
-
-            result => {
-                if (result) this.quizService.deleteQuestion(question);
-            }
-        )
-    }
 
     addNewQuestion() {
-        /* this.quizService.questionSelected = {} as Question;
-         this.router.navigateByUrl('/editquestion');*/
+        this.quizService.selectQuestion({} as Question);
+        this.router.navigateByUrl('/editquestion');
     }
 
-
-    openDialog(): MatDialogRef<DeleteDialog, any> {
-
-        const dialogConfig = new MatDialogConfig();
-
-        dialogConfig.disableClose = true;
-
-        dialogConfig.autoFocus = true;
-        dialogConfig.data = { text: "cette question", title: " une Question" };
-
-        return this.dialog.open(DeleteDialog, dialogConfig);
+    getComponent(): Type<EditableQuestionComponent> {
+        return EditableQuestionComponent;
     }
 
+    getMock(): Question {
+        return {
+            label: "Question 1",
+            answers: [
+                {
+                    value: "Réponse 1",
+                    isCorrect: true
+                },
+                {
+                    value: "Réponse 2",
+                    isCorrect: false
+                },
+                {
+                    value: "Réponse 3",
+                    isCorrect: false
+                },
+                {
+                    value: "Réponse 4",
+                    isCorrect: false
+                }
+            ]
+        }
+    }
 }

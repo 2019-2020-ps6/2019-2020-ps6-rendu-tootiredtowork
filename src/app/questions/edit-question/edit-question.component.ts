@@ -41,7 +41,6 @@ export class EditQuestionComponent implements OnInit {
       }
     })
     this.initializeQuestionForm();
-
   }
 
   ngOnInit() {

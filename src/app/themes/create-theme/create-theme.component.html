@@ -2,9 +2,10 @@
     <div class=row id="row1">
         <div class=nav>
             <div class=box id="box1">
-                <i class="fas fa-caret-left fa-2x" routerLink="/editquizlist"></i>
+                <i class="fas fa-caret-left fa-2x" routerLink="/edittheme"></i>
             </div>
             <div class=box id="box2">
+                Nouveau thème
             </div>
             <div class=box id="box3" [ngStyle]="{'font-size': (configService.fontSize)+'px'}">
                 <i class="fa fa-cog fa-2x fa-fw" routerLink="/configuration"></i>
@@ -13,10 +14,9 @@
     </div>
     <div class=row id="row2">
         Nom du nouveau Thème:
-        <input type="text" maxlength="21" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}"><br><br><br><br><br>
+        <input type="text" maxlength="21" [ngStyle]="{'color': '#'+configService.text,'background': '#'+configService.boxe,'font-size': configService.fontSize+'px'}">
     </div>
-    <div  class=row id="row1">
-        <button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" (click)="addNewTheme()" class=button id="bouton">Créer</button>
+    <div class=row id="row3">
+        <button [ngStyle]="{'font-size': configService.fontSize+'px','background': '#'+configService.boxe,'color': '#'+configService.text}" (click)="addNewTheme()" class=button>Créer</button>
     </div>
-
 </div>

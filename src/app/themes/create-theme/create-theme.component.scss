@@ -7,6 +7,10 @@
     justify-content: center;
 }
 
+#row3 {
+    flex: 1 1 calc(10%);
+}
+
 #box1 {
     justify-content: flex-start;
 }
@@ -19,6 +23,7 @@
     justify-content: flex-end;
 }
 
-input, select{
-    border:2px solid black;
+input,
+select {
+    border: 2px solid black;
 }
