@@ -23,6 +23,8 @@ export class CreateQuizComponent implements OnInit {
         this.quizService.themeSelected$.subscribe((theme) => {
             if (theme == null) this.router.navigateByUrl('/themelist');
         });
+        this.configService.previouspage=router.url;
+
     }
 
     ngOnInit(): void {

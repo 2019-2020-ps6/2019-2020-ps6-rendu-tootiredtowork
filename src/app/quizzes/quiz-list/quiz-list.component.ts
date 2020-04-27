@@ -21,6 +21,8 @@ export class QuizListComponent implements OnInit {
             if (theme == null) this.router.navigateByUrl('/themelist');
             else this.theme = theme;
         });
+        this.configService.previouspage=router.url;
+
     }
 
     ngOnInit() {

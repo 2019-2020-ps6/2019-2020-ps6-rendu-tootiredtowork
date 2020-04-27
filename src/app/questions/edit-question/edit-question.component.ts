@@ -41,6 +41,8 @@ export class EditQuestionComponent implements OnInit {
       }
     })
     this.initializeQuestionForm();
+    this.configService.previouspage=router.url;
+
   }
 
   ngOnInit() {

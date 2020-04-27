@@ -46,6 +46,8 @@ export class EditQuizComponent implements OnInit {
             }
         });
         this.add = this.addNewQuestion.bind(this);
+        this.configService.previouspage=router.url;
+
     }
 
     ngOnInit(): void {

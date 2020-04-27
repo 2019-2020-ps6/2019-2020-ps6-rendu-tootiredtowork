@@ -27,6 +27,8 @@ export class EditThemeComponent implements OnInit {
             }
         });
         this.add = this.addNewTheme.bind(this);
+        this.configService.previouspage=router.url;
+
     }
 
     ngOnInit() {

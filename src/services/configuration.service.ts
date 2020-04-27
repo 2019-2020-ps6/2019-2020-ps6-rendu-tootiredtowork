@@ -9,6 +9,7 @@ export class ConfigurationService {
     background: string;
     text: string;
     marginSize: number;
+    previouspage:string;
 
     constructor() {
         this.fontSize = 25;
@@ -16,5 +17,6 @@ export class ConfigurationService {
         this.boxe ="ffffff";
         this.text ="000000";
         this.marginSize= 5;
+        this.previouspage="/themelist";
     }
 }
