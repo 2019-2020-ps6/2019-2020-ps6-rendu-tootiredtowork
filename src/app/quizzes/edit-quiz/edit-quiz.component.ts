@@ -30,6 +30,7 @@ export class EditQuizComponent implements OnInit {
 
                
         this.quizService.quizSelected$.subscribe((quiz) => {
+            console.log("que")
             if (quiz == null) this.router.navigateByUrl('/themelist');
             else {
                 this.quiz = quiz;

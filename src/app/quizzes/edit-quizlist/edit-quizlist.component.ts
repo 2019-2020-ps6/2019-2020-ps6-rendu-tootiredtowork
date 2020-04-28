@@ -20,6 +20,7 @@ export class EditQuizListComponent implements OnInit {
 
     constructor(public configService: ConfigurationService, public route: ActivatedRoute, private quizService: QuizService, private router: Router) {
         this.quizService.themeSelected$.subscribe((theme) => {
+            console.log("ok");
             if (theme == null) this.router.navigateByUrl('/themelist');
             else {
                 this.theme = theme;

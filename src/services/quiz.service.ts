@@ -96,12 +96,15 @@ export class QuizService {
     const urlWithId = this.quizUrl + '/' + theme.id + "/" + quiz.id;
     this.quizzes = theme.quizs;
     var index = this.quizzes.indexOf(quiz);
-    console.log(theme)
+
     this.http.delete<Quiz>(urlWithId).subscribe((quiz) => {
-      this.quizzes.splice(index, 1);
-      this.quizzes$.next(this.quizzes);
-      theme.quizs = this.quizzes;
+    	this.quizzes.splice(index, 1);
+    	theme.quizs = this.quizzes;
+     	this.quizzes$.next(this.quizzes);
+     	this.themeSelected$.next(theme);
+      
     });
+    
   }
 
   addQuiz() {
