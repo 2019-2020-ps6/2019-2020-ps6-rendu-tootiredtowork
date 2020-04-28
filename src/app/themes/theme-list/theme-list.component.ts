@@ -18,6 +18,7 @@ export class ThemeListComponent implements OnInit {
         this.quizService.themes$.subscribe((list_themes: Theme[]) => {
             this.themes = list_themes;
         });
+        this.configService.previouspage=router.url;
     }
 
     ngOnInit() {

@@ -19,6 +19,8 @@ import { FillDialog } from 'src/app/dialogs/fill/fill-dialog.component';
 export class CreateThemeComponent implements OnInit {
 
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, private dialog: MatDialog) {
+        this.configService.previouspage=router.url;
+
     }
 
     ngOnInit(): void {
