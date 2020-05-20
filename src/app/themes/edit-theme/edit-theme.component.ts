@@ -6,6 +6,9 @@ import { QuizService } from 'src/services/quiz.service';
 import { Router } from '@angular/router';
 import { EditableThemeComponent } from '../editable-theme/editable-theme.component';
 
+/**
+ * Component de la page EditTheme
+ */
 @Component({
     selector: 'app-edit-theme',
     templateUrl: './edit-theme.component.html',
@@ -15,6 +18,10 @@ export class EditThemeComponent implements OnInit {
 
     themes: Theme[];
 
+    /**
+     * Attribut nécessaire pour le carousel.
+     * Méthode d'ajout.
+     */
     add: Function;
 
     constructor(public configService: ConfigurationService, private quizService: QuizService, private router: Router) {
@@ -27,17 +34,25 @@ export class EditThemeComponent implements OnInit {
             }
         });
         this.add = this.addNewTheme.bind(this);
-        this.configService.previouspage=router.url;
+        this.configService.previouspage = router.url;
 
     }
 
     ngOnInit() {
     }
 
+    /**
+    * Méthode nécessaire pour le carousel
+    * Renvoie le type de component avec lequel représenter les items du carousel.
+    */
     getComponent(): Type<EditableThemeComponent> {
         return EditableThemeComponent;
     }
 
+    /**
+    * Méthode nécessaire pour le carousel.
+    * Renvoie une donnée test.
+    */
     getMock(): Theme {
         return {
             id: "THEME1",
@@ -73,6 +88,10 @@ export class EditThemeComponent implements OnInit {
         }
     }
 
+    /**
+     * Méthode nécessaire pour le carousel.
+     * Méthode appelé lorsqu'un utilisateur clique sur le "plus" du carousel.
+     */
     addNewTheme() {
         this.router.navigateByUrl('/createtheme');
     }

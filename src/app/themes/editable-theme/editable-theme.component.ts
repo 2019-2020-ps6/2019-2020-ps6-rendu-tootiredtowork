@@ -7,6 +7,9 @@ import { CarouselItemComponent } from 'src/app/carousel/carousel-item.component'
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
 
+/**
+ * Composant représentant un thème éditable utilisé dans la page edit-theme
+ */
 @Component({
     selector: 'app-editable-theme',
     templateUrl: './editable-theme.component.html',
@@ -17,18 +20,23 @@ export class EditableThemeComponent implements OnInit, CarouselItemComponent {
     @Input()
     data: Theme;
 
-
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
     }
 
+    /**
+     * Appelée quand le thème est selectionné
+     */
     themeSelected() {
         this.quizService.selectTheme(this.data);
         this.router.navigateByUrl('/editquizlist');
     }
 
+    /**
+     * Appelé lorsque l'utilisateur demande la suppression du thème
+     */
     delete() {
         const dialogRef = this.openDialog();
         dialogRef.afterClosed().subscribe(
@@ -38,6 +46,9 @@ export class EditableThemeComponent implements OnInit, CarouselItemComponent {
         )
     }
 
+    /**
+     * Affiche un dialog pour demander la confirmation de la suppression
+     */
     openDialog(): MatDialogRef<DeleteDialog, any> {
         const dialogConfig = new MatDialogConfig();
 
@@ -49,6 +60,10 @@ export class EditableThemeComponent implements OnInit, CarouselItemComponent {
         return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
+    /**
+    * Renvoie une chaine de 21 espaces.
+    * (Utilisée pour avoir une taille fixe)
+    */
     getWhiteSpaceString() {
         var retour: String = "";
         for (var i = 0; i < 21; i++) {

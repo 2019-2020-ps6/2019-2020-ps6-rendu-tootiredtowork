@@ -8,6 +8,9 @@ import { CarouselItemComponent } from 'src/app/carousel/carousel-item.component'
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
 
+/**
+ * Component représentant une question éditable dans la page EditQuiz
+ */
 @Component({
     selector: 'app-editable-question',
     templateUrl: './editable-question.component.html',
@@ -26,6 +29,9 @@ export class EditableQuestionComponent implements OnInit, CarouselItemComponent 
         console.log("INIT EDITABLE QUESTION");
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur demande la suppression.
+     */
     delete() {
         const dialogRef = this.openDialog();
         dialogRef.afterClosed().subscribe(
@@ -35,6 +41,9 @@ export class EditableQuestionComponent implements OnInit, CarouselItemComponent 
         )
     }
 
+    /**
+     * Ouvre un dialog pour demander la confirmation de la suppression
+     */
     openDialog(): MatDialogRef<DeleteDialog, any> {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
@@ -45,11 +54,18 @@ export class EditableQuestionComponent implements OnInit, CarouselItemComponent 
         return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur à sélectionner la question
+     */
     questionSelected() {
         this.quizService.selectQuestion(this.data);
         this.router.navigateByUrl('/editquestion');
     }
 
+    /**
+    * Renvoie une chaine de 21 espaces.
+    * (Utilisée pour avoir une taille fixe)
+    */
     getWhiteSpaceString() {
         var retour: String = "";
         for (var i = 0; i < 21; i++) {
@@ -58,6 +74,10 @@ export class EditableQuestionComponent implements OnInit, CarouselItemComponent 
         return retour;
     }
 
+    /**
+     * Renvoie une chaine fixe représentant le label de la question.
+     * Si la chaine dépasse 21 caractères, les 3 derniers sont remplacés par "..."
+     */
     getLabelString(): string {
         if (this.data.label.length > 21) {
             return this.data.label.substring(0, 17) + "...";
@@ -65,6 +85,10 @@ export class EditableQuestionComponent implements OnInit, CarouselItemComponent 
         else return this.data.label;
     }
 
+    /**
+    * Renvoie une chaine fixe représentant la bonne réponse de la question.
+    * Si la chaine dépasse 20 caractères, les 3 derniers sont remplacés par "..."
+    */
     getReponseString(reponse: Answer): string {
         if (reponse.value.length > 20) {
             return reponse.value.substring(0, 16) + "...";

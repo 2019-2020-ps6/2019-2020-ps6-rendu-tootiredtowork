@@ -6,6 +6,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { ThemeComponent } from '../theme/theme.component';
 
+/**
+ * Composant de la page ThemeList
+ */
 @Component({
     selector: 'app-theme-list',
     templateUrl: './theme-list.component.html',
@@ -18,16 +21,24 @@ export class ThemeListComponent implements OnInit {
         this.quizService.themes$.subscribe((list_themes: Theme[]) => {
             this.themes = list_themes;
         });
-        this.configService.previouspage=router.url;
+        this.configService.previouspage = router.url;
     }
 
     ngOnInit() {
     }
 
+    /**
+     * Méthode nécessaire pour le carousel
+     * Renvoie le type de component avec lequel représenter les items du carousel.
+     */
     getComponent(): Type<ThemeComponent> {
         return ThemeComponent;
     }
 
+    /**
+     * Méthode nécessaire pour le carousel. 
+     * Renvoie une donnée test.
+     */
     getMock(): Theme {
         return {
             id: "THEME1",

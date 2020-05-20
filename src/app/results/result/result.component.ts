@@ -3,6 +3,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { Game } from 'src/models/game.model';
 import { GameService } from 'src/services/game.service';
 
+/**
+ * Component de la page Result
+ */
 @Component({
     selector: 'app-result',
     templateUrl: './result.component.html',

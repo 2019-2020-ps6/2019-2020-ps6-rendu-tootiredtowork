@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Answer } from 'src/models/answer.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 
+/**
+ * Component représentant une liste de réponses dans la page QuizGame
+ */
 @Component({
     selector: 'app-answer-list',
     templateUrl: './answer-list.component.html',
@@ -30,9 +33,9 @@ export class AnswerListComponent implements OnInit {
     }
 
     /**
- * Shuffles array in place.
- * @param {Array} a items An array containing the items.
- */
+    * Shuffles array in place.
+    * @param {Array} a items An array containing the items.
+    */
     shuffle(a) {
         var j, x, i;
         for (i = a.length - 1; i > 0; i--) {

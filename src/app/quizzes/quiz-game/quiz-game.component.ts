@@ -8,6 +8,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { GameService } from 'src/services/game.service';
 
+/**
+ * Component de la page QuizGame
+ */
 @Component({
     selector: 'app-quiz-game',
     templateUrl: './quiz-game.component.html',
@@ -36,6 +39,9 @@ export class QuizGameComponent implements OnInit {
     ngOnInit() {
     }
 
+    /**
+     * Passe à la question suivante
+     */
     next() {
         if (this.seek < this.max - 1) {
             this.current = this.quiz.questions[++this.seek];
@@ -46,6 +52,10 @@ export class QuizGameComponent implements OnInit {
         }
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur à répondu à la question courante.
+     * @param answer - La réponse de l'utilisateur
+     */
     answered(answer: Answer) {
         if (answer.isCorrect) this.score++;
         this.next();

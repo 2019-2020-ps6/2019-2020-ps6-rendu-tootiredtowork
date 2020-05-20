@@ -8,6 +8,9 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
 import { CarouselItemComponent } from 'src/app/carousel/carousel-item.component';
 
+/**
+ * Composant représentant un quiz éditable utilisé dans la page edit-quiz
+ */
 @Component({
     selector: 'app-editable-quiz',
     templateUrl: './editable-quiz.component.html',
@@ -19,7 +22,9 @@ export class EditableQuizComponent implements OnInit, CarouselItemComponent {
     @Input()
     data: Quiz;
 
-
+    /**
+    * Sert pour le *ngFor dans le html
+    */
     stars: number[] = [];
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, private dialog: MatDialog) {
@@ -31,11 +36,17 @@ export class EditableQuizComponent implements OnInit, CarouselItemComponent {
         }
     }
 
+    /**
+    * Appelée quand le quiz est selectionné
+    */
     quizSelected() {
         this.quizService.selectQuiz(this.data);
         this.router.navigateByUrl('/editquiz');
     }
 
+    /**
+    * Appelé lorsque l'utilisateur demande la suppression du quiz
+    */
     delete() {
         const dialogRef = this.openDialog();
         dialogRef.afterClosed().subscribe(
@@ -45,6 +56,9 @@ export class EditableQuizComponent implements OnInit, CarouselItemComponent {
         )
     }
 
+    /**
+    * Affiche un dialog pour demander la confirmation de la suppression
+    */
     openDialog(): MatDialogRef<DeleteDialog, any> {
         const dialogConfig = new MatDialogConfig();
 
@@ -56,6 +70,11 @@ export class EditableQuizComponent implements OnInit, CarouselItemComponent {
         return this.dialog.open(DeleteDialog, dialogConfig);
     }
 
+    /**
+    * Renvoie une chaine de taille fixe représentant le nombre de question.
+    * Un espace est ajouté pour les chaine de moins de 10 questions.
+    * (Utilisée pour avoir une taille fixe)
+    */
     getQuestionNumberString(): String {
         if (this.data.questions.length == 1) {
             return ":   ".concat(this.data.questions.length.toString());

@@ -10,7 +10,9 @@ import { QuizService } from 'src/services/quiz.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 import { FillDialog } from 'src/app/dialogs/fill/fill-dialog.component';
 
-
+/**
+ * Component de la page CreateQuiz
+ */
 @Component({
     selector: 'app-create-quiz',
     templateUrl: './create-quiz.component.html',
@@ -23,13 +25,16 @@ export class CreateQuizComponent implements OnInit {
         this.quizService.themeSelected$.subscribe((theme) => {
             if (theme == null) this.router.navigateByUrl('/themelist');
         });
-        this.configService.previouspage=router.url;
+        this.configService.previouspage = router.url;
 
     }
 
     ngOnInit(): void {
     }
 
+    /**
+     * Ouvre un dialog indiquant que des champs sont manquants.
+     */
     openDialog(): MatDialogRef<FillDialog, any> {
 
         const dialogConfig = new MatDialogConfig();
@@ -41,6 +46,9 @@ export class CreateQuizComponent implements OnInit {
         return this.dialog.open(FillDialog, dialogConfig);
     }
 
+    /**
+    * Méthode appelée lorsque l'utilisateur confirme la création.
+    */
     addNewQuiz() {
         let input = document.body.querySelector("input");
         if (input.value == "") {

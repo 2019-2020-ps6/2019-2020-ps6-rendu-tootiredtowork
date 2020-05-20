@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { QuizService } from 'src/services/quiz.service';
 import { CarouselItemComponent } from 'src/app/carousel/carousel-item.component';
 
+/**
+ * Composant représentant un quiz dans la page QuizList
+ */
 @Component({
     selector: 'app-quiz',
     templateUrl: './quiz.component.html',
@@ -24,6 +27,9 @@ export class QuizComponent implements CarouselItemComponent, OnInit {
         this._data = quiz;
     }
 
+    /**
+     * Sert pour le *ngFor dans le html
+     */
     stars: number[] = [];
 
     constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService) {
@@ -32,11 +38,19 @@ export class QuizComponent implements CarouselItemComponent, OnInit {
     ngOnInit(): void {
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur a sélectionné le quiz
+     */
     quizSelected() {
         this.quizService.selectQuiz(this._data);
         this.router.navigateByUrl("/quizgame");
     }
 
+    /**
+     * Renvoie une chaine de taille fixe représentant le nombre de question.
+     * Un espace est ajouté pour les chaine de moins de 10 questions.
+     * (Utilisée pour avoir une taille fixe)
+     */
     getQuestionNumberString(): String {
         if (this._data.questions.length == 1) {
             return ":   ".concat(this._data.questions.length.toString());

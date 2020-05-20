@@ -4,6 +4,9 @@ import { CarouselItemDirective } from './carousel-item.directive';
 import { CarouselItemComponent } from './carousel-item.component';
 import { CarouselAddComponent } from './carousel-add/carousel-add.component';
 
+/**
+ * Component du carousel
+ */
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
@@ -97,6 +100,13 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         })
     }
 
+    /**
+     * Renvoie le nombre maximum d'éléments par slide
+     * @param parentH - Hateur du parent
+     * @param parentW - Largeur du parent
+     * @param childH - Hauteur du fils
+     * @param childW - Largeur du fils
+     */
     numberElementsBySlide(parentH: number, parentW: number, childH: number, childW: number): number {
         return Math.floor(parentH / childH) * Math.floor(parentW / childW);
     }
@@ -118,6 +128,9 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         }
     }
 
+    /**
+     * Méthode appelée lorsque demande la page suivante
+     */
     next() {
         if (this.currentSlide + 1 == this.slides.length) return;
         this.currentSlide = (this.currentSlide + 1) % this.slides.length;
@@ -131,6 +144,9 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         this.player.play();
     }
 
+    /**
+    * Méthode appelée lorsque demande la page précèdente
+    */
     prev() {
         if (this.currentSlide == 0) return;
 
@@ -145,6 +161,9 @@ export class CarouselComponent implements OnInit, AfterViewInit {
         this.player.play();
     }
 
+    /**
+     * Pour chaque item à afficher, charge le type de component donée en input
+     */
     loadComponent() {
         if (this.itemsDirective.length > 0 && this._items.length > 0) {
             for (var i = 0; i < this._items.length; i++) {

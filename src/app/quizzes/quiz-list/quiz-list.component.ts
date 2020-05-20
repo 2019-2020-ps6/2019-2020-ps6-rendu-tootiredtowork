@@ -7,6 +7,9 @@ import { QuizService } from 'src/services/quiz.service';
 import { QuizComponent } from '../quiz/quiz.component';
 import { Quiz } from 'src/models/quiz.model';
 
+/**
+ * Component de la page QuizList
+ */
 @Component({
     selector: 'app-quiz-list',
     templateUrl: './quiz-list.component.html',
@@ -27,6 +30,10 @@ export class QuizListComponent implements OnInit {
     ngOnInit() {
     }
 
+    /**
+    * Méthode nécessaire pour le carousel.
+    * Renvoie une donnée test.
+    */
     getMock(): Quiz {
         return {
             id: "QUIZ1",
@@ -57,6 +64,10 @@ export class QuizListComponent implements OnInit {
         };
     }
 
+    /**
+    * Méthode nécessaire pour le carousel
+    * Renvoie le type de component avec lequel représenter les items du carousel.
+    */
     getComponent(): Type<QuizComponent> {
         return QuizComponent;
     }

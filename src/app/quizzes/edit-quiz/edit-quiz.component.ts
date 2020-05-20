@@ -11,7 +11,9 @@ import { Theme } from 'src/models/theme.model';
 import { MatDialog } from "@angular/material/dialog";
 import { EditableQuestionComponent } from 'src/app/questions/editable-question/editable-question.component';
 
-
+/**
+ * Component de la page EditQuiz
+ */
 @Component({
     selector: 'app-edit-quiz',
     templateUrl: './edit-quiz.component.html',
@@ -22,8 +24,11 @@ export class EditQuizComponent implements OnInit {
     questions: Question[];
     previousTheme: Theme;
 
+    /**
+    * Attribut nécessaire pour le carousel.
+    * Méthode d'ajout.
+    */
     add: Function;
-
 
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, public route: ActivatedRoute, private dialog: MatDialog) {
 
@@ -92,15 +97,27 @@ export class EditQuizComponent implements OnInit {
 
     }
 
+    /**
+    * Méthode nécessaire pour le carousel.
+    * Méthode appelé lorsqu'un utilisateur clique sur le "plus" du carousel.
+    */
     addNewQuestion() {
         this.quizService.selectQuestion({} as Question);
         this.router.navigateByUrl('/editquestion');
     }
 
+    /**
+    * Méthode nécessaire pour le carousel
+    * Renvoie le type de component avec lequel représenter les items du carousel.
+    */
     getComponent(): Type<EditableQuestionComponent> {
         return EditableQuestionComponent;
     }
 
+    /**
+    * Méthode nécessaire pour le carousel.
+    * Renvoie une donnée test.
+    */
     getMock(): Question {
         return {
             label: "Question 1",

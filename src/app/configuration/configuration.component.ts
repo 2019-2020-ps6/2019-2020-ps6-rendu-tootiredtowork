@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/services/configuration.service';
 
+/**
+ * Compoonent de la page Configuration
+ */
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',

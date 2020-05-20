@@ -11,6 +11,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
+/**
+ * Component de la page EditQuestion
+ */
 @Component({
   selector: 'app-edit-question',
   templateUrl: './edit-question.component.html',
@@ -23,9 +26,6 @@ export class EditQuestionComponent implements OnInit {
   question: Question;
 
   public questionForm: FormGroup;
-
-
-
 
   constructor(private router: Router, public configService: ConfigurationService, public quizService: QuizService, public route: ActivatedRoute, private dialog: MatDialog, public formBuilder: FormBuilder) {
     this.quizService.quizSelected$.subscribe((quiz) => {
@@ -41,7 +41,7 @@ export class EditQuestionComponent implements OnInit {
       }
     })
     this.initializeQuestionForm();
-    this.configService.previouspage=router.url;
+    this.configService.previouspage = router.url;
 
   }
 
@@ -104,6 +104,9 @@ export class EditQuestionComponent implements OnInit {
     this.router.navigateByUrl("/editquiz");
   }
 
+  /**
+  * Ouvre un dialog indiquant que des champs sont manquants.
+  */
   openDialog(): MatDialogRef<FillDialog, any> {
     const dialogConfig = new MatDialogConfig();
 

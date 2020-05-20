@@ -6,6 +6,9 @@ import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { serverUrl } from '../configs/server.config';
 
+/**
+ * Service de liaison avec le back et de gestion du contenu
+ */
 @Injectable({
   providedIn: 'root'
 })

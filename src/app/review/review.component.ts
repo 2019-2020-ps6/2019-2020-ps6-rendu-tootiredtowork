@@ -5,7 +5,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { Answer } from 'src/models/answer.model';
 import { GameService } from 'src/services/game.service';
 
-
+/**
+ * Component de la page Review
+ */
 @Component({
     selector: 'app-review',
     templateUrl: './review.component.html',
@@ -13,7 +15,6 @@ import { GameService } from 'src/services/game.service';
 })
 export class ReviewComponent implements OnInit {
     quiz: Quiz;
-
     seek = 0;
     current: Question;
     correctAnswer: Answer;
@@ -24,6 +25,9 @@ export class ReviewComponent implements OnInit {
         this.correctAnswer = getCorrectAnswer(this.current);
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur souhaite passer à la question suivante.
+     */
     next() {
         if (this.seek < this.quiz.questions.length - 1) {
             this.seek++;
@@ -32,6 +36,9 @@ export class ReviewComponent implements OnInit {
         }
     }
 
+    /**
+     * Méthode appelée lorsque l'utilisateur souhaite passer à la question précèdente.
+     */
     prev() {
         if (this.seek > 0) {
             this.seek--;

@@ -5,6 +5,10 @@ export interface Question {
     answers: Answer[];
 }
 
+/**
+ * Renvoie la bonne reponse d'une question donnée
+ * @param question - La question
+ */
 export function getCorrectAnswer(question: Question): Answer {
     var retour: Answer = null;
     question.answers.forEach((answer) => {

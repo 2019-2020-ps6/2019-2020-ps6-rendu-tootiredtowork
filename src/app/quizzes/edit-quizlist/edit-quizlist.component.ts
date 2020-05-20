@@ -6,7 +6,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { EditableQuizComponent } from '../editable-quiz/editable-quiz.component';
 
-
+/**
+ * Component de la page EditQuizList
+ */
 @Component({
     selector: 'app-edit-quizlist',
     templateUrl: './edit-quizlist.component.html',
@@ -16,6 +18,10 @@ export class EditQuizListComponent implements OnInit {
     theme: Theme;
     quizzes: Quiz[];
 
+    /**
+    * Attribut nécessaire pour le carousel.
+    * Méthode d'ajout.
+    */
     add: Function;
 
     constructor(public configService: ConfigurationService, public route: ActivatedRoute, private quizService: QuizService, private router: Router) {
@@ -29,22 +35,34 @@ export class EditQuizListComponent implements OnInit {
             }
         });
         this.add = this.addQuiz.bind(this);
-        this.configService.previouspage=router.url;
+        this.configService.previouspage = router.url;
 
     }
 
     ngOnInit(): void {
     }
 
+    /**
+    * Méthode nécessaire pour le carousel.
+    * Méthode appelé lorsqu'un utilisateur clique sur le "plus" du carousel.
+    */
     addQuiz() {
         this.quizService.selectQuiz({} as Quiz);
         this.router.navigateByUrl('/createquiz');
     }
 
+    /**
+    * Méthode nécessaire pour le carousel
+    * Renvoie le type de component avec lequel représenter les items du carousel.
+    */
     getComponent(): Type<EditableQuizComponent> {
         return EditableQuizComponent;
     }
 
+    /**
+    * Méthode nécessaire pour le carousel.
+    * Renvoie une donnée test.
+    */
     getMock(): Quiz {
         return {
             id: "QUIZ1",
