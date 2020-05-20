@@ -6,7 +6,6 @@ import { ConfigurationService } from 'src/services/configuration.service';
 import { QuizService } from 'src/services/quiz.service';
 import { QuizComponent } from '../quiz/quiz.component';
 import { Quiz } from 'src/models/quiz.model';
-import { QUIZ } from 'src/mocks/quiz.mock';
 
 @Component({
     selector: 'app-quiz-list',
@@ -21,7 +20,7 @@ export class QuizListComponent implements OnInit {
             if (theme == null) this.router.navigateByUrl('/themelist');
             else this.theme = theme;
         });
-        this.configService.previouspage=router.url;
+        this.configService.previouspage = router.url;
 
     }
 

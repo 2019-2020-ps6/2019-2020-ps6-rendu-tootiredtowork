@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';

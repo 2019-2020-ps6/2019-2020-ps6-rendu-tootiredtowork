@@ -1,11 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Quiz } from 'src/models/quiz.model';
 import { ConfigurationService } from 'src/services/configuration.service';
 import { Router } from '@angular/router';
 import { Theme } from 'src/models/theme.model';
 
 import { QuizService } from 'src/services/quiz.service';
-import { CarouselComponent } from 'src/app/carousel/carousel.component';
 import { CarouselItemComponent } from 'src/app/carousel/carousel-item.component';
 
 @Component({

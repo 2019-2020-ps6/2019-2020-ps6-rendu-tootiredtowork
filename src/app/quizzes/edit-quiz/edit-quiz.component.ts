@@ -8,8 +8,7 @@ import { QuizService } from 'src/services/quiz.service';
 import { Question } from 'src/models/question.model';
 import { Theme } from 'src/models/theme.model';
 
-import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { DeleteDialog } from 'src/app/dialogs/delete/delete-dialog.component';
+import { MatDialog } from "@angular/material/dialog";
 import { EditableQuestionComponent } from 'src/app/questions/editable-question/editable-question.component';
 
 
@@ -28,7 +27,7 @@ export class EditQuizComponent implements OnInit {
 
     constructor(public configService: ConfigurationService, public quizService: QuizService, private router: Router, public route: ActivatedRoute, private dialog: MatDialog) {
 
-               
+
         this.quizService.quizSelected$.subscribe((quiz) => {
             console.log("que")
             if (quiz == null) this.router.navigateByUrl('/themelist');
@@ -47,7 +46,7 @@ export class EditQuizComponent implements OnInit {
             }
         });
         this.add = this.addNewQuestion.bind(this);
-        this.configService.previouspage=router.url;
+        this.configService.previouspage = router.url;
 
     }
 
@@ -55,7 +54,7 @@ export class EditQuizComponent implements OnInit {
         this.fillThemeName();
     }
 
-    setPreviousTheme(){
+    setPreviousTheme() {
         let select = document.querySelector("select");
         this.previousTheme = this.quizService.getAllThemes().find(theme => theme.id == select.value)
     }
@@ -70,16 +69,16 @@ export class EditQuizComponent implements OnInit {
         if (Number(input.value) < 1) {
             input.value = "1";
         }
-        console.log("diff"+this.previousTheme.id);
+        console.log("diff" + this.previousTheme.id);
         this.quizService.updateDifficulty(Number(input.value), this.previousTheme);
     }
 
     changeTheme() {
-        console.log("avant"+this.previousTheme.id)
+        console.log("avant" + this.previousTheme.id)
         let select = document.querySelector("select");
         this.quizService.updateQuizzTheme(this.previousTheme, this.quizService.getAllThemes().find(theme => theme.id == select.value));
         this.setPreviousTheme();
-        console.log("apres"+this.previousTheme.id)
+        console.log("apres" + this.previousTheme.id)
 
     }
 

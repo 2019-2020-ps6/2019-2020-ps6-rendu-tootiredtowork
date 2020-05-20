@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { Answer } from 'src/models/answer.model';
 import { Question } from 'src/models/question.model';

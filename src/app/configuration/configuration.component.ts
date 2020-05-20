@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/services/configuration.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { ConfigurationService } from 'src/services/configuration.service';
 export class ConfigurationComponent implements OnInit {
 
   defaultFontSize: number;
-  defaultText:string;
-  defaultBoxe:string;
-  defaultBackground:string;
+  defaultText: string;
+  defaultBoxe: string;
+  defaultBackground: string;
   defaultMarginSize: number;
 
   constructor(public configService: ConfigurationService) {
